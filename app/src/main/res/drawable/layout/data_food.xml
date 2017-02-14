@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_login" />
+
+        <TextView
+            android:id="@+id/textI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="อาหารเพื่อสุขภาพ"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/seekBarSpeed"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/nameI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="22dp" />
+
+            <ImageView
+                android:layout_marginTop="6dp"
+                android:layout_gravity="center"
+                android:id="@+id/i_Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/namefI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="วัตถุดิบ"
+                android:textColor="#848484"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/frI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/howf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="วิธีทำ"
+                android:textColor="#848484"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/howfdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/useF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="คุณประโยชน์"
+                android:textColor="#848484"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/useFdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="16dp" />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:id="@+id/frF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="ที่มา"
+                android:textColor="#848484"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/frFdata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="16dp" />
+
+
+
+
+            <TextView
+                android:id="@+id/null2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#ffffff"
+                android:textSize="50dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

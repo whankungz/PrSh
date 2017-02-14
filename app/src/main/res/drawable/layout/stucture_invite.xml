@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_login" />
+
+        <TextView
+            android:id="@+id/textI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="55dp"
+            android:text="Invite People"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/invite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:drawableLeft="@drawable/ic_search_b"
+        android:hint="Name or email address..."
+        android:padding="6dp"
+        android:textColor="#848484"
+        android:textColorHint="#c1c1c1"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:background="#e6e6e6" />
+
+    <RelativeLayout
+        android:layout_marginLeft="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            app:srcCompat="@drawable/ic_mind"
+            android:id="@+id/peop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
+
+        <TextView
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="70dp"
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:textColor="#c4c4c4"
+            android:text="mind@hotmail.com"
+            android:textSize="22dp" />
+
+   </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:background="#e6e6e6" />
+
+    <RelativeLayout
+        android:layout_marginLeft="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/peop2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_whan" />
+
+        <TextView
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="70dp"
+            android:id="@+id/name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:textColor="#c4c4c4"
+            android:text="sweet@hotmail.com"
+            android:textSize="22dp" />
+
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:background="#e6e6e6" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp">
+
+        <ImageView
+            android:id="@+id/peop3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:srcCompat="@drawable/ic_green" />
+
+        <TextView
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="70dp"
+            android:id="@+id/name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:text="green@hotmail.com"
+            android:textColor="#c4c4c4"
+            android:textSize="22dp" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

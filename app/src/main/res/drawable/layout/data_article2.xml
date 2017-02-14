@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/seekBarSpeed"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/nameA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:text="ชื่อบทความ"
+                    android:textColor="#848484"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:layout_marginLeft="80dp"
+                    android:id="@+id/nameDdataA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:textColor="#151515"
+                    android:textSize="22dp" />
+            </RelativeLayout>
+            <ImageView
+                android:layout_marginTop="14dp"
+                android:layout_gravity="center"
+                android:id="@+id/imageView2_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:id="@+id/namef"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:textColor="#151515"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:id="@+id/namefda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:text="ที่มา"
+                    android:textColor="#848484"
+                    android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/namefdat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_marginTop="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0.8dp"
+                android:background="#eaeaea" />
+
+
+
+
+            <TextView
+                android:id="@+id/null2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="#ffffff"
+                android:textSize="50dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

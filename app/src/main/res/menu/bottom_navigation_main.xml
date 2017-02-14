@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_herb"
+        android:icon="@drawable/ic_h"
+        android:title="สมุนไพร"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_disea"
+        android:icon="@drawable/ic_d"
+        android:title="อาการ/โรค"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_arti"
+        android:icon="@drawable/ic_ar"
+        android:title="บทความ"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_info"
+        android:icon="@drawable/ic_info"
+        android:title="Infographic"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_fav"
+        android:icon="@drawable/ic_load"
+        android:title="ออฟไลน์"
+        app:showAsAction="always" />
+
+    <!--tools:ignore="MenuTitle"-->
+</menu>

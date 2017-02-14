@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_login" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="เข้าสู่ระบบ"
+            android:textColor="#ffffff"
+            android:textSize="24dp" />
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:hint="@string/username_title"
+        android:padding="10dp"
+        android:textColor="#797979"
+        android:textColorHint="#c1c1c1"
+        android:textSize="22dp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.9dp"
+        android:background="#d7d7d7" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:hint="@string/password_title"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#797979"
+        android:textColorHint="#c1c1c1"
+        android:textSize="22dp" />
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.9dp"
+        android:background="#d7d7d7" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/login_bg"
+        android:onClick="ClickStart"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:text="เข้าสู่ระบบ"
+        android:textColor="#ffffff"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_shape_popup"
+        android:onClick="ClickStart"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:text="ลงทะเบียน"
+        android:textColor="#939191"
+        android:textSize="22dp" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:onClick="ClickStart"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="ผู้ใช้ทั่วไป"
+        android:textColor="#b1b1b1"
+        android:textSize="23dp" />
+
+
+
+</LinearLayout>

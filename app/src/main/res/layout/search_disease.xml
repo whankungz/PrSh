@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/seekBarSpeed"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/nameD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:text="ชื่อโรค"
+        android:textColor="#848484"
+        android:textColorHint="#c1c1c1"
+        android:textSize="24dp" />
+
+    <TextView
+        android:layout_marginLeft="80dp"
+        android:id="@+id/nameDdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:textColor="#151515"
+        android:textColorHint="#c1c1c1"
+        android:textSize="24dp" />
+</RelativeLayout>
+
+
+
+                <TextView
+                    android:id="@+id/nameOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:text="สมุนไพรที่ใช้รักษา"
+                    android:textColor="#848484"
+                    android:textColorHint="#c1c1c1"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/nameOtherda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:textColor="#151515"
+                    android:textColorHint="#c1c1c1"
+                    android:textSize="22dp" />
+
+
+            <TextView
+                android:layout_marginTop="14dp"
+                android:id="@+id/namewhy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="อาการ"
+                android:textColor="#848484"
+                android:textColorHint="#c1c1c1"
+                android:textSize="18dp" />
+            <TextView
+                android:id="@+id/namewhyda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textColorHint="#c1c1c1"
+                android:textSize="20dp" />
+            <TextView
+                android:layout_marginTop="14dp"
+                android:id="@+id/namehow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:text="วิธีการบรรเทา"
+                android:textColor="#848484"
+                android:textColorHint="#c1c1c1"
+                android:textSize="18dp" />
+            <TextView
+                android:id="@+id/namehowda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textColor="#151515"
+                android:textColorHint="#c1c1c1"
+                android:textSize="20dp" />
+            <!--<View-->
+                <!--android:layout_marginTop="14dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="0.8dp"-->
+                <!--android:background="#eaeaea" />-->
+
+            <!--<RelativeLayout-->
+                <!--android:layout_marginTop="14dp"-->
+                <!--android:layout_marginLeft="14dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<ImageView-->
+                    <!--app:srcCompat="@drawable/ic_mind"-->
+                    <!--android:id="@+id/peop"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_marginLeft="240dp"-->
+                    <!--android:id="@+id/date"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="#ffffff"-->
+                    <!--android:textColor="#d6d6d6"-->
+                    <!--android:text="30/01/60"-->
+                    <!--android:textSize="14dp" />-->
+                <!--<TextView-->
+                    <!--android:layout_marginTop="17dp"-->
+                    <!--android:layout_marginLeft="80dp"-->
+                    <!--android:id="@+id/nameMe"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:background="#ffffff"-->
+                    <!--android:textColor="#5e5e5e"-->
+                    <!--android:text="หากปวดเป็นเวลานานควรไปพบแพทย์โดยเร็ว"-->
+                    <!--android:textSize="16dp" />-->
+
+            <!--</RelativeLayout>-->
+            <!--<TextView-->
+                <!--android:id="@+id/Uname"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="#ffffff"-->
+                <!--android:textColor="#c4c4c4"-->
+                <!--android:text="mind"-->
+                <!--android:textSize="18dp" />-->
+            <View
+                android:layout_marginTop="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0.8dp"
+                android:background="#eaeaea" />
+
+            <RatingBar
+                android:id="@+id/rat"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:layout_gravity="center"
+                android:layout_width="240dp"
+                android:layout_height="40dp" />
+            <View
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0.8dp"
+                android:background="#eaeaea" />
+
+
+            <TextView
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_bg"
+                android:onClick="ClickStart"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:text="ตกลง"
+                android:textColor="#ffffff"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/null2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:textSize="100dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+        </LinearLayout>

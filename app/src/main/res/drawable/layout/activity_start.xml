@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/social"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:onClick="ClickStart"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Social Herb"
+        android:textColor="#228B22"
+        android:textSize="54dp"/>
+    <TextView
+        android:id="@+id/TH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="ClickStart"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="สมุนไพรออนไลน์"
+        android:textColor="#b6dfb6"
+        android:textSize="34dp"/>
+
+
+    <TextView
+        android:drawableRight="@drawable/ic_next"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="110dp"
+        android:onClick="ClickStart"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="จิตอาสา (เภสัชกร)"
+        android:textColor="#a9a9a9"
+        android:textSize="30dp"
+        />
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.9dp"
+        android:layout_marginTop="30dp"
+        android:background="#d1d0d0" />
+
+    <TextView
+        android:drawableRight="@drawable/ic_next"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="30dp"
+        android:onClick="ClickStart"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="ผู้ใช้ทั่วไป"
+        android:textColor="#a9a9a9"
+        android:textSize="30dp"
+        />
+
+    <!--<com.roughike.bottombar.BottomBar-->
+    <!--android:background="#ffffff"-->
+    <!--android:id="@+id/bottomBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--app:bb_activeTabColor="#249e24"-->
+    <!--app:bb_behavior="shifting"-->
+    <!--app:bb_inActiveTabColor="#8b8b8b"-->
+    <!--app:bb_tabXmlResource="@xml/bottombar_tabs_three"-->
+    <!--/>-->
+
+
+
+</LinearLayout>
