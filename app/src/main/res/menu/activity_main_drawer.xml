@@ -4,34 +4,35 @@
     <group android:checkableBehavior="single">
         <item
             android:checked="true"
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_ho"
+            android:title="หน้าแรก" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_food"
+            android:icon="@drawable/ic_food"
+            android:title="อาหารเพื่อสุขภาพ" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_office"
+            android:icon="@drawable/ic_offi"
+            android:title="หน่วยงานที่เกี่ยวข้อง" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="แชร์" />
     </group>
 
-    <item android:title="Communicate">
+   <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+            android:id="@+id/nav_invite"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Invite" />
+
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_logout"
+
+                android:title="ออกจากระบบ" />
         </menu>
-    </item>
+</item>
 
 </menu>
