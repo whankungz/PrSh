@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        connectionClass = new ConnectionClass();
+//        connectionClass = new ConnectionClass();
         setView();
 
 
@@ -115,7 +115,20 @@ public class Login extends AppCompatActivity {
             protected String doInBackground(String... params) {
                 String userid = edtuserid.getText().toString();
                 String password = edtpass.getText().toString();
+                login.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
 
+//                        //        click login
+//                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+//                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+
+
+                    }
+                });
                 if (userid.trim().equals("") || password.trim().equals(""))
                     z = "Please enter Username and Password";
                 else {
@@ -132,20 +145,20 @@ public class Login extends AppCompatActivity {
                                 z = "Login Successful";
                                 isSuccess = true;
 
-                                login.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-
-//                        //        click login
-//                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
-
-
-                                    }
-                                });
+//                                login.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View view) {
+//
+////                        //        click login
+////                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+////                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+//
+//                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                        startActivity(intent);
+//
+//
+//                                    }
+//                                });
                                 con.close();
                             } else {
                                 z = "Invalid Credentials!";

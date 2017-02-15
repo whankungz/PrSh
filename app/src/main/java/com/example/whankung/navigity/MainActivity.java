@@ -155,10 +155,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_food) {
 
+
         } else if (id == R.id.nav_office) {
 
         } else if (id == R.id.nav_share) {
-
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, new ShareF());
+            transaction.commit();
         } else if (id == R.id.nav_invite) {
 
         } else if (id == R.id.nav_logout) {
