@@ -27,7 +27,7 @@ public class ShareF extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
-      //  rootView = inflater.inflate(R.layout.stucture_herb, container, false);
+       // rootView = inflater.inflate(R.layout.stucture_herb, container, false);
 
 //facebook
         String urlToShare = "https://play.google.com/store/apps";
@@ -51,24 +51,18 @@ public class ShareF extends Fragment {
         if (!facebookAppFound) {
             String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+
+
         }
-
-        startActivity(intent);
-
-       intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
 
 
-        setView();
 
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-return rootView;
+
+//        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.RESULT_HIDDEN,0);
+
+        return rootView;
     }
 
-
-
-    private void setView() {
-
-    }
 }

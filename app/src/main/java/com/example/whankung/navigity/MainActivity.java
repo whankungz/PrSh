@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
                                 FragmentTransaction transaction = manager.beginTransaction();
                                 transaction.replace(R.id.container, new MainHerb());
                                 transaction.commit();
+
                                 //     tv.setText("สมุนไพร");
                                 break;
                             case R.id.action_disea:
@@ -102,12 +103,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         //        click login
+        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
 //        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+
+//
+
 
     }
+
 
 
     @Override

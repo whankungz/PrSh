@@ -16,10 +16,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import static android.view.View.GONE;
+
 /**
  * Created by Whankung on 15/2/2560.
  */
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity{
     private Typeface font;
 
     EditText edtuserid, edtpass;
@@ -27,18 +29,23 @@ public class Login extends AppCompatActivity {
 
     TextView login, skip, head, regis;
     ProgressBar progressBar;
-    NavigationView navigationView;
-    ConnectionClass connectionClass;
 
+    ConnectionClass connectionClass;
+    private boolean ifNotLogIn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-//        connectionClass = new ConnectionClass();
+//            navigationView.getMenu().getItem(0).setChecked(false);
+
+
+      //  connectionClass = new ConnectionClass();
         setView();
-
-
+       // navigationView.getMenu().getItem(0).setChecked(false);
+//        if(ifNotLogIn){
+//            navigationView.getMenu().getItem(0).setVisible(false);
+//        }
     }
 
     private void setView() {
@@ -56,7 +63,7 @@ public class Login extends AppCompatActivity {
 //            }
 //        });
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(GONE);
         skip = (TextView) findViewById(R.id.skip);
         head = (TextView) findViewById(R.id.textView4);
         login = (TextView) findViewById(R.id.textView);
@@ -73,12 +80,28 @@ public class Login extends AppCompatActivity {
         login.setTypeface(font);
         regis.setTypeface(font);
 
+
         login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 CheckLogin checkLogin = new CheckLogin();// this is the Asynctask, which is used to process in background to reduce load on app process
                 checkLogin.execute("");
+       new MainActivity();
+                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                navigationView.getMenu().removeItem(0);
+//               navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+//                    navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+//                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//
+//
+//
+//                    startActivity(intent);
+
+
+
             }
+
         });
 
 
@@ -92,59 +115,67 @@ public class Login extends AppCompatActivity {
 //            }
 //        });
     }
-        public class CheckLogin extends AsyncTask<String, String, String> {
-            String z = "";
-            Boolean isSuccess = false;
 
-            @Override
-            protected void onPreExecute() {
-                progressBar.setVisibility(View.VISIBLE);
+
+
+
+    public class CheckLogin extends AsyncTask<String, String, String> {
+        String z = "";
+        Boolean isSuccess = false;
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void onPostExecute(String r) {
+            progressBar.setVisibility(GONE);
+            Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
+            if (isSuccess) {
+                Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
+//                    //finish();
+//                }
             }
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            String userid = edtuserid.getText().toString();
+            String password = edtpass.getText().toString();
 
-            @Override
-            protected void onPostExecute(String r) {
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
-                if (isSuccess) {
-                    Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
-                    //finish();
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+
+//                    navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+//                    navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+
                 }
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-                String userid = edtuserid.getText().toString();
-                String password = edtpass.getText().toString();
-                login.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-//                        //        click login
-//                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
+            });
 
 
-                    }
-                });
-                if (userid.trim().equals("") || password.trim().equals(""))
-                    z = "Please enter Username and Password";
-                else {
-                    try {
-                        Connection con = connectionClass.connection();       // Connect to database
-                        if (con == null) {
-                            z = "Check Your Internet Access!";
-                        } else {
+            if (userid.trim().equals("") || password.trim().equals(""))
+                z = "Please enter Username and Password";
+            else {
+                try {
+                    Connection con = connectionClass.connection();
 
-                            String query = "select * from Pharmacist where username= '" + userid.toString() + "' and password = '" + password.toString() + "'  ";
-                            Statement stmt = con.createStatement();
-                            ResultSet rs = stmt.executeQuery(query);
-                            if (rs.next()) {
-                                z = "Login Successful";
-                                isSuccess = true;
+                    if (con == null) {
+                        z = "Check Your Internet Access!";
 
+                    } else {
+
+                        String query = "select * from Pharmacist where username= '" + userid.toString() + "' and password = '" + password.toString() + "'  ";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(query);
+                        if (rs.next()) {
+                            z = "Login Successful";
+                            isSuccess = true;
+//
 //                                login.setOnClickListener(new View.OnClickListener() {
 //                                    @Override
 //                                    public void onClick(View view) {
@@ -159,21 +190,21 @@ public class Login extends AppCompatActivity {
 //
 //                                    }
 //                                });
-                                con.close();
-                            } else {
-                                z = "Invalid Credentials!";
-                                isSuccess = false;
+                            con.close();
+                        } else {
+                            z = "Invalid Credentials!";
+                            isSuccess = false;
 
-                            }
                         }
-                    } catch (Exception ex) {
-                        isSuccess = false;
-                        z = ex.getMessage();
                     }
+                } catch (Exception ex) {
+                    isSuccess = false;
+                    z = ex.getMessage();
                 }
-                return z;
-
             }
+            return z;
+
         }
     }
+}
 
