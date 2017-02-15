@@ -1,1 +1,1 @@
-include ':app', ':jtds-1.2.7-sources', ':lib'
+include ':app', ':jtds-1.2.7-sources', ':jtds-1.2.7'

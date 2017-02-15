@@ -2,7 +2,6 @@ package com.example.whankung.navigity;
 
 import android.annotation.SuppressLint;
 import android.os.StrictMode;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.sql.SQLException;
  * Created by Whankung on 5/2/2560.
  */
 
-public class ConnectionClass extends Fragment {
+public class ConnectionClass {
     private String un, pass, db, ip;
 
     @SuppressLint("NewApi")
