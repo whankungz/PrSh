@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 
 
 /**
@@ -28,14 +29,45 @@ public class MainDisease extends android.support.v4.app.Fragment{
     private TextView t_H, t_H2, t_H3, t_H4, t_H5, t_H6, t_H7,s,s2,s3,s4,s5,s6,s7,tb;
     private ImageView i_H, i_H2, i_H3, i_H4,i_H5,i_H6,i_H7, star, star2, star3, star4, star5, star6, star7;
 
+
+
+
+    //    service
+    public static final String BASE_URL = "http://localhost:8080/HerbServices/webresources/service.entityclass.admin";
+    private static final String TAG = "log";
+    private ArrayList<String> lottory = new ArrayList<>();
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_disease, container, false);
         setView();
         setShow();
+        setServices();
         return rootView;
     }
+
+    private void setServices() {
+//        DRequest disease = new  DRequest();
+//        Call<DModel> calls = Http.getInstance().getDisease().loadJson();
+//        calls.enqueue(new Callback<DModel>()
+//
+//                      {
+//                          @Override
+//                          public void onResponse(Call<DModel> call, Response<DModel> response) {
+//                              tv.setText(response.body().getDataD().get(0).getUsernameAd());
+//                              tv.setText(response.body().getDataD().get(1).getPasswordAd());
+//                          }
+//
+//                          @Override
+//                          public void onFailure(Call<DModel> call, Throwable t) {
+//                              Log.d(TAG, "onFailure:  " + t.toString());
+//                          }
+//                      });
+    }
+
 
 
     private void setView() {
