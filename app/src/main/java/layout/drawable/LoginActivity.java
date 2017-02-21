@@ -32,10 +32,6 @@ import com.example.whankung.navigity.ConnectionClass;
 import com.example.whankung.navigity.MainActivity;
 import com.example.whankung.navigity.R;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -318,26 +314,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
 
-
-            Connection con = connectionClass.connection();
-
-
-            String query = "select * from Pharmacist where email= '" + mEmail + "' and password = '" + mPassword + "'  ";
-            Statement stmt = null;
-            try {
-                stmt = con.createStatement();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                ResultSet rs = stmt.executeQuery(query);
-            } catch (SQLException e) {
-                e.printStackTrace();
-
-                return true;
-            }
-
-
+//            Connection con = connectionClass.connection();
+//
+//
+//            String query = "select * from Pharmacist where email= '" + mEmail + "' and password = '" + mPassword + "'  ";
+//            Statement stmt = null;
+//            try {
+//                stmt = con.createStatement();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                ResultSet rs = stmt.executeQuery(query);
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//
+//                return true;
+//            }
+//
+//
             {
                 // TODO: attempt authentication against a network service.
 
@@ -370,7 +365,7 @@ return true;
                 if (success) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    // finish();
+                    finish();
                 } else {
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
                     mPasswordView.requestFocus();
