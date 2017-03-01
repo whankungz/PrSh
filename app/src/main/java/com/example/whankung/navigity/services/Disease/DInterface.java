@@ -10,8 +10,11 @@ import retrofit2.http.POST;
  */
 
 public interface DInterface {
-    @GET("Admin")
-    Call<DModel> loadJson();
+
+
+    @GET("service.entityclass.admin")
+    Call<DRequest> loadJson();
+
 
 
 

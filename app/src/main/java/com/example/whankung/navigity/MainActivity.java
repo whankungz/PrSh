@@ -12,15 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
-import java.sql.Connection;
-
-import layout.drawable.LoginActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,login_nopass.onSubmitAlertDialogListener{
@@ -114,18 +109,17 @@ public class MainActivity extends AppCompatActivity
 
 
         //        click login
-        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+      //  navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
 //        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
 
-        ConnectionClass connectionClass;
-        connectionClass = new ConnectionClass();
-        Connection con = connectionClass.connection();
-        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
-        navigationView.addHeaderView(nav_header);
-
-        TextView Pro=(TextView) nav_header.findViewById(R.id.namePro);
-        Pro.setText("wwwww");
-
+//        ConnectionClass connectionClass;
+//        connectionClass = new ConnectionClass();
+//        Connection con = connectionClass.connection();
+//        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+//        navigationView.addHeaderView(nav_header);
+//
+//        TextView Pro=(TextView) nav_header.findViewById(R.id.namePro);
+//        Pro.setText("wwwww");
 
 
 
@@ -172,7 +166,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_login) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
 //            login_nopass alertDialog = new login_nopass();
 //            alertDialog.mListener=MainActivity.this;

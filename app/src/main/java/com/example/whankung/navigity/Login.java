@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(nav_header_login);
+        setContentView(R.layout.login);
 
 //            navigationView.getMenu().getItem(0).setChecked(false);
 

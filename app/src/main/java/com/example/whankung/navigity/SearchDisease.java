@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.whankung.navigity.services.Disease.DModel;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Disease.Http;
 
@@ -32,7 +31,7 @@ public class SearchDisease extends Fragment {
     private RatingBar r;
 
     //        service
-    public static final String BASE_URL = "http://172.19.131.70:8080/HerbServices/webresources/service.entityclass.admin/";
+    public static final String BASE_URL = "http://172.20.10.3:8080/HerbServices/webresources/";
     private static final String TAG = "log";
 
 
@@ -49,19 +48,25 @@ public class SearchDisease extends Fragment {
     }
 
     private void setServices() {
+
         DRequest disease = new DRequest();
-        Call<DModel> calls = Http.getInstance().getDisease().loadJson();
-        calls.enqueue(new Callback<DModel>()
+        Call<DRequest> calls = Http.getInstance().getAdmin().loadJson();
+        calls.enqueue(new Callback<DRequest>()
 
         {
             @Override
-            public void onResponse(Call<DModel> call, Response<DModel> response) {
-                t2.setText(response.body().getDataD().get(0).getUsernameAd());
-                t4.setText(response.body().getDataD().get(1).getPasswordAd());
+            public void onResponse(Call<DRequest> call, Response<DRequest> response) {
+
+
+
+                t2.setText(response.body().getPasswordAd());
+                t4.setText(response.body().getUsernameAd());
+
+
             }
 
             @Override
-            public void onFailure(Call<DModel> call, Throwable t) {
+            public void onFailure(Call<DRequest> call, Throwable t) {
                 Log.d(TAG, "onFailure:  " + t.toString());
             }
         });

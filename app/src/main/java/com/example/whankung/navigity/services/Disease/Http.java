@@ -14,7 +14,9 @@ import static com.example.whankung.navigity.SearchDisease.BASE_URL;
 public class Http {
     private static Http instance;
 
-  DInterface disease;
+
+
+    DInterface admin;
 
 
     public static Http getInstance(){
@@ -32,15 +34,15 @@ public class Http {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-       disease = retrofit.create(DInterface.class);
+       admin = retrofit.create(DInterface.class);
 
     }
 
-    public DInterface getDisease() {
-        return disease;
+
+
+    public DInterface getAdmin() {
+        return admin;
     }
-
-
 
 
 }
