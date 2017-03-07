@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,17 +51,17 @@ public class Login extends AppCompatActivity{
     private void setView() {
 
 
-//        ImageView img = (ImageView)findViewById(R.id.action_login);
-//        img.setVisibility(View.VISIBLE);
-//        img.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //กลับไปยังหน้าเลือกเภสัช
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+        ImageView img = (ImageView)findViewById(R.id.action_login);
+        img.setVisibility(View.VISIBLE);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //กลับไปยังหน้าเลือกเภสัช
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(GONE);
@@ -80,7 +81,14 @@ public class Login extends AppCompatActivity{
         login.setTypeface(font);
         regis.setTypeface(font);
 
+        regis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Register.class);
+                startActivity(intent);
 
+            }
+        });
         login.setOnClickListener(new View.OnClickListener() {
 
             @Override

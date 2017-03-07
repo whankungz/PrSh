@@ -1,4 +1,4 @@
-package com.example.whankung.navigity.services;
+package com.example.whankung.navigity;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
+        <activity android:name=".Register"></activity>
         <activity
             android:name="layout.drawable.LoginActivity"
             android:label="@string/title_activity_login"></activity>
