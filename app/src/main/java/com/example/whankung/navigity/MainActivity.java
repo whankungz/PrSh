@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.services.Invite;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,login_nopass.onSubmitAlertDialogListener{
@@ -183,6 +185,10 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.container, new ShareF());
             transaction.commit();
         } else if (id == R.id.nav_invite) {
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, new Invite());
+            transaction.commit();
 
         } else if (id == R.id.nav_logout) {
 
