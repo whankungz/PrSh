@@ -91,7 +91,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //กลับไปยังหน้าเลือก ถาคของเรา
-                Intent intent = new Intent(getApplicationContext(), Login.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
             }
@@ -130,16 +130,16 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onPause() {
 
-        super.onPause();
-        try {
-            Connection con = connectionClass.connection();
-            con.close();
-
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-
-        }
+//        super.onPause();
+//        try {
+//            Connection con = connectionClass.connection();
+//            con.close();
+//
+//        } catch (SQLException e) {
+//
+//            e.printStackTrace();
+//
+//        }
 
     }
 
