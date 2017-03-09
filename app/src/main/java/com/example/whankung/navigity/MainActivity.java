@@ -12,22 +12,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,login_nopass.onSubmitAlertDialogListener{
 
-    private TextView tv;
+    private TextView tv,pro;
     QuickReturnFloaterBehavior behavior;
-
+    ConnectionClass connectionClass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        connectionClass = new ConnectionClass();
         tv = (TextView) findViewById(R.id.toolbar_title);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_);
@@ -115,11 +122,16 @@ public class MainActivity extends AppCompatActivity
 //        ConnectionClass connectionClass;
 //        connectionClass = new ConnectionClass();
 //        Connection con = connectionClass.connection();
+
+        //String userid = pro.getText().toString();
+
+       // Connection con = connectionClass.connection();
+       // String query = "select * from Pharmacist where username= '" + pro.toString() + "'  ";
 //        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 //        navigationView.addHeaderView(nav_header);
-//
-//        TextView Pro=(TextView) nav_header.findViewById(R.id.namePro);
-//        Pro.setText("wwwww");
+//        pro=(TextView) nav_header.findViewById(R.id.namePro);
+//        pro.setText( "wwwwww");
+
 
 
 
