@@ -130,16 +130,16 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onPause() {
 
-//        super.onPause();
-//        try {
-//            Connection con = connectionClass.connection();
-//            con.close();
-//
-//        } catch (SQLException e) {
-//
-//            e.printStackTrace();
-//
-//        }
+        super.onPause();
+        try {
+            Connection con = connectionClass.connection();
+            con.close();
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        }
 
     }
 
@@ -256,7 +256,8 @@ public class Register extends AppCompatActivity {
 
                 ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
                         + "  VALUES ("+us.toString()+" ,"+ps.toString()+" , "+em.toString()+")");
-
+//                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+//                       + "  VALUES (us.toString(),ps.toString(),em.toString())");
                 rs.close();
                 statement.close();
 
