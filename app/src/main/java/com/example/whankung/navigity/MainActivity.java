@@ -116,18 +116,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-        //        click login
-        //  navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
-//        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
 
-//        ConnectionClass connectionClass;
-//        connectionClass = new ConnectionClass();
-//        Connection con = connectionClass.connection();
-
-        //String userid = pro.getText().toString();
-
-        // Connection con = connectionClass.connection();
-        // String query = "select * from Pharmacist where username= '" + pro.toString() + "'  ";
 //        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 //        navigationView.addHeaderView(nav_header);
 //        pro=(TextView) nav_header.findViewById(R.id.namePro);
@@ -137,6 +126,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
         navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
         nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+
 
         if (AppState.getSingleInstance().isLogin()) {
             navigationView.addHeaderView(nav_header);
@@ -252,7 +242,8 @@ public class MainActivity extends AppCompatActivity
 
         //   pro.getHint();
 
-            nav_header.setEnabled(false);
+//            nav_header.setEnabled(false);
+        pro.setVisibility(View.GONE);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
