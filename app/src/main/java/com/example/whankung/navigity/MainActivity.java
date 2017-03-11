@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView tv, pro;
-    QuickReturnFloaterBehavior behavior;
+
     ConnectionClass connectionClass;
     private View nav_header;
 
@@ -122,10 +122,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-//        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
-//        navigationView.addHeaderView(nav_header);
-//        pro=(TextView) nav_header.findViewById(R.id.namePro);
-//        pro.setText( "wwwwww");
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
@@ -147,6 +143,21 @@ public class MainActivity extends AppCompatActivity
 //            Singleton.getInstance().setYourFormattedString3(yourFormattedString3);
         }
 //setLogin();
+    }
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * Shows the soft keyboard
+     */
+    public void showSoftKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        view.requestFocus();
+        inputMethodManager.showSoftInput(view, 0);
     }
 
     private void setLogin() {
@@ -255,14 +266,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void setLoginState(boolean status) {
-
-        SharedPreferences sp = getSharedPreferences("LoginState",
-                MODE_PRIVATE);
-        SharedPreferences.Editor ed = sp.edit();
-        ed.putBoolean("setLoggingOut", status);
-        ed.commit();
-    }
 
 
 }

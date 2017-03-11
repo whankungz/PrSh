@@ -15,9 +15,9 @@
         android:background="@drawable/bg_shape_popup"
         android:drawableLeft="@drawable/ic_search_b"
         android:hint="ค้นหา"
+
         android:imeOptions="actionDone"
-        android:inputType="textImeMultiLine"
-        android:singleLine="true"
+
         android:textColor="#979797"
         android:textColorHint="#979797" />
 

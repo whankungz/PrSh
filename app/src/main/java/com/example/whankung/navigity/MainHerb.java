@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,6 +26,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,7 +60,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_herb, container, false);
         setView();
-        setHasOptionsMenu(true);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(rootView.getWindowToken(), 0);
 
 
         perform();
@@ -70,9 +75,9 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
     private void perform() {
 // TODO Auto-generated method stub
-        final String[] herbs = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2" };
+        final String[] herbs = new String[] { "ทับทิม", "มะนาว", "มะเขือ",
+                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
+                "ตะไคร้หอม", "พริก" };
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
@@ -83,39 +88,52 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
         lv.setAdapter(adapter);
         lv.setTextFilterEnabled(true);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               FragmentManager m = getFragmentManager();
+                                FragmentTransaction t = m.beginTransaction();
+                                t.replace(R.id.container, new SearchHerb());
+                                t.commit();
 
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-
-                switch (position) {
-                    case 0:
-
-                      AppState.getSingleInstance().setIndexlist(herbs[0]);
-                        break;
-                    case 1:
-                        AppState.getSingleInstance().setIndexlist(herbs[1]);
-                        break;
-                    case 2:
-                  AppState.getSingleInstance().setIndexlist(herbs[2]);
-                        break;
-                    case 3:
-                        AppState.getSingleInstance().setIndexlist(herbs[3]);
-                        break;
-                    case 4:
-                        AppState.getSingleInstance().setIndexlist(herbs[4]);
-                        break;
-                    case 5:
-                        AppState.getSingleInstance().setIndexlist(herbs[5]);
-                        break;
-
-                }
-
-            }
-
-
-        });
+               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
+               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+               imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+           }
+       });
+//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//
+//
+//                switch (position) {
+//                    case 0:
+//
+//                      AppState.getSingleInstance().setIndexlist(herbs[0]);
+//                        break;
+//                    case 1:
+//                        AppState.getSingleInstance().setIndexlist(herbs[1]);
+//                        break;
+//                    case 2:
+//                  AppState.getSingleInstance().setIndexlist(herbs[2]);
+//                        break;
+//                    case 3:
+//                        AppState.getSingleInstance().setIndexlist(herbs[3]);
+//                        break;
+//                    case 4:
+//                        AppState.getSingleInstance().setIndexlist(herbs[4]);
+//                        break;
+//                    case 5:
+//                        AppState.getSingleInstance().setIndexlist(herbs[5]);
+//                        break;
+//
+//                }
+//
+//            }
+//
+//
+//        });
 
 
 
@@ -161,11 +179,19 @@ public class MainHerb extends android.support.v4.app.Fragment {
 //        s4.setTypeface(font);
         // tb.setTypeface(font);
         search = (EditText) rootView.findViewById(R.id.search);
+        search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                HideKeyboard.hideKeyboard(getActivity());
+            }
+        });
         search.addTextChangedListener(new TextWatcher() {
+
+
             @Override
             public void afterTextChanged(Editable arg0) {
-//                String text = search.getText().toString().toLowerCase(Locale.getDefault());
-//                filter(text);
+
             }
 
             @Override
@@ -181,42 +207,43 @@ public class MainHerb extends android.support.v4.app.Fragment {
                 final String strMsg = "ทับทิม";
                 String strMsg2 = "มะนาว";
 
-                if (s.toString().equals(strMsg)) {
-                    search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                                //  AppState.getSingleInstance().setDataHerb(strMsg);
-                                FragmentManager m = getFragmentManager();
-                                FragmentTransaction t = m.beginTransaction();
-                                t.replace(R.id.container, new SearchHerb());
-                                t.commit();
-
-
-                            }
-                            return false;
-                        }
-                    });
-                } else if (s.toString().equals(strMsg2)) {
-                    search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                            if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                                FragmentManager m = getFragmentManager();
-                                FragmentTransaction t = m.beginTransaction();
-                                t.replace(R.id.container, new SearchHerb());
-                                t.commit();
-
-
-                            }
-                            return false;
-                        }
-                    });
-
-                }
+//                if (s.toString().equals(strMsg)) {
+//                    search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//                        @Override
+//                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//
+//                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//                                //  AppState.getSingleInstance().setDataHerb(strMsg);
+//                                FragmentManager m = getFragmentManager();
+//                                FragmentTransaction t = m.beginTransaction();
+//                                t.replace(R.id.container, new SearchHerb());
+//                                t.commit();
+//
+//
+//                            }
+//                            return false;
+//                        }
+//                    });
+//                } else if (s.toString().equals(strMsg2)) {
+//                    search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//                        @Override
+//                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//
+//                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//
+//                                FragmentManager m = getFragmentManager();
+//                                FragmentTransaction t = m.beginTransaction();
+//                                t.replace(R.id.container, new SearchHerb());
+//                                t.commit();
+//
+//
+//                            }
+//                            return false;
+//                        }
+//                    });
+//
+//                }
             }
         });
     }
