@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
                                 transaction = manager.beginTransaction();
                                 transaction.replace(R.id.container, new MainFavorite());
                                 transaction.commit();
+                                AppState.getSingleInstance().getDataHerb();
                                 //     tv.setText("รายการโปรด");
                                 break;
                         }

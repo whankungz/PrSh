@@ -13,9 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -28,15 +33,32 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private EditText search;
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
+    // List view
+    private ListView lv;
 
+    // Listview Adapter
+    ArrayAdapter<String> adapter;
+
+   private String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
+            "iPhone 4S", "Samsung Galaxy Note 800",
+            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
+
+
+    // ArrayList for Listview
+    ArrayList<HashMap<String, String>> productList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_herb, container, false);
         setView();
-        setShowHerb();
+      //  setShowHerb();
+        lv = (ListView) rootView.findViewById(R.id.list_view);
+        search = (EditText) rootView.findViewById(R.id.search);
 
+        // Adding items to listview
+        adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, R.id.product_name, herbs);
+        lv.setAdapter(adapter);
         return rootView;
     }
 
@@ -99,13 +121,14 @@ public class MainHerb extends android.support.v4.app.Fragment {
                 search.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 final String strMsg = "ทับทิม";
                 String strMsg2 = "มะนาว";
+
                 if (s.toString().equals(strMsg)) {
                     search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                                AppState.getSingleInstance().setDataHerb(strMsg);
+                              //  AppState.getSingleInstance().setDataHerb(strMsg);
                                 FragmentManager m = getFragmentManager();
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());

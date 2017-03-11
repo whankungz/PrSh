@@ -25,7 +25,7 @@
     <item
         android:id="@+id/action_fav"
         android:icon="@drawable/ic_load"
-        android:title="ออฟไลน์"
+        android:title="favorite"
         app:showAsAction="always" />
 
     <!--tools:ignore="MenuTitle"-->

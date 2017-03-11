@@ -68,7 +68,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppState.getSingleInstance().getDataHerb();
+            //    AppState.getSingleInstance().setDataHerb();
 //                FragmentManager m = getFragmentManager();
 //                FragmentTransaction t = m.beginTransaction();
 //                t.replace(R.id.container, new MainFavorite());

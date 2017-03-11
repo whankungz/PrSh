@@ -24,8 +24,9 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_favorite, container, false);
         setView();
-        setShow();
-        AppState.getSingleInstance().getDataHerb();
+       setShow();
+
+      //  AppState.getSingleInstance().getData();
         return rootView;
     }
 
@@ -54,7 +55,7 @@ public class MainFavorite extends android.support.v4.app.Fragment {
         i_H.setImageResource(R.drawable.img_grass2);
         t_H.setText("ตะไคร้");
         i_H2.setImageResource(R.drawable.img_ruby);
-        t_H2.setText("ทับทิม");
+      // t_H2.setText((CharSequence) AppState.getSingleInstance().getData());
 //        i_H3.setImageResource(R.drawable.img_lemon2);
 //        t_H3.setText("มะนาว");
 //        i_H4.setImageResource(R.drawable.img_fa);

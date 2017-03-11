@@ -1,5 +1,7 @@
 package com.example.whankung.navigity;
 
+import android.support.v4.app.Fragment;
+
 /**
  * Created by Whankung on 11/3/2560.
  */
@@ -11,9 +13,21 @@ public class AppState {
     private boolean isLogin;
     private String namePhama;
     private String dataHerb;
+    private boolean dataHerb2;
 
+
+    private GeneralHerbFragment ge;
+
+    public GeneralHerbFragment getGe() {
+        return ge;
+    }
+
+    public void setGe(GeneralHerbFragment ge) {
+        this.ge = ge;
+    }
 
     private AppState() {
+
     }
 
     public static AppState getSingleInstance() {
@@ -55,5 +69,12 @@ public class AppState {
 
     public void setDataHerb(String dataHerb) {
         this.dataHerb = dataHerb;
+    }
+    public boolean isDataHerb2() {
+        return dataHerb2;
+    }
+
+    public void setDataHerb2(boolean dataHerb2) {
+        this.dataHerb2 = dataHerb2;
     }
 }
