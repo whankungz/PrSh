@@ -16,11 +16,13 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -37,9 +39,11 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
 
-    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-            "iPhone 4S", "Samsung Galaxy Note 800",
-            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
+    private ArrayAdapter<String> adapter;
+    private List<String> liste;
+//    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
+//            "iPhone 4S", "Samsung Galaxy Note 800",
+//            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
     ListView lv;
     SearchView searchView;
 
@@ -51,11 +55,10 @@ public class MainHerb extends android.support.v4.app.Fragment {
         setView();
         setHasOptionsMenu(true);
 
-       
+
         perform();
 
-      //  setShowHerb();
-
+        //  setShowHerb();
 
 
         return rootView;
@@ -64,17 +67,18 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
     private void perform() {
 // TODO Auto-generated method stub
-        lv = (ListView)rootView.findViewById(R.id.list_view);
-        final ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_item,R.id.product_name,herbs);
+        lv = (ListView) rootView.findViewById(R.id.list_view);
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2" };
+        liste = new ArrayList<String>();
+        Collections.addAll(liste, values);
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, liste);
         lv.setAdapter(adapter);
+
         lv.setTextFilterEnabled(true);
 
     }
-
-   
-       
-
-    
 
 
     private void setView() {
@@ -131,7 +135,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
+                MainHerb.this.adapter.getFilter().filter(s);
                 search.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 final String strMsg = "ทับทิม";
                 String strMsg2 = "มะนาว";
@@ -142,7 +146,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                              //  AppState.getSingleInstance().setDataHerb(strMsg);
+                                //  AppState.getSingleInstance().setDataHerb(strMsg);
                                 FragmentManager m = getFragmentManager();
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());
