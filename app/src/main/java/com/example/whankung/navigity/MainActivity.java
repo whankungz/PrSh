@@ -27,7 +27,7 @@ import java.sql.Statement;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, login_nopass.onSubmitAlertDialogListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView tv, pro;
     QuickReturnFloaterBehavior behavior;
@@ -210,14 +210,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), Login.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-//            login_nopass alertDialog = new login_nopass();
-//            alertDialog.mListener=MainActivity.this;
-// alertDialog.setShowsDialog(true);
 
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            transaction.replace(R.id.container, new login_pass());
-//            transaction.commit();
 
         } else if (id == R.id.nav_food) {
 
@@ -252,15 +245,7 @@ public class MainActivity extends AppCompatActivity
            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
-         //   startActivity(intent);
 
-
-//
-//        }else  if(id == R.id.textView){
-//            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//            navigationView.setNavigationItemSelectedListener(this);
-//            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -279,8 +264,4 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @Override
-    public void setOnSubmitAlertDialogListener() {
-
-    }
 }

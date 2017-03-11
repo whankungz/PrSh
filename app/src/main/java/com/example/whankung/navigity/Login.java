@@ -100,40 +100,13 @@ public class Login extends AppCompatActivity{
 
                 CheckLogin checkLogin = new CheckLogin();// this is the Asynctask, which is used to process in background to reduce load on app process
                 checkLogin.execute("");
-
-
-
-
-
-
-//       new MainActivity();
-//                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//                navigationView.getMenu().removeItem(0);
-//               navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//                    navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(intent);
-
             }
-
-
         });
-
-
-////หน้าแรก
-//        skip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), Menu.class);
-//                startActivity(intent);
-////                getActivity().finish();
-//            }
-//        });
     }
 
 
 
-    public class CheckLogin extends AsyncTask<String, String, String> implements NavigationView.OnNavigationItemSelectedListener {
+    public class CheckLogin extends AsyncTask<String, String, String>  {
         String z = "";
         Boolean isSuccess = false;
 
@@ -158,21 +131,7 @@ public class Login extends AppCompatActivity{
         protected String doInBackground(String... params) {
             String userid = edtuserid.getText().toString();
             String password = edtpass.getText().toString();
-
-//            login.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//
-//
-////                    navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-////                    navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-//                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                    startActivity(intent);
-//
-//                }
-//            });
-
+            
 
             if (userid.trim().equals("") || password.trim().equals(""))
                 z = "กรอกให้ครบสิ!!!!!";
@@ -236,11 +195,6 @@ public class Login extends AppCompatActivity{
 
             return z;
 
-        }
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            return false;
         }
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
