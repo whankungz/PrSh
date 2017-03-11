@@ -26,7 +26,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private TabLayout tabLayout;
     private Typeface font;
     private EditText search;
-    private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4,s,s2,s3,s4,tb;
+    private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
 
 
@@ -41,14 +41,13 @@ public class MainHerb extends android.support.v4.app.Fragment {
     }
 
 
-
     private void setView() {
-      //  tb = (TextView) rootView.findViewById(R.id.toolbar_title);
-      //  tb.setText("สมุนไพร");
-        s= (TextView) rootView.findViewById(R.id.s);
-        s2= (TextView) rootView.findViewById(R.id.s2);
-        s3= (TextView) rootView.findViewById(R.id.s3);
-        s4= (TextView) rootView.findViewById(R.id.s4);
+        //  tb = (TextView) rootView.findViewById(R.id.toolbar_title);
+        //  tb.setText("สมุนไพร");
+        s = (TextView) rootView.findViewById(R.id.s);
+        s2 = (TextView) rootView.findViewById(R.id.s2);
+        s3 = (TextView) rootView.findViewById(R.id.s3);
+        s4 = (TextView) rootView.findViewById(R.id.s4);
         p = (TextView) rootView.findViewById(R.id.p);
         p2 = (TextView) rootView.findViewById(R.id.p2);
         p3 = (TextView) rootView.findViewById(R.id.p3);
@@ -79,7 +78,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
         s2.setTypeface(font);
         s3.setTypeface(font);
         s4.setTypeface(font);
-       // tb.setTypeface(font);
+        // tb.setTypeface(font);
 
         search = (EditText) rootView.findViewById(R.id.search);
         search.addTextChangedListener(new TextWatcher() {
@@ -98,7 +97,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
 
                 search.setImeOptions(EditorInfo.IME_ACTION_DONE);
-                String strMsg = "ทับทิม";
+                final String strMsg = "ทับทิม";
                 String strMsg2 = "มะนาว";
                 if (s.toString().equals(strMsg)) {
                     search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -106,7 +105,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                             if (actionId == EditorInfo.IME_ACTION_DONE) {
-
+                                AppState.getSingleInstance().setDataHerb(strMsg);
                                 FragmentManager m = getFragmentManager();
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());
@@ -117,7 +116,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
                             return false;
                         }
                     });
-                } else if(s.toString().equals(strMsg2)){
+                } else if (s.toString().equals(strMsg2)) {
                     search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         @Override
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -128,7 +127,6 @@ public class MainHerb extends android.support.v4.app.Fragment {
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());
                                 t.commit();
-
 
 
                             }

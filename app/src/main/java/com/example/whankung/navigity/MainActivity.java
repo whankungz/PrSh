@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-
 //        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 //        navigationView.addHeaderView(nav_header);
 //        pro=(TextView) nav_header.findViewById(R.id.namePro);
@@ -240,10 +239,8 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-        //   pro.getHint();
 
-//            nav_header.setEnabled(false);
-        pro.setVisibility(View.GONE);
+            pro.setVisibility(View.GONE);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -25,6 +25,7 @@ public class MainFavorite extends android.support.v4.app.Fragment {
         rootView = inflater.inflate(R.layout.stucture_favorite, container, false);
         setView();
         setShow();
+        AppState.getSingleInstance().getDataHerb();
         return rootView;
     }
 

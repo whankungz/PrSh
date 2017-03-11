@@ -10,7 +10,7 @@ public class AppState {
     private boolean isLoggingOut;
     private boolean isLogin;
     private String namePhama;
-
+    private String dataHerb;
 
 
     private AppState() {
@@ -37,14 +37,23 @@ public class AppState {
     }
 
     public void setLogin(boolean login) {
-        this.isLogin=isLogin;
+        this.isLogin = isLogin;
         isLogin = login;
     }
+
     public String getNamePhama() {
         return namePhama;
     }
 
     public void setNamePhama(String namePhama) {
         this.namePhama = namePhama;
+    }
+
+    public String getDataHerb() {
+        return dataHerb;
+    }
+
+    public void setDataHerb(String dataHerb) {
+        this.dataHerb = dataHerb;
     }
 }
