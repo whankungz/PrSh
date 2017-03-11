@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import java.sql.Connection;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         connectionClass = new ConnectionClass();
         tv = (TextView) findViewById(R.id.toolbar_title);
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity
                                 FragmentTransaction transaction = manager.beginTransaction();
                                 transaction.replace(R.id.container, new MainHerb());
                                 transaction.commit();
+
 
                                 //     tv.setText("สมุนไพร");
                                 break;
