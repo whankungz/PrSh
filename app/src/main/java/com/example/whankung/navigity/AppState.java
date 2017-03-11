@@ -15,16 +15,11 @@ public class AppState {
     private String dataHerb;
     private boolean dataHerb2;
 
+    private static String indexlist;
 
-    private GeneralHerbFragment ge;
 
-    public GeneralHerbFragment getGe() {
-        return ge;
-    }
 
-    public void setGe(GeneralHerbFragment ge) {
-        this.ge = ge;
-    }
+
 
     private AppState() {
 
@@ -76,5 +71,14 @@ public class AppState {
 
     public void setDataHerb2(boolean dataHerb2) {
         this.dataHerb2 = dataHerb2;
+    }
+
+
+    public String getIndexlist() {
+        return indexlist;
+    }
+
+    public void setIndexlist(String indexlist) {
+        AppState.indexlist = indexlist;
     }
 }

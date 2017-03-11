@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,9 +11,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,8 +41,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private EditText search;
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
-
-    private ArrayAdapter<String> adapter;
+    ArrayAdapter<String> adapter;
+//    private CustomAdapter adapter;
     private List<String> liste;
 //    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
 //            "iPhone 4S", "Samsung Galaxy Note 800",
@@ -67,16 +70,54 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
     private void perform() {
 // TODO Auto-generated method stub
-        lv = (ListView) rootView.findViewById(R.id.list_view);
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+        final String[] herbs = new String[] { "Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2" };
-        liste = new ArrayList<String>();
-        Collections.addAll(liste, values);
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, liste);
-        lv.setAdapter(adapter);
 
+        lv = (ListView) rootView.findViewById(R.id.list_view);
+
+
+
+//        adapter = new CustomAdapter(getActivity(), herbs);
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+
+        lv.setAdapter(adapter);
         lv.setTextFilterEnabled(true);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+
+                switch (position) {
+                    case 0:
+
+                      AppState.getSingleInstance().setIndexlist(herbs[0]);
+                        break;
+                    case 1:
+                        AppState.getSingleInstance().setIndexlist(herbs[1]);
+                        break;
+                    case 2:
+                  AppState.getSingleInstance().setIndexlist(herbs[2]);
+                        break;
+                    case 3:
+                        AppState.getSingleInstance().setIndexlist(herbs[3]);
+                        break;
+                    case 4:
+                        AppState.getSingleInstance().setIndexlist(herbs[4]);
+                        break;
+                    case 5:
+                        AppState.getSingleInstance().setIndexlist(herbs[5]);
+                        break;
+
+                }
+
+            }
+
+
+        });
+
+
 
     }
 
