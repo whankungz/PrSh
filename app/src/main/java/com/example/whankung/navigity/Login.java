@@ -131,7 +131,7 @@ public class Login extends AppCompatActivity{
         protected String doInBackground(String... params) {
             String userid = edtuserid.getText().toString();
             String password = edtpass.getText().toString();
-            
+
 
             if (userid.trim().equals("") || password.trim().equals(""))
                 z = "กรอกให้ครบสิ!!!!!";

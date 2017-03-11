@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private TextView tv, pro;
     QuickReturnFloaterBehavior behavior;
     ConnectionClass connectionClass;
+    private View nav_header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
 
-
         //        click login
         //  navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
 //        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
         if (AppState.getSingleInstance().isLogin()) {
+            nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
+            navigationView.addHeaderView(nav_header);
+            pro = (TextView) nav_header.findViewById(R.id.namePro);
+            pro.setText("wwwwww");
             navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(true);
@@ -151,12 +155,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setLogin() {
-        if( AppState.getSingleInstance().setLoggingOut(true)){
+        if (AppState.getSingleInstance().setLoggingOut(true)) {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
-        }else {
+        } else {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
@@ -242,10 +246,12 @@ public class MainActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
-           navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
+
+           nav_header.setEnabled(false);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
