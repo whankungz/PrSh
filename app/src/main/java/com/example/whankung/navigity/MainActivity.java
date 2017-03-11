@@ -1,6 +1,8 @@
 package com.example.whankung.navigity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,11 +27,12 @@ import java.sql.Statement;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener ,login_nopass.onSubmitAlertDialogListener{
+        implements NavigationView.OnNavigationItemSelectedListener, login_nopass.onSubmitAlertDialogListener {
 
-    private TextView tv,pro;
+    private TextView tv, pro;
     QuickReturnFloaterBehavior behavior;
     ConnectionClass connectionClass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +108,6 @@ public class MainActivity extends AppCompatActivity
 //        });
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -113,10 +116,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+
+        Login L = new Login();
+    if(L.isFinishing()){
+
+
+    }
+
+
 
 
         //        click login
-      //  navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+        //  navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
 //        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
 
 //        ConnectionClass connectionClass;
@@ -125,18 +137,15 @@ public class MainActivity extends AppCompatActivity
 
         //String userid = pro.getText().toString();
 
-       // Connection con = connectionClass.connection();
-       // String query = "select * from Pharmacist where username= '" + pro.toString() + "'  ";
+        // Connection con = connectionClass.connection();
+        // String query = "select * from Pharmacist where username= '" + pro.toString() + "'  ";
 //        View nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 //        navigationView.addHeaderView(nav_header);
 //        pro=(TextView) nav_header.findViewById(R.id.namePro);
 //        pro.setText( "wwwwww");
 
 
-
-
     }
-
 
 
     @Override
@@ -178,8 +187,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_login) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
 //            login_nopass alertDialog = new login_nopass();
 //            alertDialog.mListener=MainActivity.this;
 // alertDialog.setShowsDialog(true);
@@ -201,12 +211,40 @@ public class MainActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences myPrefs = getSharedPreferences("MY",
+                    MODE_PRIVATE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.clear();
+            editor.commit();
+            AppState.getSingleInstance().setLoggingOut(true);
+            String TAG = "";
+            Log.d(TAG, "Now log out and start the activity login");
+            Intent intent = new Intent(MainActivity.this,
+                    Login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+         //   startActivity(intent);
+
+
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void setLoginState(boolean status) {
+
+        SharedPreferences sp = getSharedPreferences("LoginState",
+                MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putBoolean("setLoggingOut", status);
+        ed.commit();
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -93,8 +94,12 @@ public class Login extends AppCompatActivity{
 
             @Override
             public void onClick(View v) {
+
                 CheckLogin checkLogin = new CheckLogin();// this is the Asynctask, which is used to process in background to reduce load on app process
                 checkLogin.execute("");
+
+
+
 
 
 //       new MainActivity();
@@ -131,6 +136,7 @@ public class Login extends AppCompatActivity{
         @Override
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
+
         }
 
         @Override
@@ -138,6 +144,7 @@ public class Login extends AppCompatActivity{
             progressBar.setVisibility(GONE);
             Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
+
              //   Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
 //                    //finish();
 //                }
@@ -187,10 +194,24 @@ public class Login extends AppCompatActivity{
 //                        //        click login
 //                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
 //                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+                           NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
+                            intent.putExtra("FLAG", 0);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                            startActivity(intent);
+
+
+
+
+//
+//                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+//                            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+//                            navigationView.getMenu().findItem(R.id.nav_login).setEnabled(false);
+
 //                                    }
 //                                });
+
                             con.close();
                         } else {
                             z = "ผิด!";
@@ -207,5 +228,25 @@ public class Login extends AppCompatActivity{
 
         }
     }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CONTEXT_INCLUDE_CODE) {
+
+            if (!AppState.getSingleInstance().isLoggingOut()) {
+                finish();
+            } else {
+                AppState.getSingleInstance().setLoggingOut(false);
+                super.onActivityResult(requestCode, resultCode, data);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+    }
+
 }
 
