@@ -250,8 +250,8 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-
-           nav_header.setEnabled(false);
+            pro.clearComposingText();
+           // nav_header.setEnabled(false);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
