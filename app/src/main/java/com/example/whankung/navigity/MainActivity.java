@@ -136,12 +136,12 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
         navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
+        nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 
         if (AppState.getSingleInstance().isLogin()) {
-            nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
             navigationView.addHeaderView(nav_header);
             pro = (TextView) nav_header.findViewById(R.id.namePro);
-            pro.setText("wwwwww");
+            pro.setText(AppState.getSingleInstance().getNamePhama());
             navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(true);
@@ -250,8 +250,9 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-            pro.clearComposingText();
-           // nav_header.setEnabled(false);
+        //   pro.getHint();
+
+            nav_header.setEnabled(false);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

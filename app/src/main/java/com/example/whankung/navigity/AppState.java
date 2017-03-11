@@ -9,6 +9,8 @@ public class AppState {
 
     private boolean isLoggingOut;
     private boolean isLogin;
+    private String namePhama;
+
 
 
     private AppState() {
@@ -38,5 +40,11 @@ public class AppState {
         this.isLogin=isLogin;
         isLogin = login;
     }
+    public String getNamePhama() {
+        return namePhama;
+    }
 
+    public void setNamePhama(String namePhama) {
+        this.namePhama = namePhama;
+    }
 }

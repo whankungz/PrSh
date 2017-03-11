@@ -25,7 +25,7 @@ import static android.view.View.GONE;
 /**
  * Created by Whankung on 15/2/2560.
  */
-public class Login extends AppCompatActivity{
+public class Login extends AppCompatActivity {
     private Typeface font;
 
     EditText edtuserid, edtpass;
@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity{
 
         connectionClass = new ConnectionClass();
         setView();
-       // navigationView.getMenu().getItem(0).setChecked(false);
+        // navigationView.getMenu().getItem(0).setChecked(false);
 //        if(ifNotLogIn){
 //            navigationView.getMenu().getItem(0).setVisible(false);
 //        }
@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity{
     private void setView() {
 
 
-        ImageView img = (ImageView)findViewById(R.id.action_login);
+        ImageView img = (ImageView) findViewById(R.id.action_login);
         img.setVisibility(View.VISIBLE);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +69,8 @@ public class Login extends AppCompatActivity{
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(GONE);
-     //   skip = (TextView) findViewById(R.id.skip);
-     //   head = (TextView) findViewById(R.id.textView4);
+        //   skip = (TextView) findViewById(R.id.skip);
+        //   head = (TextView) findViewById(R.id.textView4);
         login = (TextView) findViewById(R.id.textView);
         regis = (TextView) findViewById(R.id.textView2);
         edtuserid = (EditText) findViewById(R.id.user);
@@ -78,8 +78,8 @@ public class Login extends AppCompatActivity{
 
 //        เปลี่ยนfont
         font = Typeface.createFromAsset(getAssets(), "tmedium.ttf");
-     //  skip.setTypeface(font);
-      //  head.setTypeface(font);
+        //  skip.setTypeface(font);
+        //  head.setTypeface(font);
         edtuserid.setTypeface(font);
         edtpass.setTypeface(font);
         login.setTypeface(font);
@@ -105,8 +105,7 @@ public class Login extends AppCompatActivity{
     }
 
 
-
-    public class CheckLogin extends AsyncTask<String, String, String>  {
+    public class CheckLogin extends AsyncTask<String, String, String> {
         String z = "";
         Boolean isSuccess = false;
 
@@ -122,11 +121,12 @@ public class Login extends AppCompatActivity{
             Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
 
-             //   Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
+                //   Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
 //                    //finish();
 //                }
             }
         }
+
         @Override
         protected String doInBackground(String... params) {
             String userid = edtuserid.getText().toString();
@@ -152,35 +152,13 @@ public class Login extends AppCompatActivity{
                             isSuccess = true;
 
 
-//
-//
-//                           intent.putExtra("FLAG", R.id.nav_login);
-////                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//
-//                            navigationView.setNavigationItemSelectedListener(this);
-//                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-
-
+                            AppState.getSingleInstance().setNamePhama(userid.toString());
                             AppState.getSingleInstance().setLogin(true);
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
-//                            finish();
-//
-//                            Intent intent = new Intent(Login.this, MainActivity.class);
-//                            Bundle b = new Bundle();
-//                            b.putInt("key", 1); //Your id
-//                            intent.putExtras(b); //Put your id to your next Intent
-//                            startActivity(intent);
-//                            finish();
 
-//
-//                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//                            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-//                            navigationView.getMenu().findItem(R.id.nav_login).setEnabled(false);
 
-                         //   con.close();
+                            //   con.close();
                         } else {
                             z = "ผิด!";
                             isSuccess = false;
@@ -197,6 +175,7 @@ public class Login extends AppCompatActivity{
 
         }
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CONTEXT_INCLUDE_CODE) {
 
