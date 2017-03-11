@@ -8,6 +8,8 @@ public class AppState {
     private static AppState singleInstance;
 
     private boolean isLoggingOut;
+    private boolean isLogin;
+
 
     private AppState() {
     }
@@ -23,7 +25,18 @@ public class AppState {
         return isLoggingOut;
     }
 
-    public void setLoggingOut(boolean isLoggingOut) {
+    public boolean setLoggingOut(boolean isLoggingOut) {
         this.isLoggingOut = isLoggingOut;
+        return isLoggingOut;
     }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        this.isLogin=isLogin;
+        isLogin = login;
+    }
+
 }

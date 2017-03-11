@@ -1,11 +1,14 @@
 package com.example.whankung.navigity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -102,6 +105,7 @@ public class Login extends AppCompatActivity{
 
 
 
+
 //       new MainActivity();
 //                NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //                navigationView.getMenu().removeItem(0);
@@ -129,7 +133,7 @@ public class Login extends AppCompatActivity{
 
 
 
-    public class CheckLogin extends AsyncTask<String, String, String> {
+    public class CheckLogin extends AsyncTask<String, String, String> implements NavigationView.OnNavigationItemSelectedListener {
         String z = "";
         Boolean isSuccess = false;
 
@@ -188,31 +192,36 @@ public class Login extends AppCompatActivity{
                             z = "อิอิอิอิอิอิ";
                             isSuccess = true;
 
-//                                login.setOnClickListener(new View.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(View view) {
-//                        //        click login
-//                        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-//                        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-                           NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("FLAG", 0);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+//
+//
+//                           intent.putExtra("FLAG", R.id.nav_login);
+////                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//
+//                            navigationView.setNavigationItemSelectedListener(this);
+//                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+
+
+                            AppState.getSingleInstance().setLogin(true);
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
-
-
-
+//                            finish();
+//
+//                            Intent intent = new Intent(Login.this, MainActivity.class);
+//                            Bundle b = new Bundle();
+//                            b.putInt("key", 1); //Your id
+//                            intent.putExtras(b); //Put your id to your next Intent
+//                            startActivity(intent);
+//                            finish();
 
 //
 //                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
 //                            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
 //                            navigationView.getMenu().findItem(R.id.nav_login).setEnabled(false);
 
-//                                    }
-//                                });
-
-                            con.close();
+                         //   con.close();
                         } else {
                             z = "ผิด!";
                             isSuccess = false;
@@ -224,8 +233,14 @@ public class Login extends AppCompatActivity{
                     z = ex.getMessage();
                 }
             }
+
             return z;
 
+        }
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            return false;
         }
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

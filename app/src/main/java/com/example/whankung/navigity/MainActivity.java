@@ -114,17 +114,6 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-
-        Login L = new Login();
-    if(L.isFinishing()){
-
-
-    }
-
-
 
 
         //        click login
@@ -143,7 +132,38 @@ public class MainActivity extends AppCompatActivity
 //        navigationView.addHeaderView(nav_header);
 //        pro=(TextView) nav_header.findViewById(R.id.namePro);
 //        pro.setText( "wwwwww");
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+        navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
+        if (AppState.getSingleInstance().isLogin()) {
+            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_invite).setVisible(true);
+            AppState.getSingleInstance().setLogin(false);
+
+//            Singleton.getInstance().setYourFormattedString(yourFormattedString);
+//            Singleton.getInstance().setYourFormattedString2(yourFormattedString2);
+//            Singleton.getInstance().setYourFormattedString3(yourFormattedString3);
+        }
+//setLogin();
+    }
+
+    private void setLogin() {
+        if( AppState.getSingleInstance().setLoggingOut(true)){
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
+        }else {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+            navigationView.getMenu().findItem(R.id.nav_invite).setVisible(true);
+
+            //   navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+        }
 
     }
 
@@ -188,11 +208,16 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_login) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
 //            login_nopass alertDialog = new login_nopass();
 //            alertDialog.mListener=MainActivity.this;
 // alertDialog.setShowsDialog(true);
+
+//            FragmentManager manager = getSupportFragmentManager();
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            transaction.replace(R.id.container, new login_pass());
+//            transaction.commit();
 
         } else if (id == R.id.nav_food) {
 
@@ -224,12 +249,17 @@ public class MainActivity extends AppCompatActivity
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
-            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+           navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
          //   startActivity(intent);
 
 
-
+//
+//        }else  if(id == R.id.textView){
+//            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//            navigationView.setNavigationItemSelectedListener(this);
+//            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
