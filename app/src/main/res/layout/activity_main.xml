@@ -14,8 +14,12 @@
         android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
+        app:headerLayout="@color/colorWhite"
+        android:background="#CC000000"
+        app:itemTextColor="@color/colorWhite"
+        app:itemIconTint="@color/colorWhite"
         android:id="@+id/nav_view"
-        android:layout_width="225dp"
+        android:layout_width="350dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
