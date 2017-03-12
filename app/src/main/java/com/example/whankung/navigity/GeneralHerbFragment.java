@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import static android.view.View.GONE;
 
 
 /**
@@ -24,6 +26,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     private EditText search;
     private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6;
     private ImageView i1, i2, i3, i4, i5, i6, i7, fav;
+    private ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -37,6 +40,8 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
 
 
     private void setView() {
+        progressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(GONE);
         search = (EditText) rootView.findViewById(R.id.search);
         herb = (TextView) rootView.findViewById(R.id.nameH);
         herb2 = (TextView) rootView.findViewById(R.id.nameH2);
@@ -69,17 +74,11 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LinearLayout Progress = (LinearLayout) rootView.findViewById(R.id.pbHeaderProgress);
-                Progress.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 AppState.getSingleInstance().getDataHerb();
+                AppState.getSingleInstance().setDataHerb2(true);
+                progressBar.setVisibility(GONE);
 
-                Progress.setVisibility(View.GONE);
-
-
-//                FragmentManager m = getFragmentManager();
-//                FragmentTransaction t = m.beginTransaction();
-//                t.replace(R.id.container, new MainFavorite());
-//                t.commit();
             }
         });
 
