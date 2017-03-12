@@ -130,10 +130,9 @@ public class MainDisease extends android.support.v4.app.Fragment{
 //        tb.setTypeface(font);
 
         final EditText searchD = (EditText)rootView.findViewById(R.id.searchD);
-        final String[] herbs = new String[] { "ทับทิม", "มะนาว", "มะเขือ",
-                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
-                "ตะไคร้หอม", "พริก" };
-        AppState.getSingleInstance().setDataHerb(herbs);
+        final String[] herbs = new String[] { "ปวดฟัน", "ไข้เลือดออก", "ไข้หวัดใหญ่",
+                "ท้องเสีย", "ท้องผูก", "ปวดเมื่อย", "ตาแดง", "เหน็บชา",
+                "ปวดศีรษะ", "มะเร็ง" };
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
@@ -147,10 +146,9 @@ public class MainDisease extends android.support.v4.app.Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                AppState.getSingleInstance().setDataHerb(herbs.clone());
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                t.replace(R.id.container, new SearchHerb());
+                t.replace(R.id.container, new  SearchDisease());
                 t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();

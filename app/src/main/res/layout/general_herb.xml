@@ -13,7 +13,13 @@
             android:layout_marginLeft="275dp"
             app:srcCompat="@drawable/ic_f" />
 
-
+    <ProgressBar
+        android:id="@+id/pbHeaderProgress"
+        android:style="@style/Spinner"
+        android:layout_gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp" >
+    </ProgressBar>
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"

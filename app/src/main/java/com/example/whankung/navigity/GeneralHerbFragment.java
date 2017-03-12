@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -67,10 +69,12 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                LinearLayout Progress = (LinearLayout) rootView.findViewById(R.id.pbHeaderProgress);
+                Progress.setVisibility(View.VISIBLE);
                 AppState.getSingleInstance().getDataHerb();
-                AppState.getSingleInstance().setDataHerb2(true);
-                
+
+                Progress.setVisibility(View.GONE);
+
 
 //                FragmentManager m = getFragmentManager();
 //                FragmentTransaction t = m.beginTransaction();
