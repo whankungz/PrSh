@@ -61,7 +61,8 @@ ListView lv;
 
         if(AppState.getSingleInstance().isDataHerb2(true)){
             adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
-            lv.setAdapter(adapter);
+         //   lv.setAdapter(AppState.getSingleInstance().getDataHerb());
+           lv.setAdapter(adapter);
             lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

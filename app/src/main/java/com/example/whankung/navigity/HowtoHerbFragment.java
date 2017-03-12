@@ -27,6 +27,11 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         setView();
         setData();
 //        setRating();
+        rat = (RatingBar) rootView.findViewById(R.id.rat);
+
+        if (AppState.getSingleInstance().isLogin()==false) {
+            rat.setVisibility(View.GONE);
+        }
         return rootView;
     }
 

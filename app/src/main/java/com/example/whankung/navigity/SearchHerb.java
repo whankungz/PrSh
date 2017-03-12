@@ -8,19 +8,23 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 /**
  * Created by Whankung on 22/1/2560.
  */
 
-public class SearchHerb extends android.support.v4.app.Fragment{
+public class SearchHerb extends android.support.v4.app.Fragment {
     private View rootView;
     private TabLayout tabLayout;
+    private RatingBar rat;
 
     @Nullable
     @Override
@@ -49,11 +53,12 @@ public class SearchHerb extends android.support.v4.app.Fragment{
             @Override
             public void onPageSelected(int position) {
 
-//                RatingBar rat=(RatingBar) rootView.findViewById(R.id.rat);
-//                rat.setVisibility(GONE);
-
-
-
+//                rat = (RatingBar) rootView.findViewById(R.id.rat);
+//                rat.setVisibility(View.GONE);
+//
+//                if (AppState.getSingleInstance().isLogin()) {
+//                    rat.setVisibility(View.VISIBLE);
+//                }
             }
 
             @Override
@@ -62,10 +67,9 @@ public class SearchHerb extends android.support.v4.app.Fragment{
             }
         });
 //        เปลี่ยน font tab
-        SampleFragmentPagerAdapterHerb.applyFontedTab(getActivity().getApplicationContext(),viewPager,tabLayout);
+        SampleFragmentPagerAdapterHerb.applyFontedTab(getActivity().getApplicationContext(), viewPager, tabLayout);
 
     }
-
 
 
     private List<Fragment> getFragments() {

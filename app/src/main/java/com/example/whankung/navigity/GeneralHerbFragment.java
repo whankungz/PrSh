@@ -77,7 +77,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 AppState.getSingleInstance().getDataHerb();
                 AppState.getSingleInstance().setDataHerb2(true);
-                progressBar.setVisibility(GONE);
+
 
             }
         });
