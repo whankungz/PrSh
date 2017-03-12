@@ -96,7 +96,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
                                 t.replace(R.id.container, new SearchHerb());
                                 t.commit();
 
-               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
+//               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
            }

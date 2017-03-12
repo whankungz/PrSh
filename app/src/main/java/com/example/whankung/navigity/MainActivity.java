@@ -28,6 +28,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import static com.example.whankung.navigity.R.attr.headerLayout;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -128,10 +130,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
         nav_header = LayoutInflater.from(this).inflate(R.layout.nav_header_main, null);
 
+//     navigationView.addHeaderView(nav_header);
+
+
 
         if (AppState.getSingleInstance().isLogin()) {
-            navigationView.addHeaderView(nav_header);
+
             pro = (TextView) nav_header.findViewById(R.id.namePro);
+            navigationView.addHeaderView(nav_header);
+
             pro.setText(AppState.getSingleInstance().getNamePhama());
             navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
@@ -166,9 +173,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        HideKeyboard.hideKeyboard(this);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            HideKeyboard.hideKeyboard(this);
+
             drawer.closeDrawer(GravityCompat.START);
 
         } else {
@@ -180,6 +188,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        HideKeyboard.hideKeyboard(this);
         return true;
     }
 
@@ -244,8 +254,11 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-
+           // navigationView.removeHeaderView(nav_header);
             pro.setVisibility(View.GONE);
+
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

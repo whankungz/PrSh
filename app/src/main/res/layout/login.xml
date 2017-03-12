@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="เข้าสู่ระบบ"
+
             android:textColor="#ffffff"
             android:textSize="24dp" />
     </RelativeLayout>

@@ -22,12 +22,18 @@
         android:textColorHint="#979797" />
 
 
-            <ListView
-                android:id="@+id/list_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
 
-             />
+
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+
+
 
             <!--<RelativeLayout-->
                 <!--android:layout_width="wrap_content"-->

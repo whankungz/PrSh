@@ -6,7 +6,6 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_ho"
             android:title="ล็อกอิน"
-
             />
         <item
             android:id="@+id/nav_food"
