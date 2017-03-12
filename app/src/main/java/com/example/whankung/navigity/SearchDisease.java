@@ -28,7 +28,7 @@ public class SearchDisease extends Fragment {
     private TabLayout tabLayout;
     private Typeface font;
     private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date;
-    private RatingBar r;
+    private RatingBar rat;
 
     //        service
     public static final String BASE_URL = "http://172.20.10.3:8080/HerbServices/webresources/";
@@ -85,7 +85,7 @@ public class SearchDisease extends Fragment {
         t7 = (TextView) rootView.findViewById(R.id.namehow);
         t8 = (TextView) rootView.findViewById(R.id.namehowda);
         t9 = (TextView) rootView.findViewById(R.id.submit);
-        r = (RatingBar) rootView.findViewById(R.id.rat);
+        rat = (RatingBar) rootView.findViewById(R.id.rat);
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
 
         t.setTypeface(font);
@@ -112,5 +112,9 @@ public class SearchDisease extends Fragment {
 
     private void setRating() {
 
+        if (AppState.getSingleInstance().isRating(true)) {
+            rat.setVisibility(View.VISIBLE);
+
+        }
     }
 }

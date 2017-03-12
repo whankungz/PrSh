@@ -54,11 +54,6 @@ public class SearchHerb extends android.support.v4.app.Fragment {
             public void onPageSelected(int position) {
 
                 rat = (RatingBar) rootView.findViewById(R.id.rat);
-//                rat.setVisibility(View.GONE);
-//
-//                if (AppState.getSingleInstance().isLogin()) {
-//                    rat.setVisibility(View.VISIBLE);
-//                }
                 if (AppState.getSingleInstance().isRating(true)) {
                     rat.setVisibility(View.VISIBLE);
 

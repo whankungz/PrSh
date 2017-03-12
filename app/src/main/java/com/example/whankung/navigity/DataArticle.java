@@ -32,7 +32,11 @@ public class DataArticle extends android.support.v4.app.Fragment {
         return rootView;
     }
     private void setRating() {
+        rat = (RatingBar) rootView.findViewById(R.id.rat);
+        if (AppState.getSingleInstance().isRating(true)) {
+            rat.setVisibility(View.VISIBLE);
 
+        }
     }
 
     private void setView() {

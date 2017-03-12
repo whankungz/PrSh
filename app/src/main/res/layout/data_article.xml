@@ -136,6 +136,7 @@
                 <!--android:background="#eaeaea" />-->
 
             <RatingBar
+                android:visibility="gone"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
                 android:layout_gravity="center"
