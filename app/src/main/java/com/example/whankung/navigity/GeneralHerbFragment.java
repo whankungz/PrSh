@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-
 /**
  * Created by Whankung on 22/1/2560.
  */
@@ -22,7 +21,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private EditText search;
     private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6;
-    private ImageView i1, i2, i3, i4, i5, i6, i7,fav;
+    private ImageView i1, i2, i3, i4, i5, i6, i7, fav;
 
     @Nullable
     @Override
@@ -68,7 +67,8 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //    AppState.getSingleInstance().setDataHerb();
+                AppState.getSingleInstance().getDataHerb();
+                AppState.getSingleInstance().setDataHerb2(true);
 //                FragmentManager m = getFragmentManager();
 //                FragmentTransaction t = m.beginTransaction();
 //                t.replace(R.id.container, new MainFavorite());
@@ -106,13 +106,13 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         see2.setText("ไม้พุ่ม ปลายกิ่งอ่อนโค้งเล็กและมักมีหนามแหลม");
         i2.setImageResource(R.drawable.img_ruby3);
         data.setText("ใบเดี่ยว ออกเป็นคู่ตรงข้ามกัน รูปรีแกมขอบขนาน โคนใบสอบแคบ ปลายใบกว้าง เนื้อใบบางและเป็นมัน");
-     //   i3.setImageResource(Integer.parseInt(""));
+        //   i3.setImageResource(Integer.parseInt(""));
         data2.setText("");
         i4.setImageResource(R.drawable.img_ruby2);
         data3.setText("ดอกเดี่ยวหรือช่อ ออกตามปลายกิ่ง กลีบดอกสีส้มแดง ร่วงง่าย กลีบรองดอกหนาแข็ง สีส้มแกมเหลือง โคนกลีบเชื่อมติดกันเป็นหลอด ปลายหลอดจักเป็นฟันเลื่อยและโค้งออก กลีบดอกจำนวนเท่าๆ กับกลีบรอง");
         i5.setImageResource(R.drawable.img_ruby4);
         data4.setText("ผลกลมโต ผิวนอกแข็งเป็นมัน สีเขียวอมเหลือง สีแดงอมน้ำตาล หรือสีทับทิม เมื่อแก่จะแตกอ้าออก");
-     //   i6.setImageResource(Integer.parseInt(""));
+        //   i6.setImageResource(Integer.parseInt(""));
         data5.setText("");
         i7.setImageResource(R.drawable.img_ruby5);
         data6.setText("เมล็ดมีเนื้อเยื่อใสสีขาวอมชมพูหรือสีแดงหุ้มอยู่");

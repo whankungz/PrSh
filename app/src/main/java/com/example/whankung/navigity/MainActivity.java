@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
                             case R.id.action_info:
                                 manager = getSupportFragmentManager();
                                 transaction = manager.beginTransaction();
-                                transaction.replace(R.id.container, new MainFavorite());
+                                transaction.replace(R.id.container, new MainInfo());
                                 transaction.commit();
                                 //     tv.setText("รายการโปรด");
                                 break;

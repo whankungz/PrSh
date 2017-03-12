@@ -1,87 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
 
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+
+
+
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/seekBarSpeed"
-        android:layout_centerHorizontal="true"
-        android:scrollbars="none">
-
-        <LinearLayout
-            android:id="@+id/layoutScroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_marginTop="7dp"
-                android:layout_gravity="center"
-                android:layout_width="315dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_shape_popup">
-
-                <ImageView
-                    android:layout_marginLeft="7dp"
-                    android:id="@+id/i_H"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp" />
-
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/t_H"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="120dp"
-                    android:textColor="#1d1d1d"
-                    android:textSize="20dp" />
-
-            </RelativeLayout>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="6dp"
-                android:background="#ffffff" />
-
-            <RelativeLayout
-                android:layout_gravity="center"
-                android:layout_width="315dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_shape_popup">
-
-                <ImageView
-                    android:layout_marginLeft="7dp"
-                    android:id="@+id/i_H2"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp" />
-
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/t_H2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="120dp"
-                    android:textColor="#1d1d1d"
-                    android:textSize="20dp" />
-
-            </RelativeLayout>
+        android:layout_height="match_parent" />
 
 
 
-            <TextView
-                android:id="@+id/null2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="#ffffff"
-                android:textSize="60dp" />
-        </LinearLayout>
-    </ScrollView>
+
+
+
 
 
 

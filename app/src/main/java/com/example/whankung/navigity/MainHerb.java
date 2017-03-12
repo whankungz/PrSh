@@ -78,7 +78,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
         final String[] herbs = new String[] { "ทับทิม", "มะนาว", "มะเขือ",
                 "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
                 "ตะไคร้หอม", "พริก" };
-
+AppState.getSingleInstance().setDataHerb(herbs);
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
@@ -91,6 +91,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+               AppState.getSingleInstance().setDataHerb(herbs);
                FragmentManager m = getFragmentManager();
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());

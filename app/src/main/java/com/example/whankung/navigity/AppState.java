@@ -62,10 +62,10 @@ public class AppState {
         return dataHerb;
     }
 
-    public void setDataHerb(String dataHerb) {
-        this.dataHerb = dataHerb;
+    public void setDataHerb(String[] dataHerb) {
+
     }
-    public boolean isDataHerb2() {
+    public boolean isDataHerb2(boolean b) {
         return dataHerb2;
     }
 

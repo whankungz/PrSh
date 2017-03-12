@@ -41,12 +41,12 @@
 
         app:itemBackground="@color/colorWhite"
         app:itemIconTint="@drawable/selector"
-
+        app:itemTextColor="@drawable/selector"
         app:menu="@menu/bottom_navigation_main"
         />
 
-    <!--app:itemTextColor="@drawable/selector"-->
-    
+
+
     <!--<android.support.design.widget.FloatingActionButton-->
     <!--android:id="@+id/fab"-->
     <!--android:layout_width="match_parent"-->
