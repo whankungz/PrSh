@@ -17,10 +17,15 @@ public class AppState {
     private boolean dataHerb2;
 
     private static String indexlist;
+    private boolean rating;
 
+    public boolean isRating(boolean b) {
+        return rating;
+    }
 
-
-
+    public void setRating(boolean rating) {
+        this.rating = rating;
+    }
 
     private AppState() {
 

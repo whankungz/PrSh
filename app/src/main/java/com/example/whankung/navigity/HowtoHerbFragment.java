@@ -29,22 +29,23 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //        setRating();
         rat = (RatingBar) rootView.findViewById(R.id.rat);
 
-        if (AppState.getSingleInstance().isLogin()==false) {
-            rat.setVisibility(View.GONE);
-        }
+//        if (AppState.getSingleInstance().isLogin()) {
+//            rat.setVisibility(View.VISIBLE);
+//            AppState.getSingleInstance().setLogin(false);
+//        }
         return rootView;
     }
 
     private void setRating() {
-        rat.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-
-                String rateValue = String.valueOf(rat.getRating());
-                System.out.println("Rate for Module is"+rateValue);
-            }
-        });
+//        rat.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+//
+//            @Override
+//            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+//
+//                String rateValue = String.valueOf(rat.getRating());
+//                System.out.println("Rate for Module is"+rateValue);
+//            }
+//        });
     }
 
     private void setView() {

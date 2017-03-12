@@ -158,6 +158,7 @@ public class Login extends AppCompatActivity {
 
                             AppState.getSingleInstance().setNamePhama(userid.toString());
                             AppState.getSingleInstance().setLogin(true);
+                            AppState.getSingleInstance().setRating(true);
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
 
