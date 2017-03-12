@@ -136,6 +136,7 @@
                 <!--android:background="#eaeaea" />-->
 
             <RatingBar
+                android:id="@+id/rat"
                 android:visibility="gone"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
