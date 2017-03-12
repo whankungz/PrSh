@@ -55,13 +55,14 @@ ListView lv;
 ////        tb.setTypeface(font);
 ////        t_H3.setTypeface(font);
 ////        t_H4.setTypeface(font);
-        final String[] herbs = new String[] {String.valueOf(AppState.getSingleInstance().getDataHerb().codePointCount(0,10))};
+        final String[] herbs = new String[] {AppState.getSingleInstance().getDataHerb()};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
         if(AppState.getSingleInstance().isDataHerb2(true)){
             adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
             lv.setAdapter(adapter);
+            lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

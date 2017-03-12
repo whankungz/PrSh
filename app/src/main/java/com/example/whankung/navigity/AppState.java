@@ -1,6 +1,7 @@
 package com.example.whankung.navigity;
 
 import android.support.v4.app.Fragment;
+import android.widget.ImageView;
 
 /**
  * Created by Whankung on 11/3/2560.
@@ -78,7 +79,7 @@ public class AppState {
         return indexlist;
     }
 
-    public void setIndexlist(String indexlist) {
-        AppState.indexlist = indexlist;
+    public void setIndexlist(ImageView indexlist) {
+
     }
 }

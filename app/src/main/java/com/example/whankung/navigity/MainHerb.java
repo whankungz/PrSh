@@ -87,12 +87,12 @@ AppState.getSingleInstance().setDataHerb(herbs);
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
 
         lv.setAdapter(adapter);
-        lv.setTextFilterEnabled(true);
+//        lv.setTextFilterEnabled(true);
        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-               AppState.getSingleInstance().setDataHerb(herbs);
+               AppState.getSingleInstance().setDataHerb(herbs.clone());
                FragmentManager m = getFragmentManager();
                                 FragmentTransaction t = m.beginTransaction();
                                 t.replace(R.id.container, new SearchHerb());
