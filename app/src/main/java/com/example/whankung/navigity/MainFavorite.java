@@ -56,11 +56,12 @@ ListView lv;
 ////        t_H3.setTypeface(font);
 ////        t_H4.setTypeface(font);
         final String[] herbs = new String[] {AppState.getSingleInstance().getDataHerb()};
+        final String[] herbsdata = new String[] {};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
         if(AppState.getSingleInstance().isDataHerb2(true)){
-            adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
+            adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbsdata);
          //   lv.setAdapter(AppState.getSingleInstance().getDataHerb());
            lv.setAdapter(adapter);
             lv.getAdapter().getCount();

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.whankung.navigity.services.Disease.DRequest;
@@ -18,6 +19,8 @@ import com.example.whankung.navigity.services.Disease.Http;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.view.View.GONE;
 
 /**
  * Created by Whankung on 22/1/2560.
@@ -28,8 +31,8 @@ public class SearchDisease extends Fragment {
     private TabLayout tabLayout;
     private Typeface font;
     private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date;
-    private RatingBar rat;
-
+    private RatingBar rata;
+    private  RelativeLayout rat;
     //        service
     public static final String BASE_URL = "http://172.20.10.3:8080/HerbServices/webresources/";
     private static final String TAG = "log";
@@ -58,7 +61,6 @@ public class SearchDisease extends Fragment {
             public void onResponse(Call<DRequest> call, Response<DRequest> response) {
 
 
-
                 t2.setText(response.body().getPasswordAd());
                 t4.setText(response.body().getUsernameAd());
 
@@ -85,7 +87,7 @@ public class SearchDisease extends Fragment {
         t7 = (TextView) rootView.findViewById(R.id.namehow);
         t8 = (TextView) rootView.findViewById(R.id.namehowda);
         t9 = (TextView) rootView.findViewById(R.id.submit);
-        rat = (RatingBar) rootView.findViewById(R.id.rat);
+        rata = (RatingBar) rootView.findViewById(R.id.rat);
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
 
         t.setTypeface(font);
@@ -112,9 +114,11 @@ public class SearchDisease extends Fragment {
 
     private void setRating() {
 
+        rat = (RelativeLayout) rootView.findViewById(R.id.relarat);
         if (AppState.getSingleInstance().isRating(true)) {
             rat.setVisibility(View.VISIBLE);
-
+        } else if (AppState.getSingleInstance().isRating(false)) {
+            rat.setVisibility(View.GONE);
         }
     }
 }

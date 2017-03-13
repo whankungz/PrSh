@@ -46,9 +46,9 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
     ArrayAdapter<String> adapter;
-//    private CustomAdapter adapter;
+    //    private CustomAdapter adapter;
     private List<String> liste;
-//    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
+    //    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
 //            "iPhone 4S", "Samsung Galaxy Note 800",
 //            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
     ListView lv;
@@ -75,12 +75,11 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
     private void perform() {
 // TODO Auto-generated method stub
-        final String[] herbs = new String[] { "ทับทิม", "มะนาว", "มะเขือ",
+        final String[] herbs = new String[]{"ทับทิม", "มะนาว", "มะเขือ",
                 "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
-                "ตะไคร้หอม", "พริก" };
-AppState.getSingleInstance().setDataHerb(herbs);
+                "ตะไคร้หอม", "พริก"};
+        AppState.getSingleInstance().setDataHerb(herbs);
         lv = (ListView) rootView.findViewById(R.id.list_view);
-
 
 
 //        adapter = new CustomAdapter(getActivity(), herbs);
@@ -88,21 +87,21 @@ AppState.getSingleInstance().setDataHerb(herbs);
 
         lv.setAdapter(adapter);
 //        lv.setTextFilterEnabled(true);
-       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-               AppState.getSingleInstance().setDataHerb(herbs.clone());
-               FragmentManager m = getFragmentManager();
-                                FragmentTransaction t = m.beginTransaction();
-                                t.replace(R.id.container, new SearchHerb());
-                                t.commit();
+                AppState.getSingleInstance().setDataHerb(herbs.clone());
+                FragmentManager m = getFragmentManager();
+                FragmentTransaction t = m.beginTransaction();
+                t.replace(R.id.container, new SearchHerb());
+                t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
-               InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-               imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
-           }
-       });
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+            }
+        });
 //        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
 //            public void onItemClick(AdapterView<?> parent, View view,
@@ -136,7 +135,6 @@ AppState.getSingleInstance().setDataHerb(herbs);
 //
 //
 //        });
-
 
 
     }

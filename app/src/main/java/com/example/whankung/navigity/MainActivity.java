@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity
 //     navigationView.addHeaderView(nav_header);
 
 
-
         if (AppState.getSingleInstance().isLogin()) {
 
             pro = (TextView) nav_header.findViewById(R.id.namePro);
@@ -254,19 +253,16 @@ public class MainActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-           // navigationView.removeHeaderView(nav_header);
+            // navigationView.removeHeaderView(nav_header);
             pro.setVisibility(View.GONE);
-
-
-
+            AppState.getSingleInstance().setRating(false);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
 
 }

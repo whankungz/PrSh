@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by Whankung on 22/1/2560.
@@ -25,6 +27,7 @@ public class SearchHerb extends android.support.v4.app.Fragment {
     private View rootView;
     private TabLayout tabLayout;
     private RatingBar rat;
+    private RelativeLayout ment;
 
     @Nullable
     @Override
@@ -52,11 +55,14 @@ public class SearchHerb extends android.support.v4.app.Fragment {
 
             @Override
             public void onPageSelected(int position) {
-
+                ment = (RelativeLayout) rootView.findViewById(R.id.relament);
                 rat = (RatingBar) rootView.findViewById(R.id.rat);
                 if (AppState.getSingleInstance().isRating(true)) {
-                    rat.setVisibility(View.VISIBLE);
-
+                    rat.setVisibility(VISIBLE);
+                    ment.setVisibility(VISIBLE);
+                } else if (AppState.getSingleInstance().isRating(false)) {
+                    rat.setVisibility(GONE);
+                    ment.setVisibility(GONE);
                 }
             }
 
