@@ -5,7 +5,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -18,12 +20,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import static android.view.View.GONE;
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -41,8 +41,6 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_favorite, container, false);
         setView();
-//       setShow();
-
         return rootView;
     }
 
@@ -65,12 +63,13 @@ public class MainFavorite extends android.support.v4.app.Fragment {
 ////        t_H3.setTypeface(font);
 ////        t_H4.setTypeface(font);
 
-
+        lv = (ListView) rootView.findViewById(R.id.list_view);
+        //   lv.setAdapter(AppState.getSingleInstance().getDataHerb());
         if (AppState.getSingleInstance().isDataHerb2(true)) {
+
             final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
-            lv = (ListView) rootView.findViewById(R.id.list_view);
+
             adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
-            //   lv.setAdapter(AppState.getSingleInstance().getDataHerb());
             lv.setAdapter(adapter);
             lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
@@ -83,26 +82,8 @@ public class MainFavorite extends android.support.v4.app.Fragment {
                     FragmentTransaction t = m.beginTransaction();
                     t.replace(R.id.container, new SearchHerb());
                     t.commit();
-
-               //    Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
-//                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
                 }
             });
-
         }
-
-    }
-
-    private void setShow() {
-//        i_H.setImageResource(R.drawable.img_grass2);
-//        t_H.setText("ตะไคร้");
-//        i_H2.setImageResource(R.drawable.img_ruby);
-        // t_H2.setText((CharSequence) AppState.getSingleInstance().getData());
-//        i_H3.setImageResource(R.drawable.img_lemon2);
-//        t_H3.setText("มะนาว");
-//        i_H4.setImageResource(R.drawable.img_fa);
-//        t_H4.setText("ฟ้าทะลายโจร");
-
     }
 }
