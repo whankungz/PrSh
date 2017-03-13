@@ -19,6 +19,16 @@ public class AppState {
     private static String indexlist;
     private boolean rating;
 
+    public String[] getNameHerb() {
+        return nameHerb;
+    }
+
+    public void setNameHerb(String[] nameHerb) {
+        this.nameHerb = nameHerb;
+    }
+
+    private String[] nameHerb;
+
     public boolean isRating(boolean b) {
         return rating;
     }

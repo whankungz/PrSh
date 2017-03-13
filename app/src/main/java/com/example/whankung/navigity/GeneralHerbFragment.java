@@ -3,9 +3,11 @@ package com.example.whankung.navigity;
 import android.app.ProgressDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private EditText search;
     private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6;
-    private ImageView i1, i2, i3, i4, i5, i6, i7, fav;
+    private ImageView i1, i2, i3, i4, i5, i6, i7, fav,favC;
     private ProgressBar progressBar;
 
     @Nullable
@@ -34,7 +36,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         rootView = inflater.inflate(R.layout.general_herb, container, false);
         setView();
         setSearch();
-
+        fav.setVisibility(View.VISIBLE);
         return rootView;
     }
 
@@ -70,14 +72,21 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         i7 = (ImageView) rootView.findViewById(R.id.imageView8);
 
         fav = (ImageView) rootView.findViewById(R.id.favo);
+        favC = (ImageView) rootView.findViewById(R.id.favoC);
+
+
 
         fav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
+
+            //    progressBar.setVisibility(View.VISIBLE);
+
                 AppState.getSingleInstance().getDataHerb();
                 AppState.getSingleInstance().setDataHerb2(true);
 
+                fav.setVisibility(GONE);
+                favC.setVisibility(View.VISIBLE);
 
             }
         });

@@ -5,13 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/favo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        app:srcCompat="@drawable/ic_f" />
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/favoC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        app:srcCompat="@drawable/ic_s" />
+</RelativeLayout>
 
-        <ImageView
-            android:id="@+id/favo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="275dp"
-            app:srcCompat="@drawable/ic_f" />
     <ProgressBar
         android:max="5"
         android:progress="0"

@@ -54,7 +54,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
     ListView lv;
     SearchView searchView;
 
-
+private  List<String> herbs;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
@@ -62,23 +62,12 @@ public class MainHerb extends android.support.v4.app.Fragment {
         setView();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
-
-
-        perform();
-
         //  setShowHerb();
-
-
-        return rootView;
-    }
-
-
-    private void perform() {
-// TODO Auto-generated method stub
         final String[] herbs = new String[]{"ทับทิม", "มะนาว", "มะเขือ",
                 "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
                 "ตะไคร้หอม", "พริก"};
-        AppState.getSingleInstance().setDataHerb(herbs);
+        AppState.getSingleInstance().setNameHerb(herbs);
+
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
@@ -107,36 +96,36 @@ public class MainHerb extends android.support.v4.app.Fragment {
 //            public void onItemClick(AdapterView<?> parent, View view,
 //                                    int position, long id) {
 //
+////
+////                switch (position) {
+////                    case 0:
+////
+////                      AppState.getSingleInstance().setNameHerb(herbs);
+////                        break;
+////                    case 1:
+////                        AppState.getSingleInstance().setIndexlist(herbs[1]);
+////                        break;
+////                    case 2:
+////                  AppState.getSingleInstance().setIndexlist(herbs[2]);
+////                        break;
+////                    case 3:
+////                        AppState.getSingleInstance().setIndexlist(herbs[3]);
+////                        break;
+////                    case 4:
+////                        AppState.getSingleInstance().setIndexlist(herbs[4]);
+////                        break;
+////                    case 5:
+////                        AppState.getSingleInstance().setIndexlist(herbs[5]);
+////                        break;
+////                }
 //
-//                switch (position) {
-//                    case 0:
-//
-//                      AppState.getSingleInstance().setIndexlist(herbs[0]);
-//                        break;
-//                    case 1:
-//                        AppState.getSingleInstance().setIndexlist(herbs[1]);
-//                        break;
-//                    case 2:
-//                  AppState.getSingleInstance().setIndexlist(herbs[2]);
-//                        break;
-//                    case 3:
-//                        AppState.getSingleInstance().setIndexlist(herbs[3]);
-//                        break;
-//                    case 4:
-//                        AppState.getSingleInstance().setIndexlist(herbs[4]);
-//                        break;
-//                    case 5:
-//                        AppState.getSingleInstance().setIndexlist(herbs[5]);
-//                        break;
-//
-//                }
 //
 //            }
 //
 //
 //        });
 
-
+        return rootView;
     }
 
 
