@@ -41,6 +41,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Login" />
         <activity android:name=".Register"></activity>
+        <activity android:name=".MainFood"></activity>
+        <activity android:name=".DataFood"></activity>
+        <activity android:name=".MainOffice"></activity>
         <activity
             android:name="layout.drawable.LoginActivity"
             android:label="@string/title_activity_login"></activity>

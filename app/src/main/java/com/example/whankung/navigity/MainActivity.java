@@ -220,9 +220,13 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_food) {
+            Intent intent = new Intent(getApplicationContext(), MainFood.class);
+            startActivity(intent);
 
 
         } else if (id == R.id.nav_office) {
+            Intent intent = new Intent(getApplicationContext(), MainOffice.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
             FragmentManager manager = getSupportFragmentManager();

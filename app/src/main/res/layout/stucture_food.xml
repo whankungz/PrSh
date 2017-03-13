@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/custom_toolbar_login" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="อาหารเพื่อสุขภาพ"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/seekBarSpeed"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/layoutScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="155dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp">
+
+                <TextView
+                    android:id="@+id/im"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:id="@+id/im2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="160dp"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/p"
+                    android:text="อ่านเพิ่มเติม >>"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#cccccc"
+                    android:textSize="16dp" />
+                <TextView
+                    android:paddingLeft="160dp"
+                    android:id="@+id/p2"
+                    android:text="อ่านเพิ่มเติม >>"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#cccccc"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp">
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="155dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp">
+
+                <TextView
+                    android:id="@+id/im3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:id="@+id/im4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="160dp"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginLeft="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/p3"
+                    android:text="อ่านเพิ่มเติม >>"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#cccccc"
+                    android:textSize="16dp" />
+                <TextView
+                    android:paddingLeft="160dp"
+                    android:id="@+id/p4"
+                    android:text="อ่านเพิ่มเติม >>"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#cccccc"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp">
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp" />
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="155dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp">
+
+                <TextView
+                    android:id="@+id/im5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+
+                <TextView
+                    android:id="@+id/im6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="160dp"
+                    android:textColor="#1d1d1d"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+            <!--<RelativeLayout-->
+                <!--android:layout_marginLeft="7dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/p5"-->
+                    <!--android:text="อ่านเพิ่มเติม >>"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#cccccc"-->
+                    <!--android:textSize="16dp" />-->
+                <!--<TextView-->
+                    <!--android:paddingLeft="160dp"-->
+                    <!--android:id="@+id/p6"-->
+                    <!--android:text="อ่านเพิ่มเติม >>"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#cccccc"-->
+                    <!--android:textSize="16dp" />-->
+
+            <!--</RelativeLayout>-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
