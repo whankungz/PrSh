@@ -11,7 +11,8 @@ import java.util.List;
 public class DRequest {
     private String diseaseName;
     private String herb;
-    private String Symptom;
+    //private String Symptom;
+    private String symptom;
     private String howtoRelief;
     private String diseaseID;
 
@@ -35,17 +36,19 @@ public class DRequest {
         return herb;
     }
 
-    public void setHerb(String herb) {
-        this.herb = herb;
-    }
-
     public String getSymptom() {
-        return Symptom;
+        return symptom;
     }
 
     public void setSymptom(String symptom) {
-        Symptom = symptom;
+        this.symptom = symptom;
     }
+
+    public void setHerb(String herb) {
+
+        this.herb = herb;
+    }
+
 
     public String getHowtoRelief() {
         return howtoRelief;

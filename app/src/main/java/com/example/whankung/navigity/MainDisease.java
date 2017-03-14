@@ -130,9 +130,8 @@ public class MainDisease extends android.support.v4.app.Fragment{
 //        tb.setTypeface(font);
 
         final EditText searchD = (EditText)rootView.findViewById(R.id.searchD);
-        final String[] herbs = new String[] { "ปวดท้อง", "ไข้เลือดออก", "ไข้หวัดใหญ่",
-                "ท้องเสีย", "ท้องผูก", "ปวดเมื่อย", "ตาแดง", "โรคผิวหนัง",
-                "ปวดหัว", "มะเร็ง" };
+        final String[] herbs = new String[] {"ปวดท้อง", "ปวดหัว", "ข้อเท้าแพลง",
+                "แมลงกัดต่อย", "คลื่นไส้อาเจียน", "โรคผิวหนัง"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
