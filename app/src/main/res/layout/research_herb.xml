@@ -9,7 +9,6 @@
         android:id="@+id/research"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ClickStart"
         android:paddingLeft="14dp"
         android:text="งานวิจัยที่เกี่ยวข้อง"
         android:textColor="#a3a2a2"
@@ -19,7 +18,6 @@
         android:id="@+id/link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ClickStart"
         android:paddingLeft="14dp"
         android:textColor="#262626"
         android:textSize="20dp" />
@@ -29,7 +27,6 @@
         android:id="@+id/fromre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ClickStart"
         android:paddingLeft="14dp"
         android:text="ที่มา"
         android:textColor="#a3a2a2"

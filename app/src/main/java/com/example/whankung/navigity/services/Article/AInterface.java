@@ -1,4 +1,4 @@
-package com.example.whankung.navigity.services.Herb;
+package com.example.whankung.navigity.services.Article;
 
 import com.example.whankung.navigity.services.Disease.DRequest;
 
@@ -13,17 +13,16 @@ import retrofit2.http.POST;
  * Created by Whankung on 21/2/2560.
  */
 
-public interface HInterface {
+public interface AInterface {
 
 
-    @GET("entity.class.herb")
-    Call<List<HRequest>> loadJson();
-
+    @GET("entity.class.article")
+    Call<List<ArRequest>> loadJson();
 
 
 
 
     @POST("")
-    Call<HRequest> postJson(@Body HRequest body);
+    Call<ArRequest> postJson(@Body ArRequest body);
 
 }

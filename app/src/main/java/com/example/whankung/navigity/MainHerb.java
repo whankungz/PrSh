@@ -52,7 +52,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
     ArrayAdapter<String> adapter;
     ListView lv;
 
-private  List<String> herbs;
+    private List<String> herbs;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
@@ -62,11 +63,10 @@ private  List<String> herbs;
         HideKeyboard.hideKeyboard(getActivity());
 
 
-
-
         final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
                 "ฟ้าทะลายโจร", "พญายอ"};
-
+        final String[] idH = new String[]{"1", "2", "3",
+                "4", "5"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
@@ -80,8 +80,9 @@ private  List<String> herbs;
                 AppState.getSingleInstance().setDataHerb(herbs);
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                String title=herbs[position];
-                t.replace(R.id.container, new SearchHerb(title));
+                String title = herbs[position];
+                String titleid = idH[position];
+                t.replace(R.id.container, new SearchHerb(title,titleid));
                 t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();

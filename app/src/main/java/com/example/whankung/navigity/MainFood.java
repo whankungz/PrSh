@@ -16,6 +16,8 @@ public class MainFood  extends AppCompatActivity {
     private Typeface font;
     TextView tv, im, im2, im3, im4, im5,im6,p,p2,p3,p4,p5,p6;
     ImageView img, i, i2, i3, i4, i5, i6;
+    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    private static final String TAG = "log";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

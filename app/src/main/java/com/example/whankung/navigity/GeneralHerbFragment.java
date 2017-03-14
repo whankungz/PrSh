@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.Herb.HimgRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.util.List;
@@ -27,6 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.view.View.GONE;
+import static com.example.whankung.navigity.R.id.call2;
 
 
 /**
@@ -42,8 +44,10 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String title;
-    public GeneralHerbFragment(String title) {
+    private String titleid;
+    public GeneralHerbFragment(String titleid, String title) {
         this.title = title;
+        this.titleid = titleid;
     }
     @Nullable
     @Override
@@ -52,14 +56,15 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         setView();
        setSearch();
         setServices();
+        setServices2();
         fav.setVisibility(View.VISIBLE);
         return rootView;
     }
-
     private void setServices() {
-        Call<List<HRequest>> calls = Http.getInstance().getHerb().loadJson();
-        calls.enqueue(new Callback<List<HRequest>>()
-
+        Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();
+//        Call<List<HRequest>> call2 = Http.getInstance().getHerbimg().loadJson();
+      //  call = Http.getInstance().getHerbre().loadJson();
+        call.enqueue(new Callback<List<HRequest>>()
         {
             @Override
             public void onResponse(Call<List<HRequest>> call, Response<List<HRequest>> response) {
@@ -71,17 +76,9 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
                     for (HRequest h : herb) {
 
                         if (h.getHerbName().equals(title)) {
-                            Log.d(TAG, "qqq" + h.getHerbName());
                             herb2.setText(h.getHerbName());
                             other2.setText(h.getHerbOtherName());
                             see2.setText(h.getProperties());
-                            data.setText(h.getLeaf());
-//                                    data2;
-//                            data3;
-//                            data4;
-//                            data5;
-//                            data6;
-
 
                         }
 
@@ -97,6 +94,42 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
             }
         });
     }
+    private void setServices2() {
+        Call<List<HimgRequest>> call2 = Http.getInstance().getHerbimg().loadJson();
+        call2.enqueue(new Callback<List<HimgRequest>>()
+        {
+            @Override
+            public void onResponse(Call<List<HimgRequest>> call2, Response<List<HimgRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    List<HimgRequest> herbimg = response.body();
+
+
+                    for (HimgRequest h2 : herbimg) {
+
+                        if (h2.getHerbID().equals(titleid)) {
+                            Log.d(TAG,"qqq"+h2.getLeaf());
+                            data.setText(h2.getLeaf());
+                            data2.setText(h2.getBranch());
+                            data3.setText(h2.getFlower());
+                            data4.setText(h2.getFruit());
+                            data5.setText(h2.getRoot());
+                            data6.setText(h2.getSeed());
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<HimgRequest>> call2, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
+    }
+
 
 
 

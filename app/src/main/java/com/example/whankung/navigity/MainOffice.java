@@ -13,7 +13,8 @@ public class MainOffice extends AppCompatActivity {
     TextView tv, nameOf, addr, addrdata, call, fax, mailOf, whyOf, whyOfdata, web,
             nameOf2, addr2, addrdata2, call2, fax2, mailOf2, whyOf2, whyOfdata2, web2;
     ImageView img, i, i2, i3, i4, i5, i6;
-
+    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    private static final String TAG = "log";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

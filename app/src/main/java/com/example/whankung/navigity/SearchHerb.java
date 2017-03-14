@@ -28,9 +28,11 @@ public class SearchHerb extends android.support.v4.app.Fragment {
     private RatingBar rat;
     private RelativeLayout ment;
     private String title;
+    private String titleid;
 
-    public SearchHerb(String title) {
+    public SearchHerb(String titleid, String title) {
         this.title = title;
+        this.titleid = titleid;
     }
 
     @Nullable
@@ -85,9 +87,9 @@ public class SearchHerb extends android.support.v4.app.Fragment {
 
         List<Fragment> fList = new ArrayList<Fragment>();
 
-        fList.add(new GeneralHerbFragment(title));
-        fList.add(new HowtoHerbFragment());
-        fList.add(new ResearchHerbFragment());
+        fList.add(new GeneralHerbFragment(title,titleid));
+        fList.add(new HowtoHerbFragment(title,titleid));
+        fList.add(new ResearchHerbFragment(title,titleid));
         return fList;
     }
 

@@ -1,7 +1,5 @@
 package com.example.whankung.navigity.services.Herb;
 
-import com.example.whankung.navigity.services.Disease.DRequest;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -13,17 +11,16 @@ import retrofit2.http.POST;
  * Created by Whankung on 21/2/2560.
  */
 
-public interface HInterface {
+public interface HimgInterface {
 
 
-    @GET("entity.class.herb")
-    Call<List<HRequest>> loadJson();
-
+    @GET("entity.class.herbimg")
+    Call<List<HimgRequest>> loadJson();
 
 
 
 
     @POST("")
-    Call<HRequest> postJson(@Body HRequest body);
+    Call<HimgRequest> postJson(@Body HimgRequest body);
 
 }

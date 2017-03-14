@@ -37,15 +37,15 @@ public class MainInfo extends Fragment {
     private Typeface font;
     private TextView tv, im, im2, im3, im4, im5, im6, p, p2, p3, p4, p5, p6, st, st2, st3, st4, st5, st6;
     private ImageView img, i, i2, i3, i4, i5, i6, sta, sta2, sta3, sta4, sta5, sta6;
-    ConnectionClass connectionClass;
+    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    private static final String TAG = "log";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_info, container, false);
         setView();
        setInfo();
-        connectionClass = new ConnectionClass();
-        Connection con = connectionClass.connection();
+
 
 
 

@@ -13,12 +13,19 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.Http;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.whankung.navigity.Register.*;
 
@@ -32,24 +39,25 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date;
     private RatingBar rat;
     private EditText ment;
-    private ConnectionClass connectionClass;
     private Register register;
+    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    private static final String TAG = "log";
+    private String title;
+    private String titleid;
 
+
+    public HowtoHerbFragment(String titleid,String title) {
+        this.title = title;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.howto_herb, container, false);
 
         setView();
-        setData();
+     //   setData();
 //        setRating();
-        connectionClass = new ConnectionClass();
-
-//        if (AppState.getSingleInstance().isLogin()) {
-//            rat.setVisibility(View.VISIBLE);
-//            AppState.getSingleInstance().setLogin(false);
-//        }
-
+        setServices();
         return rootView;
     }
 
@@ -137,7 +145,40 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //        });
 
     }
+    private void setServices() {
+        Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();
+//        Call<List<HRequest>> call2 = Http.getInstance().getHerbimg().loadJson();
+        //  call = Http.getInstance().getHerbre().loadJson();
+        call.enqueue(new Callback<List<HRequest>>()
+        {
+            @Override
+            public void onResponse(Call<List<HRequest>> call, Response<List<HRequest>> response) {
 
+                if (response.isSuccessful()) {
+                    List<HRequest> herb = response.body();
+
+                    // Can iterate through list and grab Getters from POJO
+                    for (HRequest h : herb) {
+
+                        if (h.getHerbName().equals(title)) {
+                            Log.d(TAG,"oooooooooooooo"+h.getHowto());
+                            hdata.setText(h.getHowto());
+                            tdata.setText(h.getWarning());
+                            //  data.setText(h.getLeaf());
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<HRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
+    }
     private void setData() {
         pdata.setText("เปลือก – รักษาอาการท้องเสีย");
         hdata.setText("1.นำเปลือกทับทิมมาต้มกับน้ำจนเดือดให้เด็กดื่มน้ำทับทิมครั้งละ1-2 ช้อนชา ทุก 4 ชั่วโมงและ1 ช้อนโต๊ะสำหรับผู้ใหญ่\n" +
