@@ -2,6 +2,7 @@ package com.example.whankung.navigity;
 
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by Whankung on 11/3/2560.
@@ -18,16 +19,26 @@ public class AppState {
 
     private static String indexlist;
     private boolean rating;
+    private String nameH;
 
-    public String[] getNameHerb() {
-        return nameHerb;
+
+
+    public String getRegis() {
+        return regis;
     }
 
-    public void setNameHerb(String[] nameHerb) {
-        this.nameHerb = nameHerb;
+    public void setRegis(String regis) {
+        this.regis = regis;
     }
 
-    private String[] nameHerb;
+    private String regis;
+    public String getNameH() {
+        return nameH;
+    }
+
+    public void setNameH(TextView nameH) {
+
+    }
 
     public boolean isRating(boolean b) {
         return rating;
@@ -81,6 +92,7 @@ public class AppState {
     public void setDataHerb(String[] dataHerb) {
 
     }
+
     public boolean isDataHerb2(boolean b) {
         return dataHerb2;
     }

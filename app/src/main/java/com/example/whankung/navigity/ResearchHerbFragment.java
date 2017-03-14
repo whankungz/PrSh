@@ -43,6 +43,6 @@ public class ResearchHerbFragment extends android.support.v4.app.Fragment {
 
     private void setData() {
         link.setText("สารสกัดละลายน้ำต้านจุลชีพจากเปลือกผลทับทิม:องค์ประกอบในยาบ้วนปากฆ่าเชื้อ");
-        flink.setText("http://www.pharmacy.mahidol.ac.th/medplantdatabase/pdf/2001/20010029.pdf");
+        flink.setText("คุณมาลิน จุลศิริ และคณะ");
     }
 }

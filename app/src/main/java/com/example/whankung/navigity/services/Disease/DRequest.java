@@ -5,22 +5,40 @@ package com.example.whankung.navigity.services.Disease;
  */
 
 public class DRequest {
-    private String usernameAd;
-    private String passwordAd;
+    private String diseaseName;
+    private String herb;
+    private String Symptom;
+    private String howtoRelief;
 
-    public String getUsernameAd() {
-        return usernameAd;
+    public String getDiseaseName() {
+        return diseaseName;
     }
 
-    public void setUsernameAd(String usernameAd) {
-        this.usernameAd = usernameAd;
+    public void setDiseaseName(String diseaseName) {
+        this.diseaseName = diseaseName;
     }
 
-    public String getPasswordAd() {
-        return passwordAd;
+    public String getHerb() {
+        return herb;
     }
 
-    public void setPasswordAd(String passwordAd) {
-        this.passwordAd = passwordAd;
+    public void setHerb(String herb) {
+        this.herb = herb;
+    }
+
+    public String getSymptom() {
+        return Symptom;
+    }
+
+    public void setSymptom(String symptom) {
+        Symptom = symptom;
+    }
+
+    public String getHowtoRelief() {
+        return howtoRelief;
+    }
+
+    public void setHowtoRelief(String howtoRelief) {
+        this.howtoRelief = howtoRelief;
     }
 }

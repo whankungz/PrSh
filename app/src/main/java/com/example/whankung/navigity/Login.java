@@ -148,7 +148,9 @@ public class Login extends AppCompatActivity {
 
                     } else {
 
+
                         String query = "select * from Pharmacist where username= '" + userid.toString() + "' and password = '" + password.toString() + "'  ";
+
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         if (rs.next()) {

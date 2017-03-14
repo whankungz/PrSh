@@ -1,18 +1,33 @@
 package com.example.whankung.navigity;
 
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by Whankung on 12/3/2560.
@@ -22,17 +37,44 @@ public class MainInfo extends Fragment {
     private Typeface font;
     private TextView tv, im, im2, im3, im4, im5, im6, p, p2, p3, p4, p5, p6, st, st2, st3, st4, st5, st6;
     private ImageView img, i, i2, i3, i4, i5, i6, sta, sta2, sta3, sta4, sta5, sta6;
-
+    ConnectionClass connectionClass;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_info, container, false);
         setView();
-        setInfo();
+       setInfo();
+        connectionClass = new ConnectionClass();
+        Connection con = connectionClass.connection();
+
+
+
+
+//            String query = "SELECT ImgInfo.ImgInfo FROM ImgInfo" +
+//                    "LEFT OUTER JOIN Infographic ON Infographic.infoID = ImgInfo.InfopicID where Infographic.infoID='1'";
+//            String query = "select howto from Herb where herbName='ทับทิม'";
+//            Statement statement = getStatement((Connection) con);
+//            try {
+//                ResultSet rs = statement.executeQuery("select howto from Herb where herbID='1'");
+////                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+////                       + "  VALUES (us.toString(),ps.toString(),em.toString())");
+//                rs.close();
+//                statement.close();
+//
+//                im.setText(rs);
+//            } catch (SQLException e) {
+//
+//                e.printStackTrace();
+//
+//            }
+       // sta.setImageResource(Integer.parseInt(query));
+
 
 
         return rootView;
     }
+
+
 
     private void setView() {
         st = (TextView) rootView.findViewById(R.id.st);
@@ -140,4 +182,5 @@ public class MainInfo extends Fragment {
         im5.setText("ลดความเร็ว ลดความเสี่ยง");
         im6.setText("อาการเส้นเลือดในสมองตีบ");
     }
+
 }

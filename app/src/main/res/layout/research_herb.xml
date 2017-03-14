@@ -39,7 +39,6 @@
         android:id="@+id/fromlink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="ClickStart"
         android:paddingLeft="14dp"
         android:textColor="#262626"
         android:textSize="20dp" />

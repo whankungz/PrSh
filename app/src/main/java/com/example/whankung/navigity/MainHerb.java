@@ -28,6 +28,10 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -46,13 +50,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
     ArrayAdapter<String> adapter;
-    //    private CustomAdapter adapter;
-    private List<String> liste;
-    //    String herbs[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE",
-//            "iPhone 4S", "Samsung Galaxy Note 800",
-//            "Samsung Galaxy S3", "MacBook Air", "Mac Mini", "MacBook Pro"};
     ListView lv;
-    SearchView searchView;
+    ConnectionClass connectionClass;
 
 private  List<String> herbs;
     @Nullable
@@ -62,16 +61,18 @@ private  List<String> herbs;
         setView();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
-        //  setShowHerb();
-        final String[] herbs = new String[]{"ทับทิม", "มะนาว", "มะเขือ",
-                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
+
+        connectionClass = new ConnectionClass();
+        Connection con = connectionClass.connection();
+        String query = "select * from Herb where herbName='ทับทิม'";
+
+
+        final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
+                "ฟ้าทะลายโจร", "พญายอ", "ว่านหาง", "กระชายดำ", "ขิง",
                 "ตะไคร้หอม", "พริก"};
-        AppState.getSingleInstance().setNameHerb(herbs);
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
-
-//        adapter = new CustomAdapter(getActivity(), herbs);
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
 
         lv.setAdapter(adapter);
@@ -80,7 +81,7 @@ private  List<String> herbs;
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                AppState.getSingleInstance().setDataHerb(herbs.clone());
+                AppState.getSingleInstance().setDataHerb(herbs);
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
                 t.replace(R.id.container, new SearchHerb());

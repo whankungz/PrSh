@@ -30,7 +30,7 @@ public class ConnectionClass {
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver");
 
-            ConnectionURL = "jdbc:jtds:sqlserver://172.19.192.115/SocialHerbnew;user=sa;password=1234";
+            ConnectionURL = "jdbc:jtds:sqlserver://172.19.64.62/SocialHerbnew;user=sa;password=1234";
 
             connection = DriverManager.getConnection(ConnectionURL);
         } catch (SQLException se) {

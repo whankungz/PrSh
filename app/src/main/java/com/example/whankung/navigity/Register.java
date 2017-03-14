@@ -68,12 +68,20 @@ public class Register extends AppCompatActivity {
         regis2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String us = u.getText().toString();
+                String ps= p.getText().toString();
+                String em = m.getText().toString();
+                AppState.getSingleInstance().setRegis(us.toString());
+                AppState.getSingleInstance().setRegis(ps.toString());
+                AppState.getSingleInstance().setRegis(em.toString());
                 DBOperation dbOperation = new DBOperation();
                 try {
                     dbOperation.getAllUsers();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+
                 dbOperation.addUser();
 
 
@@ -150,6 +158,7 @@ public class Register extends AppCompatActivity {
             String us = u.getText().toString();
             String ps= p.getText().toString();
             String em = m.getText().toString();
+
             try {
 
                 Log.e("MSSQL", "Attempting to connect");
@@ -180,7 +189,7 @@ public class Register extends AppCompatActivity {
         String email;
 
 
-        public UserInfo(String username, String password,
+        public UserInfo(String string, String username, String password,
                         String email) {
 
 
@@ -232,8 +241,8 @@ public class Register extends AppCompatActivity {
 
             while (rs.next()) {
 
-                userlist.add(new UserInfo(rs.getString(1), rs.getString(2),
-                        rs.getString(3)));
+                userlist.add(new UserInfo(rs.getString(1),rs.getString(2), rs.getString(3),
+                        rs.getString(4)));
                 count++;
 
             }
@@ -244,20 +253,26 @@ public class Register extends AppCompatActivity {
 
         }
 
+
         public void addUser() {
+
             String us = u.getText().toString();
             String ps= p.getText().toString();
             String em = m.getText().toString();
+
+
+
             Log.e("MSSQL", "in adduser");
             Connection con = connectionClass.connection();
             Statement statement = getStatement((Connection) con);
 
-            try {
 
-                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
-                        + "  VALUES ("+us.toString()+" ,"+ps.toString()+" , "+em.toString()+")");
+            try {
+                Object o = null;
 //                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
-//                       + "  VALUES (us.toString(),ps.toString(),em.toString())");
+//                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
+                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+                       + "  VALUES ('','"+us+"','"+ps+"','"+em+"')");
                 rs.close();
                 statement.close();
 

@@ -53,7 +53,7 @@ public class SearchDisease extends Fragment {
     private void setServices() {
 
         DRequest disease = new DRequest();
-        Call<DRequest> calls = Http.getInstance().getAdmin().loadJson();
+        Call<DRequest> calls = Http.getInstance().getDisease().loadJson();
         calls.enqueue(new Callback<DRequest>()
 
         {
@@ -61,8 +61,8 @@ public class SearchDisease extends Fragment {
             public void onResponse(Call<DRequest> call, Response<DRequest> response) {
 
 
-                t2.setText(response.body().getPasswordAd());
-                t4.setText(response.body().getUsernameAd());
+//                t2.setText(response.body().getPasswordAd());
+//                t4.setText(response.body().getUsernameAd());
 
 
             }

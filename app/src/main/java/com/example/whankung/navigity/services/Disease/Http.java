@@ -16,7 +16,7 @@ public class Http {
 
 
 
-    DInterface admin;
+    DInterface disease;
 
 
     public static Http getInstance(){
@@ -34,14 +34,14 @@ public class Http {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-       admin = retrofit.create(DInterface.class);
+        disease = retrofit.create(DInterface.class);
 
     }
 
 
 
-    public DInterface getAdmin() {
-        return admin;
+    public DInterface getDisease() {
+        return disease;
     }
 
 

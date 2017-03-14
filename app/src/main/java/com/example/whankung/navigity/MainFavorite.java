@@ -32,7 +32,7 @@ import android.widget.TextView;
 public class MainFavorite extends android.support.v4.app.Fragment {
     private View rootView;
     private Typeface font;
-    private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
+    private TextView fav;
     ArrayAdapter<String> adapter;
     ListView lv;
 
@@ -45,16 +45,7 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     }
 
     private void setView() {
-////        tb = (TextView) rootView.findViewById(R.id.toolbar_title);
-////        tb.setText("รายการโปรด");
-//        t_H = (TextView) rootView.findViewById(R.id.t_H);
-//        t_H2 = (TextView) rootView.findViewById(R.id.t_H2);
-////        t_H3 = (TextView) rootView.findViewById(R.id.t_H3);
-////        t_H4 = (TextView) rootView.findViewById(R.id.t_H4);
-//        i_H = (ImageView) rootView.findViewById(R.id.i_H);
-//        i_H2 = (ImageView) rootView.findViewById(R.id.i_H2);
-////        i_H3 = (ImageView) rootView.findViewById(R.id.i_H3);
-////        i_H4 = (ImageView) rootView.findViewById(R.id.i_H4);
+        fav = (TextView) rootView.findViewById(R.id.textF);
 //
 //        font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
 //        t_H.setTypeface(font);
@@ -65,23 +56,38 @@ public class MainFavorite extends android.support.v4.app.Fragment {
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
         //   lv.setAdapter(AppState.getSingleInstance().getDataHerb());
+
+//        final String[] herbs = new String[]{"ทับทิม", "มะนาว", "มะเขือ",
+//                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
+//                "ตะไคร้หอม", "พริก"};
+
+
+        final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
         if (AppState.getSingleInstance().isDataHerb2(true)) {
-
-            final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
-
+          //  fav.setText(AppState.getSingleInstance().getNameH());
+//            fav.setText(AppState.getSingleInstance().getNamePhama());
             adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
             lv.setAdapter(adapter);
             lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
-
+//            fav.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    FragmentManager m = getFragmentManager();
+//                    FragmentTransaction t = m.beginTransaction();
+//                    t.replace(R.id.container, new SearchHerb());
+//                    t.commit();
+//
+//                }
+//            });
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                     FragmentManager m = getFragmentManager();
                     FragmentTransaction t = m.beginTransaction();
                     t.replace(R.id.container, new SearchHerb());
                     t.commit();
+
                 }
             });
         }

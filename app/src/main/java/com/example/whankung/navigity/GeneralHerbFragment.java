@@ -116,6 +116,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
 
     private void setSearch() {
         herb2.setText("ทับทิม");
+        AppState.getSingleInstance().setNameH(herb2);
         other2.setText("เซี๊ยะลิ้ว, พิลา, พิลาขาว, มะก่องแก้ว, มะเก๊าะ, หมากจัง");
         i1.setImageResource(R.drawable.img_ruby);
         see2.setText("ไม้พุ่ม ปลายกิ่งอ่อนโค้งเล็กและมักมีหนามแหลม");
