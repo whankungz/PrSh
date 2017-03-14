@@ -24,6 +24,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.Http;
+
+import java.util.List;
+
+import retrofit2.Call;
+
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -35,12 +42,18 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     private TextView fav;
     ArrayAdapter<String> adapter;
     ListView lv;
+//    private HRequest h;
+//    public MainFavorite(HRequest h) {
+//        this.h= h;
+//    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_favorite, container, false);
         setView();
+//        Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();
+//        fav.setText(h.getHerbName());
         return rootView;
     }
 
@@ -83,6 +96,7 @@ public class MainFavorite extends android.support.v4.app.Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 //                    FragmentManager m = getFragmentManager();
 //                    FragmentTransaction t = m.beginTransaction();
 //                    t.replace(R.id.container, new SearchHerb());

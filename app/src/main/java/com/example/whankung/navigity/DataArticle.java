@@ -104,7 +104,7 @@ public class DataArticle extends android.support.v4.app.Fragment {
                     List<ArRequest> article = response.body();
 
                     for (ArRequest a : article) {
-                        if (a.getArticleID().equals(a)) {
+                        if (a.getArticleID().equals("1")) {
                             t2.setText(a.getArticleName());
                             t3.setText(a.getArticle());
                             t5.setText(a.getArticleCredit());

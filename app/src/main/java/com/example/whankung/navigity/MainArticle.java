@@ -101,9 +101,7 @@ public class MainArticle extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                final String[] ar = new String[]{"1", "2", "3",
-                        "4", "5"};
-                String a=ar[5];
+                String a=null;
                 t.replace(R.id.container, new DataArticle(a));
                 t.commit();
             }

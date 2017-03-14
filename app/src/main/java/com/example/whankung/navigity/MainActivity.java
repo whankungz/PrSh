@@ -1,9 +1,7 @@
 package com.example.whankung.navigity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -21,14 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import static com.example.whankung.navigity.R.attr.headerLayout;
+import com.example.whankung.navigity.services.Herb.HRequest;
 
 
 public class MainActivity extends AppCompatActivity
@@ -97,6 +90,7 @@ public class MainActivity extends AppCompatActivity
                             case R.id.action_fav:
                                 manager = getSupportFragmentManager();
                                 transaction = manager.beginTransaction();
+
                                 transaction.replace(R.id.container, new MainFavorite());
                                 transaction.commit();
                                 AppState.getSingleInstance().getDataHerb();
