@@ -5,11 +5,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.whankung.navigity.services.Article.ArRequest;
+import com.example.whankung.navigity.services.Disease.DRequest;
+import com.example.whankung.navigity.services.Http;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -112,6 +123,41 @@ public class MainArticle extends android.support.v4.app.Fragment {
 
 
     private void setArticle() {
+
+        Call<List<ArRequest>> calls = Http.getInstance().getArticle().loadJson();
+        calls.enqueue(new Callback<List<ArRequest>>()
+
+        {
+            @Override
+            public void onResponse(Call<List<ArRequest>> call, Response<List<ArRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    List<ArRequest> article = response.body();
+
+                    for (ArRequest a : article) {
+                      if(a.getArticleID().equals(1)){
+                          im.setText(a.getArticleName());
+                      }else if(a.getArticleID().equals(2)){
+                          im2.setText(a.getArticleName());
+                      } else if(a.getArticleID().equals(3)){
+                        im3.setText(a.getArticleName());
+                    } else if(a.getArticleID().equals(4)){
+                        im4.setText(a.getArticleName());
+                    } else if(a.getArticleID().equals(5)){
+                        im5.setText(a.getArticleName());
+                    }
+                    }
+
+                } else {
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ArRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
         star.setImageResource(R.drawable.ic_star2);
         star2.setImageResource(R.drawable.ic_star2);
         star3.setImageResource(R.drawable.ic_star2);
@@ -119,14 +165,17 @@ public class MainArticle extends android.support.v4.app.Fragment {
         star5.setImageResource(R.drawable.ic_star2);
 
         i1.setImageResource(R.drawable.img_a);
-        im.setText("‘โรคอ้วน’ มหันตภัยมืดมนุษย์เมือง");
+//        im.setText("‘โรคอ้วน’ มหันตภัยมืดมนุษย์เมือง");
         i2.setImageResource(R.drawable.img_a2);
-        im2.setText("ส้มซ่า และ ส้มสา");
+//        im2.setText("ส้มซ่า และ ส้มสา");
         i3.setImageResource(R.drawable.img_a5);
-        im3.setText("คอเรสเตอรอลในไข่ไก่");
+//        im3.setText("คอเรสเตอรอลในไข่ไก่");
         i4.setImageResource(R.drawable.img_a4);
-        im4.setText("‘กล้วย’อาหารสุขภาพทุกเพศทุกวัย");
+//        im4.setText("‘กล้วย’อาหารสุขภาพทุกเพศทุกวัย");
         i5.setImageResource(R.drawable.img_a3);
-        im5.setText("กินยาเยอะ ทำให้ตับไตพังจริงหรือ?");
+//        im5.setText("กินยาเยอะ ทำให้ตับไตพังจริงหรือ?");
     }
+
+
+
 }
