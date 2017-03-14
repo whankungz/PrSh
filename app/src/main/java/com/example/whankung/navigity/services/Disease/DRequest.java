@@ -13,6 +13,15 @@ public class DRequest {
     private String herb;
     private String Symptom;
     private String howtoRelief;
+    private String diseaseID;
+
+    public String getDiseaseID() {
+        return diseaseID;
+    }
+
+    public void setDiseaseID(String diseaseID) {
+        this.diseaseID = diseaseID;
+    }
 
     public String getDiseaseName() {
         return diseaseName;

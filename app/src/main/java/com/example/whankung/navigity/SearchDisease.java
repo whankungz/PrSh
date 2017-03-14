@@ -34,11 +34,15 @@ public class SearchDisease extends Fragment {
     private Typeface font;
     private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date;
     private RatingBar rata;
-    private  RelativeLayout rat;
+    private RelativeLayout rat;
+    private String title;
     //        service
     public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
     private static final String TAG = "log";
 
+    public SearchDisease(String title) {
+        this.title = title;
+    }
 
     @Nullable
     @Override
@@ -86,10 +90,9 @@ public class SearchDisease extends Fragment {
     private void setSearch() {
 //        t2.setText("ปวดฟัน");
 //        t4.setText("กานพลู ดาวเรือง เมล็ดผักชี ผักบุ้งนา มะระ ว่านหางจระเข้ น้ำมันกระเทียม ใบชา เมล็ดกุยช่าย");
-        t6.setText("เวลากินของเย็น ของหวาน หรือเมื่อตอนเคี้ยวอาหารและอาการเหล่านี้จะหายไปเมื่อหยุดกินอาหารดังกล่าวภายในไม่กี่นาึ่งลักษณะของอาการปวดเช่นนี้มักเกิดจากฟันผุหรือฟันบิ่นจนถึงเนื้อฟันชั้นในจึงทำให้ความเย็นหรือแรงจากการเคี้ยวอาหารมีโอกาสกระตุ้นเส้นประสาทที่อยู่ในโพรงประสาทใต้เนื้อฟันได้มากกว่าปกติ จึงทำให้เกิดความรู้สึกเสียวฟันทุกครั้งเมื่อกินอาหาร ส่วนอาการปวดฟันอีกประเภทหนึ่ง ซึ่งจะมีความรุนแรงกว่า คือ การปวดเป็นจังหวะ ตุ้บ ๆ ซึ่งอาจปวดโดยอยู่เฉย ๆ ก็ปวด หรืออาจปวดมากขึ้นเวลากินของเย็นหรือของร้อน หรือเวลาเคี้ยวอาหาร และอาการปวดนี้จะไม่หายไปแม้จะเลิกกินอาหารเหล่านี้แล้วก็ตาม");
-        t8.setText("หลีกเลี่ยงอาหารประเภทดังกล่าวพร้อมกับการรับประทานยาแก้ปวด");
-        String d = "ddddd";
-        t8.setText(d);
+//        t6.setText("เวลากินของเย็น ของหวาน หรือเมื่อตอนเคี้ยวอาหารและอาการเหล่านี้จะหายไปเมื่อหยุดกินอาหารดังกล่าวภายในไม่กี่นาึ่งลักษณะของอาการปวดเช่นนี้มักเกิดจากฟันผุหรือฟันบิ่นจนถึงเนื้อฟันชั้นในจึงทำให้ความเย็นหรือแรงจากการเคี้ยวอาหารมีโอกาสกระตุ้นเส้นประสาทที่อยู่ในโพรงประสาทใต้เนื้อฟันได้มากกว่าปกติ จึงทำให้เกิดความรู้สึกเสียวฟันทุกครั้งเมื่อกินอาหาร ส่วนอาการปวดฟันอีกประเภทหนึ่ง ซึ่งจะมีความรุนแรงกว่า คือ การปวดเป็นจังหวะ ตุ้บ ๆ ซึ่งอาจปวดโดยอยู่เฉย ๆ ก็ปวด หรืออาจปวดมากขึ้นเวลากินของเย็นหรือของร้อน หรือเวลาเคี้ยวอาหาร และอาการปวดนี้จะไม่หายไปแม้จะเลิกกินอาหารเหล่านี้แล้วก็ตาม");
+//        t8.setText("หลีกเลี่ยงอาหารประเภทดังกล่าวพร้อมกับการรับประทานยาแก้ปวด");
+
 
     }
 
@@ -104,7 +107,7 @@ public class SearchDisease extends Fragment {
     }
 
     private void setServices() {
-        DRequest disease = new DRequest();
+        final DRequest disease = new DRequest();
         Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
         calls.enqueue(new Callback<List<DRequest>>()
 
@@ -112,13 +115,20 @@ public class SearchDisease extends Fragment {
             @Override
             public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
 
-
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     List<DRequest> disease = response.body();
 
                     // Can iterate through list and grab Getters from POJO
-                    for(DRequest d: disease) {
-                        t2.setText(d.getDiseaseName());
+                    for (DRequest d : disease) {
+
+                        if (d.getDiseaseName().equals(title)) {
+                            Log.d(TAG, "qqq" + d.getSymptom());
+                            t2.setText(d.getDiseaseName());
+                            t4.setText(d.getHerb());
+                            t6.setText(d.getSymptom());
+                            t8.setText(d.getHowtoRelief());
+                        }
+
                     }
 
                 } else {

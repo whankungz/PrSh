@@ -130,9 +130,9 @@ public class MainDisease extends android.support.v4.app.Fragment{
 //        tb.setTypeface(font);
 
         final EditText searchD = (EditText)rootView.findViewById(R.id.searchD);
-        final String[] herbs = new String[] { "ปวดฟัน", "ไข้เลือดออก", "ไข้หวัดใหญ่",
-                "ท้องเสีย", "ท้องผูก", "ปวดเมื่อย", "ตาแดง", "เหน็บชา",
-                "ปวดศีรษะ", "มะเร็ง" };
+        final String[] herbs = new String[] { "ปวดท้อง", "ไข้เลือดออก", "ไข้หวัดใหญ่",
+                "ท้องเสีย", "ท้องผูก", "ปวดเมื่อย", "ตาแดง", "โรคผิวหนัง",
+                "ปวดหัว", "มะเร็ง" };
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
@@ -148,7 +148,9 @@ public class MainDisease extends android.support.v4.app.Fragment{
 
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                t.replace(R.id.container, new  SearchDisease());
+                String title=herbs[position];
+
+                t.replace(R.id.container, new  SearchDisease(title));
                 t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
@@ -180,23 +182,23 @@ public class MainDisease extends android.support.v4.app.Fragment{
                 MainDisease.this.adapter.getFilter().filter(s);
                 searchD.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 String strMsg = "ปวดฟัน";
-                if (s.toString().equals(strMsg)) {
-                    searchD.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                            if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                                FragmentManager m = getFragmentManager();
-                                FragmentTransaction t = m.beginTransaction();
-                                t.replace(R.id.container, new  SearchDisease());
-                                t.commit();
-
-                            }
-                            return false;
-                        }
-                    });
-                }
+//                if (s.toString().equals(strMsg)) {
+//                    searchD.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//                        @Override
+//                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//
+//                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+//
+//                                FragmentManager m = getFragmentManager();
+//                                FragmentTransaction t = m.beginTransaction();
+//                                t.replace(R.id.container, new  SearchDisease(t));
+//                                t.commit();
+//
+//                            }
+//                            return false;
+//                        }
+//                    });
+//                }
             }
         });
     }
