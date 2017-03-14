@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -28,6 +27,11 @@ public class SearchHerb extends android.support.v4.app.Fragment {
     private TabLayout tabLayout;
     private RatingBar rat;
     private RelativeLayout ment;
+    private String title;
+
+    public SearchHerb(String title) {
+        this.title = title;
+    }
 
     @Nullable
     @Override
@@ -80,7 +84,8 @@ public class SearchHerb extends android.support.v4.app.Fragment {
     private List<Fragment> getFragments() {
 
         List<Fragment> fList = new ArrayList<Fragment>();
-        fList.add(new GeneralHerbFragment());
+
+        fList.add(new GeneralHerbFragment(title));
         fList.add(new HowtoHerbFragment());
         fList.add(new ResearchHerbFragment());
         return fList;

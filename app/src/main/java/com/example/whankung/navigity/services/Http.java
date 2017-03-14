@@ -1,12 +1,13 @@
-package com.example.whankung.navigity.services.Disease;
+package com.example.whankung.navigity.services;
 
-import android.util.Log;
-
+import com.example.whankung.navigity.services.Disease.DInterface;
+import com.example.whankung.navigity.services.Herb.HInterface;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
 import static com.example.whankung.navigity.SearchDisease.BASE_URL;
 
 /**
@@ -15,19 +16,16 @@ import static com.example.whankung.navigity.SearchDisease.BASE_URL;
 
 public class Http {
     private static Http instance;
-
-
-
     DInterface disease;
+    HInterface herb;
 
 
-    public static Http getInstance(){
+    public static Http getInstance() {
 
         return new Http();
     }
 
-    private Http(){
-
+    private Http() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -38,14 +36,16 @@ public class Http {
                 .build();
 
         disease = retrofit.create(DInterface.class);
-
+        herb = retrofit.create(HInterface.class);
     }
-
 
 
     public DInterface getDisease() {
         return disease;
     }
 
+    public HInterface getHerb() {
+        return herb;
+    }
 
 }

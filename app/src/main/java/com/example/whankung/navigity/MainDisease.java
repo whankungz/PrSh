@@ -52,30 +52,12 @@ public class MainDisease extends android.support.v4.app.Fragment{
         rootView = inflater.inflate(R.layout.stucture_disease, container, false);
         setView();
         setShow();
-        setServices();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
         return rootView;
     }
 
-    private void setServices() {
-//        DRequest disease = new  DRequest();
-//        Call<DModel> calls = Http.getInstance().getDisease().loadJson();
-//        calls.enqueue(new Callback<DModel>()
-//
-//                      {
-//                          @Override
-//                          public void onResponse(Call<DModel> call, Response<DModel> response) {
-//                              tv.setText(response.body().getDataD().get(0).getUsernameAd());
-//                              tv.setText(response.body().getDataD().get(1).getPasswordAd());
-//                          }
-//
-//                          @Override
-//                          public void onFailure(Call<DModel> call, Throwable t) {
-//                              Log.d(TAG, "onFailure:  " + t.toString());
-//                          }
-//                      });
-    }
+
 
 
 
@@ -130,14 +112,14 @@ public class MainDisease extends android.support.v4.app.Fragment{
 //        tb.setTypeface(font);
 
         final EditText searchD = (EditText)rootView.findViewById(R.id.searchD);
-        final String[] herbs = new String[] {"ปวดท้อง", "ปวดหัว", "ข้อเท้าแพลง",
+        final String[] herbDi = new String[] {"ปวดท้อง", "ปวดหัว", "ข้อเท้าแพลง",
                 "แมลงกัดต่อย", "คลื่นไส้อาเจียน", "โรคผิวหนัง"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 
 
 //        adapter = new CustomAdapter(getActivity(), herbs);
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbDi);
 
         lv.setAdapter(adapter);
 //        lv.setTextFilterEnabled(true);
@@ -147,7 +129,7 @@ public class MainDisease extends android.support.v4.app.Fragment{
 
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                String title=herbs[position];
+                String title=herbDi[position];
 
                 t.replace(R.id.container, new  SearchDisease(title));
                 t.commit();

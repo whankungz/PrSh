@@ -83,10 +83,10 @@ public class MainFavorite extends android.support.v4.app.Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    FragmentManager m = getFragmentManager();
-                    FragmentTransaction t = m.beginTransaction();
-                    t.replace(R.id.container, new SearchHerb());
-                    t.commit();
+//                    FragmentManager m = getFragmentManager();
+//                    FragmentTransaction t = m.beginTransaction();
+//                    t.replace(R.id.container, new SearchHerb());
+//                    t.commit();
 
                 }
             });

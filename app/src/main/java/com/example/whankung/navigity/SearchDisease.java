@@ -14,15 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.whankung.navigity.services.Disease.DRequest;
-import com.example.whankung.navigity.services.Disease.Http;
+import com.example.whankung.navigity.services.Http;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.view.View.GONE;
 
 /**
  * Created by Whankung on 22/1/2560.

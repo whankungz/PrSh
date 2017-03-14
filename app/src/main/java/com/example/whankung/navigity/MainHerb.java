@@ -51,7 +51,6 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
     ArrayAdapter<String> adapter;
     ListView lv;
-    ConnectionClass connectionClass;
 
 private  List<String> herbs;
     @Nullable
@@ -62,14 +61,11 @@ private  List<String> herbs;
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
 
-        connectionClass = new ConnectionClass();
-        Connection con = connectionClass.connection();
-        String query = "select * from Herb where herbName='ทับทิม'";
+
 
 
         final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
-                "ฟ้าทะลายโจร", "พญายอ", "ว่านหาง", "กระชายดำ", "ขิง",
-                "ตะไคร้หอม", "พริก"};
+                "ฟ้าทะลายโจร", "พญายอ"};
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
@@ -84,7 +80,8 @@ private  List<String> herbs;
                 AppState.getSingleInstance().setDataHerb(herbs);
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                t.replace(R.id.container, new SearchHerb());
+                String title=herbs[position];
+                t.replace(R.id.container, new SearchHerb(title));
                 t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
