@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.whankung.navigity.services.Article.ArRequest;
-import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.util.List;
@@ -102,7 +101,10 @@ public class MainArticle extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                t.replace(R.id.container, new DataArticle());
+                final String[] ar = new String[]{"1", "2", "3",
+                        "4", "5"};
+                String a=ar[5];
+                t.replace(R.id.container, new DataArticle(a));
                 t.commit();
             }
         });
@@ -135,15 +137,15 @@ public class MainArticle extends android.support.v4.app.Fragment {
                     List<ArRequest> article = response.body();
 
                     for (ArRequest a : article) {
-                      if(a.getArticleID().equals(1)){
+                      if(a.getArticleID().equals("1")){
                           im.setText(a.getArticleName());
-                      }else if(a.getArticleID().equals(2)){
+                      }else if(a.getArticleID().equals("2")){
                           im2.setText(a.getArticleName());
-                      } else if(a.getArticleID().equals(3)){
+                      } else if(a.getArticleID().equals("3")){
                         im3.setText(a.getArticleName());
-                    } else if(a.getArticleID().equals(4)){
+                    } else if(a.getArticleID().equals("4")){
                         im4.setText(a.getArticleName());
-                    } else if(a.getArticleID().equals(5)){
+                    } else if(a.getArticleID().equals("5")){
                         im5.setText(a.getArticleName());
                     }
                     }
