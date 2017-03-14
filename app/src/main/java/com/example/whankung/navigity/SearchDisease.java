@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Disease.Http;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +36,7 @@ public class SearchDisease extends Fragment {
     private RatingBar rata;
     private  RelativeLayout rat;
     //        service
-    public static final String BASE_URL = "http://172.20.10.3:8080/HerbServices/webresources/";
+    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
     private static final String TAG = "log";
 
 
@@ -50,29 +52,6 @@ public class SearchDisease extends Fragment {
         return rootView;
     }
 
-    private void setServices() {
-
-        DRequest disease = new DRequest();
-        Call<DRequest> calls = Http.getInstance().getDisease().loadJson();
-        calls.enqueue(new Callback<DRequest>()
-
-        {
-            @Override
-            public void onResponse(Call<DRequest> call, Response<DRequest> response) {
-
-
-//                t2.setText(response.body().getPasswordAd());
-//                t4.setText(response.body().getUsernameAd());
-
-
-            }
-
-            @Override
-            public void onFailure(Call<DRequest> call, Throwable t) {
-                Log.d(TAG, "onFailure:  " + t.toString());
-            }
-        });
-    }
 
     private void setView() {
 //        date = (TextView) rootView.findViewById(R.id.date);
@@ -109,6 +88,8 @@ public class SearchDisease extends Fragment {
 //        t4.setText("กานพลู ดาวเรือง เมล็ดผักชี ผักบุ้งนา มะระ ว่านหางจระเข้ น้ำมันกระเทียม ใบชา เมล็ดกุยช่าย");
         t6.setText("เวลากินของเย็น ของหวาน หรือเมื่อตอนเคี้ยวอาหารและอาการเหล่านี้จะหายไปเมื่อหยุดกินอาหารดังกล่าวภายในไม่กี่นาึ่งลักษณะของอาการปวดเช่นนี้มักเกิดจากฟันผุหรือฟันบิ่นจนถึงเนื้อฟันชั้นในจึงทำให้ความเย็นหรือแรงจากการเคี้ยวอาหารมีโอกาสกระตุ้นเส้นประสาทที่อยู่ในโพรงประสาทใต้เนื้อฟันได้มากกว่าปกติ จึงทำให้เกิดความรู้สึกเสียวฟันทุกครั้งเมื่อกินอาหาร ส่วนอาการปวดฟันอีกประเภทหนึ่ง ซึ่งจะมีความรุนแรงกว่า คือ การปวดเป็นจังหวะ ตุ้บ ๆ ซึ่งอาจปวดโดยอยู่เฉย ๆ ก็ปวด หรืออาจปวดมากขึ้นเวลากินของเย็นหรือของร้อน หรือเวลาเคี้ยวอาหาร และอาการปวดนี้จะไม่หายไปแม้จะเลิกกินอาหารเหล่านี้แล้วก็ตาม");
         t8.setText("หลีกเลี่ยงอาหารประเภทดังกล่าวพร้อมกับการรับประทานยาแก้ปวด");
+        String d = "ddddd";
+        t8.setText(d);
 
     }
 
@@ -121,4 +102,42 @@ public class SearchDisease extends Fragment {
             rat.setVisibility(View.GONE);
         }
     }
+
+    private void setServices() {
+        DRequest disease = new DRequest();
+        Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
+        calls.enqueue(new Callback<List<DRequest>>()
+
+        {
+            @Override
+            public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
+
+
+                if(response.isSuccessful()){
+                    List<DRequest> disease = response.body();
+
+                    // Can iterate through list and grab Getters from POJO
+                    for(DRequest d: disease) {
+                        t2.setText(d.getDiseaseName());
+                    }
+
+                } else {
+                    // Error response...
+                }
+//                t2.setText(response.body().getHerb().get(0));
+//                t4.setText(response.body().getDiseaseName().get(0));
+
+//                t2.setText(response.body().getPasswordAd());
+//                t4.setText(response.body().getUsernameAd());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<DRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
+    }
+
 }

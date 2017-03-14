@@ -1,5 +1,9 @@
 package com.example.whankung.navigity.services.Disease;
 
+import org.json.JSONArray;
+
+import java.util.List;
+
 /**
  * Created by Whankung on 21/2/2560.
  */

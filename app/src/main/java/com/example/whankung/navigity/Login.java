@@ -138,7 +138,7 @@ public class Login extends AppCompatActivity {
 
 
             if (userid.trim().equals("") || password.trim().equals(""))
-                z = "กรอกให้ครบสิ!!!!!";
+                z = "กรอกให้ครบ!!!!!";
             else {
                 try {
                     Connection con = connectionClass.connection();

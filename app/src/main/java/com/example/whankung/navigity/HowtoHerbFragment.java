@@ -1,14 +1,26 @@
 package com.example.whankung.navigity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.whankung.navigity.Register.*;
 
 
 /**
@@ -17,24 +29,35 @@ import android.widget.TextView;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, ment, sub, nm, un, date;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date;
     private RatingBar rat;
+    private EditText ment;
+    private ConnectionClass connectionClass;
+    private Register register;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.howto_herb, container, false);
+
         setView();
         setData();
 //        setRating();
-        rat = (RatingBar) rootView.findViewById(R.id.rat);
+        connectionClass = new ConnectionClass();
 
 //        if (AppState.getSingleInstance().isLogin()) {
 //            rat.setVisibility(View.VISIBLE);
 //            AppState.getSingleInstance().setLogin(false);
 //        }
+
         return rootView;
     }
+
+
+
+
+
+
 
     private void setRating() {
 //        rat.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -49,6 +72,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     }
 
     private void setView() {
+        rat = (RatingBar) rootView.findViewById(R.id.rat);
         date = (TextView) rootView.findViewById(R.id.date);
         nm = (TextView) rootView.findViewById(R.id.nameMe);
         un = (TextView) rootView.findViewById(R.id.Uname);
@@ -58,7 +82,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         hdata = (TextView) rootView.findViewById(R.id.howdata);
         t = (TextView) rootView.findViewById(R.id.t);
         tdata = (TextView) rootView.findViewById(R.id.tdata);
-        ment = (TextView) rootView.findViewById(R.id.ment);
+        ment = (EditText) rootView.findViewById(R.id.ment);
         sub = (TextView) rootView.findViewById(R.id.submit);
 
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
@@ -73,6 +97,45 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
+//        sub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Connection con = connectionClass.connection();
+//                String ments = ment.getText().toString();
+//
+//                Statement statement = getStatement((Connection) con);
+//
+//                try {
+//                    ResultSet rs =statement.executeQuery("SELECT * FROM HerbComment");
+//                    rs.next();
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    Object o = null;
+//
+//                    ResultSet rs = statement.executeQuery("INSERT INTO HerbComment "
+//                            + "  VALUES ('1','hhh','hhhhh','uuuu','123456')");
+//                    rs.close();
+//                    statement.close();
+//
+//                } catch (SQLException e) {
+//
+//                    e.printStackTrace();
+//
+//                }
+//
+//
+//
+//
+//                Intent intent = new Intent(getActivity(), GeneralHerbFragment.class);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
+
     }
 
     private void setData() {
@@ -81,4 +144,16 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                 "2.ใช้เปลือกแห้งฝนน้ำรับประทาน");
         tdata.setText("คนที่แพ้ทับทิมจะเกิดอาการเป็นผื่นลมพิษ การบวมที่ลิ้น ริมฝีปาก มือ แขน ใบหน้า คันตา ตาแดง ระคายเคืองจูก หายใจลำบาก และเกิดภาวะแพ้รุนแรง(anaphylactic) และยังมีรายงานว่าเด็กที่รับประทานเมล็ดทับทิมแล้วเกิดอาการหอบหืดชนิดที่เกี่ยวข้องกับ IgE ขึ้น นอกจากนี้การทดสอบการแพ้ทางผิวหนังของผลสด พบว่ามีอาการแพ้");
     }
+//    private Statement getStatement(Connection connection) {
+//
+//        try {
+//
+//            return connection.createStatement();
+//
+//        } catch (Exception e) {
+//
+//            throw new RuntimeException(e);
+//
+//        }
+//    }
 }

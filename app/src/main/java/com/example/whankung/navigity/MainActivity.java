@@ -220,6 +220,7 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_food) {
+
             Intent intent = new Intent(getApplicationContext(), MainFood.class);
             startActivity(intent);
 

@@ -1,5 +1,7 @@
 package com.example.whankung.navigity.services.Disease;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,6 +36,7 @@ public class Http {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         disease = retrofit.create(DInterface.class);
 
     }
