@@ -1,10 +1,14 @@
 package com.example.whankung.navigity.services.Herb;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by Whankung on 13/3/2560.
  */
 
 public class HRequest {
+
     private String herbName;
     private String herbOtherName;
     private String howto;

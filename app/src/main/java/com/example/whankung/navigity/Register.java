@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
+import io.realm.Realm;
 
 /**
  * Created by Whankung on 18/1/2560.
@@ -64,12 +65,11 @@ public class Register extends AppCompatActivity {
         sex.setTypeface(font);
 
 
-
         regis2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String us = u.getText().toString();
-                String ps= p.getText().toString();
+                String ps = p.getText().toString();
                 String em = m.getText().toString();
                 AppState.getSingleInstance().setRegis(us.toString());
                 AppState.getSingleInstance().setRegis(ps.toString());
@@ -126,7 +126,6 @@ public class Register extends AppCompatActivity {
 //    }
 
 
-
     @Override
     protected void onResume() {
 
@@ -156,7 +155,7 @@ public class Register extends AppCompatActivity {
         @Override
         protected String doInBackground(String... arg0) {
             String us = u.getText().toString();
-            String ps= p.getText().toString();
+            String ps = p.getText().toString();
             String em = m.getText().toString();
 
             try {
@@ -241,7 +240,7 @@ public class Register extends AppCompatActivity {
 
             while (rs.next()) {
 
-                userlist.add(new UserInfo(rs.getString(1),rs.getString(2), rs.getString(3),
+                userlist.add(new UserInfo(rs.getString(1), rs.getString(2), rs.getString(3),
                         rs.getString(4)));
                 count++;
 
@@ -257,10 +256,29 @@ public class Register extends AppCompatActivity {
         public void addUser() {
 
             String us = u.getText().toString();
-            String ps= p.getText().toString();
+            String ps = p.getText().toString();
             String em = m.getText().toString();
+            String id;
+            Realm realm = null;
 
-
+//            Realm realm = null;
+//            realm.executeTransaction(new Realm.Transaction() { // must be in transaction for this to work
+//                                         @Override
+//                                         public void execute(Realm realm) {
+//                                             // increment index
+//                                             Number currentIdNum = realm.where(users.class).max(usersFields.ID);
+//                                             int nextId;
+//                                             if(currentIdNum == null) {
+//                                                 nextId = 1;
+//                                             } else {
+//                                                 nextId = currentIdNum.intValue() + 1;
+//                                             }
+//                                             users user = new users(); // unmanaged
+//                                             user.setId(nextId);
+//                                             //...
+//                                             realm.insertOrUpdate(id); // using insert API
+//                                         }
+//                                     }
 
             Log.e("MSSQL", "in adduser");
             Connection con = connectionClass.connection();
@@ -272,7 +290,7 @@ public class Register extends AppCompatActivity {
 //                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
 //                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
                 ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
-                       + "  VALUES ('','"+us+"','"+ps+"','"+em+"')");
+                        + "  VALUES ('"+realm+"','" + us + "','" + ps + "','" + em + "')");
                 rs.close();
                 statement.close();
 

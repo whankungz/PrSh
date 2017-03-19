@@ -38,6 +38,7 @@ dependencies {
 
     compile 'info.hoang8f:android-segmented:1.0.6'
 
+    compile 'io.realm:realm-android-library-object-server:3.0.0'
 
     compile 'com.android.support:appcompat-v7:25.1.1'
    compile 'com.android.support:support-v4:25.1.1'
