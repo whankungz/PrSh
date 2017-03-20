@@ -220,14 +220,19 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_food) {
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, new MainFood());
+            transaction.commit();
 
-            Intent intent = new Intent(getApplicationContext(), MainFood.class);
-            startActivity(intent);
 
 
         } else if (id == R.id.nav_office) {
-            Intent intent = new Intent(getApplicationContext(), MainOffice.class);
-            startActivity(intent);
+            FragmentManager manager = getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.container, new MainOffice());
+            transaction.commit();
+
 
         } else if (id == R.id.nav_share) {
             //facebook

@@ -3,46 +3,51 @@ package com.example.whankung.navigity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
  * Created by Whankung on 31/1/2560.
  */
-public class DataFood extends AppCompatActivity {
-    private View rootView;
+public class DataFood extends Fragment {
+
     private Typeface font;
     private TextView tvI, nameI, namefI, frI, howf, howfdata, useF, useFdata, frF, frFdata;
     private ImageView i_Info, img;
+    private View rootView;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_food);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
+        rootView = inflater.inflate(R.layout.data_food, container, false);
         setView();
         setData();
 
+        return rootView;
     }
 
     private void setView() {
-        tvI = (TextView) findViewById(R.id.textI);
-        nameI = (TextView) findViewById(R.id.nameI);
-        namefI = (TextView) findViewById(R.id.namefI);
-        frI = (TextView) findViewById(R.id.frI);
-        howf = (TextView) findViewById(R.id.howf);
-        howfdata = (TextView) findViewById(R.id.howfdata);
-        useF = (TextView) findViewById(R.id.useF);
-        useFdata = (TextView) findViewById(R.id.useFdata);
-        frF = (TextView) findViewById(R.id.frF);
-        frFdata = (TextView) findViewById(R.id.frFdata);
 
-        i_Info = (ImageView) findViewById(R.id.i_Info);
+        nameI = (TextView) rootView.findViewById(R.id.nameI);
+        namefI = (TextView) rootView.findViewById(R.id.namefI);
+        frI = (TextView) rootView.findViewById(R.id.frI);
+        howf = (TextView) rootView.findViewById(R.id.howf);
+        howfdata = (TextView) rootView.findViewById(R.id.howfdata);
+        useF = (TextView) rootView.findViewById(R.id.useF);
+        useFdata = (TextView) rootView.findViewById(R.id.useFdata);
+        frF = (TextView) rootView.findViewById(R.id.frF);
+        frFdata = (TextView) rootView.findViewById(R.id.frFdata);
 
-        font = Typeface.createFromAsset(getAssets(), "tmedium.ttf");
-        tvI.setTypeface(font);
+        i_Info = (ImageView) rootView.findViewById(R.id.i_Info);
+
+        font = Typeface.createFromAsset(getActivity().getAssets(), "tmedium.ttf");
+
         nameI.setTypeface(font);
         namefI.setTypeface(font);
         frI.setTypeface(font);
@@ -54,17 +59,6 @@ public class DataFood extends AppCompatActivity {
         frFdata.setTypeface(font);
 
 
-        img = (ImageView) findViewById(R.id.action_login);
-        img.setVisibility(View.VISIBLE);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), MainFood.class);
-                startActivity(intent);
-
-            }
-        });
     }
 
     private void setData() {

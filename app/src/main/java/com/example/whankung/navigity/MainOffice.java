@@ -3,65 +3,58 @@ package com.example.whankung.navigity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainOffice extends AppCompatActivity {
+public class MainOffice extends Fragment {
     private Typeface font;
     TextView tv, nameOf, addr, addrdata, call, fax, mailOf, whyOf, whyOfdata, web,
             nameOf2, addr2, addrdata2, call2, fax2, mailOf2, whyOf2, whyOfdata2, web2;
     ImageView img, i, i2, i3, i4, i5, i6;
     public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
     private static final String TAG = "log";
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.stucture_office);
-        img = (ImageView) findViewById(R.id.action_login);
-        img.setVisibility(View.VISIBLE);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //กลับไปยังหน้าเลือกเภสัช
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+    private View rootView;
 
-            }
-        });
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
+        rootView = inflater.inflate(R.layout.stucture_office, container, false);
         setView();
         setData();
         setData2();
 
+        return rootView;
     }
 
-
     private void setView() {
-        tv = (TextView) findViewById(R.id.textView);
-        nameOf = (TextView) findViewById(R.id.nameOf);
-        addr = (TextView) findViewById(R.id.addr);
-        addrdata = (TextView) findViewById(R.id.addrdata);
-        call = (TextView) findViewById(R.id.call);
-        fax = (TextView) findViewById(R.id.fax);
-        mailOf = (TextView) findViewById(R.id.mailOf);
-        whyOf = (TextView) findViewById(R.id.whyOf);
-        whyOfdata = (TextView) findViewById(R.id.whyOfdata);
-        web = (TextView) findViewById(R.id.web);
-        nameOf2 = (TextView) findViewById(R.id.nameOf2);
-        addr2 = (TextView) findViewById(R.id.addr2);
-        addrdata2 = (TextView) findViewById(R.id.addrdata2);
-        call2 = (TextView) findViewById(R.id.call2);
-        fax2 = (TextView) findViewById(R.id.fax2);
-        mailOf2 = (TextView) findViewById(R.id.mailOf2);
-        whyOf2 = (TextView) findViewById(R.id.whyOf2);
-        whyOfdata2 = (TextView) findViewById(R.id.whyOfdata2);
-        web2 = (TextView) findViewById(R.id.web2);
+        nameOf = (TextView) rootView.findViewById(R.id.nameOf);
+        addr = (TextView) rootView.findViewById(R.id.addr);
+        addrdata = (TextView) rootView.findViewById(R.id.addrdata);
+        call = (TextView) rootView.findViewById(R.id.call);
+        fax = (TextView) rootView.findViewById(R.id.fax);
+        mailOf = (TextView) rootView.findViewById(R.id.mailOf);
+        whyOf = (TextView) rootView.findViewById(R.id.whyOf);
+        whyOfdata = (TextView) rootView.findViewById(R.id.whyOfdata);
+        web = (TextView) rootView.findViewById(R.id.web);
+        nameOf2 = (TextView) rootView.findViewById(R.id.nameOf2);
+        addr2 = (TextView) rootView.findViewById(R.id.addr2);
+        addrdata2 = (TextView) rootView.findViewById(R.id.addrdata2);
+        call2 = (TextView) rootView.findViewById(R.id.call2);
+        fax2 = (TextView) rootView.findViewById(R.id.fax2);
+        mailOf2 = (TextView) rootView.findViewById(R.id.mailOf2);
+        whyOf2 = (TextView) rootView.findViewById(R.id.whyOf2);
+        whyOfdata2 = (TextView) rootView.findViewById(R.id.whyOfdata2);
+        web2 = (TextView) rootView.findViewById(R.id.web2);
 
 
 //        เปลี่ยนfont
-        font = Typeface.createFromAsset(getAssets(), "tmedium.ttf");
-        tv.setTypeface(font);
+        font = Typeface.createFromAsset(getActivity().getAssets(), "tmedium.ttf");
         nameOf.setTypeface(font);
         addr.setTypeface(font);
         addrdata.setTypeface(font);
@@ -82,19 +75,6 @@ public class MainOffice extends AppCompatActivity {
         web2.setTypeface(font);
 
 
-        img.setVisibility(View.VISIBLE);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
-
-
     }
 
     private void setData() {
@@ -113,6 +93,7 @@ public class MainOffice extends AppCompatActivity {
                 "7. ปฏิบัติงานร่วมกับหรือสนับสนุนการปฏิบัติงานของหน่วยงานอื่นที่เกี่ยวข้องหรือ หรือที่ได้รับมอบหมาย");
         web.setText("เว็ปไซต์ " + " http://dmsc2.dmsc.moph.go.th/webroot/Plant/Mpri2013/index.shtm");
     }
+
     private void setData2() {
         nameOf2.setText("อุทยานธรรมชาติวิทยาสิรีรุกขชาติ มหาวิทยาลัยมหิดล");
         addrdata2.setText("มหาวิทยาลัยมหิดล  999 ถนนพุทธมณฑลสาย 4 \n" +

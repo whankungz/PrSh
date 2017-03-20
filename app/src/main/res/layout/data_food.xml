@@ -4,26 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
-
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/custom_toolbar_login" />
-
-        <TextView
-            android:id="@+id/textI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="อาหารเพื่อสุขภาพ"
-            android:textColor="#ffffff"
-            android:textSize="24dp" />
-    </RelativeLayout>
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
