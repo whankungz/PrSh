@@ -30,7 +30,7 @@ public class MainArticle extends android.support.v4.app.Fragment {
     private Typeface font;
     private ImageView i1, i2, i3, i4, i5, star, star2, star3, star4,star5;
     private TextView im, im2,im3,im4,im5,p,p2,p3,p4,p5,tb,s,s2,s3,s4,s5;
-    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
     @Nullable
     @Override

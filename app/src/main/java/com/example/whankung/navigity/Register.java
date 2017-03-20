@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,15 +19,23 @@ import com.example.whankung.navigity.ConnectionClass;
 import com.example.whankung.navigity.Login;
 import com.example.whankung.navigity.R;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmMigration;
+import io.realm.RealmModel;
+import io.realm.internal.RealmProxyMediator;
+import io.realm.internal.SharedRealm;
+import io.realm.rx.RxObservableFactory;
 
 /**
  * Created by Whankung on 18/1/2560.
@@ -37,13 +46,14 @@ public class Register extends AppCompatActivity {
     private Button button;
     private ConnectionClass connectionClass;
     private EditText u, p, m, s;
-
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
         connectionClass = new ConnectionClass();
+
         setView();
     }
 
@@ -226,7 +236,9 @@ public class Register extends AppCompatActivity {
 
     }
 
-    class DBOperation {
+    class DBOperation  {
+
+
 
         public List<UserInfo> getAllUsers() throws SQLException {
             Connection con = connectionClass.connection();
@@ -258,25 +270,33 @@ public class Register extends AppCompatActivity {
             String us = u.getText().toString();
             String ps = p.getText().toString();
             String em = m.getText().toString();
-            String id;
-            Realm realm = null;
+//            Random ran = null;
+            String num=null;
+          // final int id = num.intValue()+1;
+          //  realm = Realm.getDefaultInstance();
+           // realm.setAutoRefresh(true);
+//            Number finalId = realm.setAutoRefresh(true);
+//            realm=finalId.intValue()+1;
+          //  int nextId =1;
+//           String nextId = id.intValue() + 1;
+//           Number idran=realm.where(this).max(id);
+
+
 
 //            Realm realm = null;
 //            realm.executeTransaction(new Realm.Transaction() { // must be in transaction for this to work
 //                                         @Override
 //                                         public void execute(Realm realm) {
 //                                             // increment index
-//                                             Number currentIdNum = realm.where(users.class).max(usersFields.ID);
+//                                             //        Number currentIdNum = realm.where().max(usersFields.ID);
+//                                             Number currentIdNum = null;
 //                                             int nextId;
-//                                             if(currentIdNum == null) {
+//                                             if (currentIdNum == null) {
 //                                                 nextId = 1;
 //                                             } else {
 //                                                 nextId = currentIdNum.intValue() + 1;
+//
 //                                             }
-//                                             users user = new users(); // unmanaged
-//                                             user.setId(nextId);
-//                                             //...
-//                                             realm.insertOrUpdate(id); // using insert API
 //                                         }
 //                                     }
 
@@ -290,7 +310,7 @@ public class Register extends AppCompatActivity {
 //                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
 //                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
                 ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
-                        + "  VALUES ('"+realm+"','" + us + "','" + ps + "','" + em + "')");
+                        + "  VALUES ('" +num + "','" + us + "','" + ps + "','" + em + "')");
                 rs.close();
                 statement.close();
 

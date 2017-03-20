@@ -26,7 +26,7 @@ public class ResearchHerbFragment extends android.support.v4.app.Fragment {
     private View rootView;
     private Typeface font;
     private TextView re, fromre, link, flink;
-    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String title;
     private String titleid;

@@ -40,7 +40,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private RatingBar rat;
     private EditText ment;
     private Register register;
-    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String title;
     private String titleid;

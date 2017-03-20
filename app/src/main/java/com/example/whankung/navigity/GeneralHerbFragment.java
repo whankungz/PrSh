@@ -35,7 +35,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6;
     private ImageView i1, i2, i3, i4, i5, i6, i7, fav, favC;
     private ProgressBar progressBar;
-    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String title;
     private String titleid;

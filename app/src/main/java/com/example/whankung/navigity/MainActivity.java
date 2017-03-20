@@ -2,6 +2,8 @@ package com.example.whankung.navigity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,6 +24,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.whankung.navigity.services.Herb.HRequest;
+
+import java.util.List;
+
+import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity
@@ -224,10 +230,32 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.container, new ShareF());
-            transaction.commit();
+            //facebook
+            String urlToShare = "https://play.google.com/store/apps";
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+// intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
+            intent.putExtra(Intent.EXTRA_TEXT, urlToShare);
+
+// See if official Facebook app is found
+            boolean facebookAppFound = false;
+            List<ResolveInfo> matches = getApplicationContext().getPackageManager().queryIntentActivities(intent, 0);
+            for (ResolveInfo info : matches) {
+                if (info.activityInfo.packageName.toLowerCase().startsWith("com.facebook.katana")) {
+                    intent.setPackage(info.activityInfo.packageName);
+                    facebookAppFound = true;
+                    break;
+                }
+            }
+
+// As fallback, launch sharer.php in a browser
+            if (!facebookAppFound) {
+                String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+
+
+            }
+            startActivity(intent);
         } else if (id == R.id.nav_invite) {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();

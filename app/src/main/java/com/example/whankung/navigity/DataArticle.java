@@ -36,7 +36,7 @@ public class DataArticle extends android.support.v4.app.Fragment {
     private String link = "http://www.thaihealth.or.th/Content/35077-%E2%80%98%E0%B9%82%E0%B8%A3%E0%B8%84%E0%B8%AD%E0%B9%89%E0%B8%A7%E0%B8%99%E2%80%99%20%E0%B8%A1%E0%B8%AB%E0%B8%B1%E0%B8%99%E0%B8%95%E0%B8%A0%E0%B8%B1%E0%B8%A2%E0%B8%A1%E0%B8%B7%E0%B8%94%E0%B8%A1%E0%B8%99%E0%B8%B8%E0%B8%A9%E0%B8%A2%E0%B9%8C%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87.html";
     private RatingBar rata;
     private RelativeLayout rat;
-    public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String a;
 
