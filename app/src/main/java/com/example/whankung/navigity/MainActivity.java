@@ -262,10 +262,13 @@ public class MainActivity extends AppCompatActivity
             }
             startActivity(intent);
         } else if (id == R.id.nav_invite) {
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.replace(R.id.container, new Invite());
-            transaction.commit();
+            Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Social Herb for Android!");
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Application about Herb for Android");
+            Intent chooserIntent = Intent.createChooser(shareIntent, "Share with");
+            chooserIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(chooserIntent);
 
         } else if (id == R.id.nav_logout) {
             SharedPreferences myPrefs = getSharedPreferences("MY",
