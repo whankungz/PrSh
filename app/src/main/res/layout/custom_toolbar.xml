@@ -14,13 +14,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-        android:background="#166036"
+
  android:id="@+id/action"
  android:layout_width="wrap_content"
  android:layout_height="wrap_content"
- android:layout_marginLeft="270dp"
+android:layout_alignParentRight="true"
  android:layout_centerVertical="true"
- app:srcCompat="@drawable/ic_exit"
+ app:srcCompat="@drawable/ic_back"
 
  />
  <!--android:background="#228B22"-->
