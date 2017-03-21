@@ -8,7 +8,15 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class HRequest {
+    public String getHerbID() {
+        return herbID;
+    }
 
+    public void setHerbID(String herbID) {
+        this.herbID = herbID;
+    }
+
+    private String herbID;
     private String herbName;
     private String herbOtherName;
     private String howto;
@@ -90,7 +98,6 @@ public class HRequest {
     public void setCreditRe(String creditRe) {
         this.creditRe = creditRe;
     }
-
 
 
 

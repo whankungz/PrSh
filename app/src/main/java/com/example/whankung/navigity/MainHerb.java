@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +29,10 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.whankung.navigity.services.Disease.DRequest;
+import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.Http;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,6 +42,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Stack;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.POST;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -51,8 +64,9 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
     ArrayAdapter<String> adapter;
     ListView lv;
-
-    private List<String> herbs;
+    private String title;
+    private String[] herbs;
+    // private String[] herbs;
 
     @Nullable
     @Override
@@ -62,27 +76,26 @@ public class MainHerb extends android.support.v4.app.Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
 
-
         final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
                 "ฟ้าทะลายโจร", "พญายอ"};
         final String[] idH = new String[]{"1", "2", "3",
                 "4", "5"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
 
         lv.setAdapter(adapter);
-//        lv.setTextFilterEnabled(true);
+        lv.setTextFilterEnabled(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                AppState.getSingleInstance().setDataHerb(herbs);
+
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
-                String title = herbs[position];
+                title = herbs[position];
                 String titleid = idH[position];
-                t.replace(R.id.container, new SearchHerb(title,titleid));
+                t.replace(R.id.container, new SearchHerb(title, titleid));
                 t.commit();
 
 //               Toast.makeText(getContext(), "CLICKED", Toast.LENGTH_SHORT).show();
@@ -90,39 +103,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
                 imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
             }
         });
-//        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//
-////
-////                switch (position) {
-////                    case 0:
-////
-////                      AppState.getSingleInstance().setNameHerb(herbs);
-////                        break;
-////                    case 1:
-////                        AppState.getSingleInstance().setIndexlist(herbs[1]);
-////                        break;
-////                    case 2:
-////                  AppState.getSingleInstance().setIndexlist(herbs[2]);
-////                        break;
-////                    case 3:
-////                        AppState.getSingleInstance().setIndexlist(herbs[3]);
-////                        break;
-////                    case 4:
-////                        AppState.getSingleInstance().setIndexlist(herbs[4]);
-////                        break;
-////                    case 5:
-////                        AppState.getSingleInstance().setIndexlist(herbs[5]);
-////                        break;
-////                }
-//
-//
-//            }
-//
-//
-//        });
+
 
         return rootView;
     }
@@ -179,7 +160,8 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
             @Override
             public void afterTextChanged(Editable arg0) {
-
+//                String text = search.getText().toString().toLowerCase(Locale.getDefault());
+//                adapter.getFilter().filter(text);
             }
 
             @Override
@@ -190,7 +172,9 @@ public class MainHerb extends android.support.v4.app.Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                MainHerb.this.adapter.getFilter().filter(s);
+                adapter.getFilter().filter(s);
+
+
                 search.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 final String strMsg = "ทับทิม";
                 String strMsg2 = "มะนาว";
