@@ -119,7 +119,7 @@ public class MainDisease extends android.support.v4.app.Fragment{
 
 
 //        adapter = new CustomAdapter(getActivity(), herbs);
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbDi);
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_2, R.id.disease, herbDi);
 
         lv.setAdapter(adapter);
 //        lv.setTextFilterEnabled(true);

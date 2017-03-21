@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,12 +17,12 @@ public class CustomAdapter extends BaseAdapter {
 
     Context mContext;
     String[] strName;
+    int[] resId;
 
-
-    public CustomAdapter(Context context, String[] strName) {
+    public CustomAdapter(Context context, String[] strName, int[] resId) {
         this.mContext = context;
         this.strName = strName;
-
+        this.resId = resId;
     }
 
     public int getCount() {
@@ -29,16 +30,12 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-
-
         return null;
     }
-
 
     public long getItemId(int position) {
         return 0;
     }
-
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater mInflater =
@@ -46,23 +43,23 @@ public class CustomAdapter extends BaseAdapter {
 
 
         if (view == null)
-            view = mInflater.inflate(R.layout.list_item, parent, false);
-        TextView textView = (TextView) view.findViewById(R.id.product_name);
-
+            view = mInflater.inflate(R.layout.list_item_3, parent, false);
+        TextView textView = (TextView) view.findViewById(R.id.article);
+        ImageView img = (ImageView) view.findViewById(R.id.img);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
         textView.setTypeface(font);
 
 
         textView.setText(strName[position]);
-
+        img.setBackgroundResource(resId[position]);
 
         if (position % 2 == 0) {
 
-         //   view.setBackgroundResource(R.color.colorTop);
+            //   view.setBackgroundResource(R.color.colorTop);
 
         } else {
 
-        //    view.setBackgroundResource(R.color.color_bg_table);
+            //    view.setBackgroundResource(R.color.color_bg_table);
 
         }
 
@@ -76,11 +73,6 @@ public class CustomAdapter extends BaseAdapter {
 
         return view;
     }
-
-//
-//    public AssetManager getAssets() {
-//        return getAssets();
-//    }
 }
 
 
