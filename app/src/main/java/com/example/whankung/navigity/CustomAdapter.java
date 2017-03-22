@@ -43,7 +43,7 @@ public class CustomAdapter extends BaseAdapter {
 
 
         if (view == null)
-            view = mInflater.inflate(R.layout.list_item_3, parent, false);
+            view = mInflater.inflate(R.layout.list_item_food, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.article);
         ImageView img = (ImageView) view.findViewById(R.id.img);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
