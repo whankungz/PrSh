@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -29,6 +30,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.whankung.navigity.adapter.CustomAdapter;
+import com.example.whankung.navigity.adapter.CustomAdapterH;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
@@ -62,10 +65,11 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private EditText search;
     private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
-    ArrayAdapter<String> adapter;
+   // ArrayAdapter<String> adapter;
     ListView lv;
     private String title;
     private String[] herbs;
+    private CustomAdapterH adapter;
     // private String[] herbs;
 
     @Nullable
@@ -75,15 +79,17 @@ public class MainHerb extends android.support.v4.app.Fragment {
         setView();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
-
+        int[] resId = { R.drawable.img_ruby
+                , R.drawable.img_herb, R.drawable.img_lemon
+                , R.drawable.img_ruby2, R.drawable.img_lemon5};
         final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
                 "ฟ้าทะลายโจร", "พญายอ"};
         final String[] idH = new String[]{"1", "2", "3",
                 "4", "5"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
-
+       // adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
+        adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId);
         lv.setAdapter(adapter);
         lv.setTextFilterEnabled(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -172,7 +178,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                adapter.getFilter().filter(s);
+               // adapter.getFilter().filter(s);
 
 
                 search.setImeOptions(EditorInfo.IME_ACTION_DONE);

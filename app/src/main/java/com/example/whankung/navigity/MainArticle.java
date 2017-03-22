@@ -1,32 +1,20 @@
 package com.example.whankung.navigity;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.whankung.navigity.services.Article.ArRequest;
-import com.example.whankung.navigity.services.Http;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.example.whankung.navigity.R.id.search;
+import com.example.whankung.navigity.adapter.CustomAdapter;
 
 /**
  * Created by Whankung on 16/1/2560.

@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/bg_shape_popup"
-        android:drawableLeft="@drawable/ic_search_b"
-        android:hint="ค้นหา"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp">
 
-        android:imeOptions="actionDone"
-
-        android:textColor="#979797"
-        android:textColorHint="#979797" />
-
-
-
+        <EditText
+            android:background="@color/cardview_light_background"
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:drawableLeft="@drawable/ic_search_b"
+            android:hint="ค้นหา"
+            android:imeOptions="actionDone"
+            android:inputType="textFilter"
+            android:textColor="#979797"
+            android:textColorHint="#979797" />
+    </android.support.v7.widget.CardView>
 
 
     <ListView
@@ -31,222 +36,216 @@
         android:layout_height="match_parent" />
 
 
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="7dp">-->
 
+    <!--<ImageView-->
+    <!--android:id="@+id/i_H"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="100dp" />-->
 
+    <!--<TextView-->
+    <!--android:id="@+id/t_H"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:textColor="#1d1d1d"-->
+    <!--android:textSize="18dp" />-->
 
+    <!--<TextView-->
+    <!--android:id="@+id/p"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:layout_marginTop="14dp"-->
+    <!--android:text="อ่านเพิ่มเติม >>"-->
+    <!--android:textColor="#cccccc"-->
+    <!--android:textSize="16dp" />-->
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="7dp">-->
+    <!--<TextView-->
+    <!--android:id="@+id/s"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="190dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:text="4.7"-->
+    <!--android:textColor="#ababab"-->
+    <!--android:textSize="18dp" />-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/i_H"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="100dp" />-->
+    <!--<ImageView-->
+    <!--android:id="@+id/star"-->
+    <!--android:layout_width="14dp"-->
+    <!--android:layout_height="14dp"-->
+    <!--android:layout_marginLeft="210dp"-->
+    <!--android:layout_marginTop="33dp" />-->
+    <!--</RelativeLayout>-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/t_H"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:textColor="#1d1d1d"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<View-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0.9dp"-->
+    <!--android:background="#d7d7d7" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/p"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:layout_marginTop="14dp"-->
-                    <!--android:text="อ่านเพิ่มเติม >>"-->
-                    <!--android:textColor="#cccccc"-->
-                    <!--android:textSize="16dp" />-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="7dp">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/s"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="190dp"-->
-                    <!--android:layout_marginTop="30dp"-->
-                    <!--android:text="4.7"-->
-                    <!--android:textColor="#ababab"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<ImageView-->
+    <!--android:id="@+id/i_H2"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="100dp" />-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/star"-->
-                    <!--android:layout_width="14dp"-->
-                    <!--android:layout_height="14dp"-->
-                    <!--android:layout_marginLeft="210dp"-->
-                    <!--android:layout_marginTop="33dp" />-->
-            <!--</RelativeLayout>-->
+    <!--<TextView-->
+    <!--android:id="@+id/t_H2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:textColor="#1d1d1d"-->
+    <!--android:textSize="18dp" />-->
 
-            <!--<View-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0.9dp"-->
-                <!--android:background="#d7d7d7" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/p2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:layout_marginTop="14dp"-->
+    <!--android:text="อ่านเพิ่มเติม >>"-->
+    <!--android:textColor="#cccccc"-->
+    <!--android:textSize="16dp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/s2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="190dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:text="4.1"-->
+    <!--android:textColor="#ababab"-->
+    <!--android:textSize="18dp" />-->
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="7dp">-->
+    <!--<ImageView-->
+    <!--android:id="@+id/star2"-->
+    <!--android:layout_width="14dp"-->
+    <!--android:layout_height="14dp"-->
+    <!--android:layout_marginLeft="210dp"-->
+    <!--android:layout_marginTop="33dp" />-->
+    <!--</RelativeLayout>-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/i_H2"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="100dp" />-->
+    <!--<View-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0.9dp"-->
+    <!--android:background="#d7d7d7" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/t_H2"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:textColor="#1d1d1d"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="7dp">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/p2"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:layout_marginTop="14dp"-->
-                    <!--android:text="อ่านเพิ่มเติม >>"-->
-                    <!--android:textColor="#cccccc"-->
-                    <!--android:textSize="16dp" />-->
-                <!--<TextView-->
-                    <!--android:id="@+id/s2"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="190dp"-->
-                    <!--android:layout_marginTop="30dp"-->
-                    <!--android:text="4.1"-->
-                    <!--android:textColor="#ababab"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<ImageView-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/star2"-->
-                    <!--android:layout_width="14dp"-->
-                    <!--android:layout_height="14dp"-->
-                    <!--android:layout_marginLeft="210dp"-->
-                    <!--android:layout_marginTop="33dp" />-->
-            <!--</RelativeLayout>-->
+    <!--android:id="@+id/i_H3"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="100dp" />-->
 
-            <!--<View-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0.9dp"-->
-                <!--android:background="#d7d7d7" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/t_H3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:textColor="#1d1d1d"-->
+    <!--android:textSize="18dp" />-->
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="7dp">-->
+    <!--<TextView-->
+    <!--android:id="@+id/p3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:layout_marginTop="14dp"-->
+    <!--android:text="อ่านเพิ่มเติม >>"-->
+    <!--android:textColor="#cccccc"-->
+    <!--android:textSize="16dp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/s3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="190dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:text="3.5"-->
+    <!--android:textColor="#ababab"-->
+    <!--android:textSize="18dp" />-->
 
-                <!--<ImageView-->
+    <!--<ImageView-->
+    <!--android:id="@+id/star3"-->
+    <!--android:layout_width="14dp"-->
+    <!--android:layout_height="14dp"-->
+    <!--android:layout_marginLeft="210dp"-->
+    <!--android:layout_marginTop="33dp" />-->
+    <!--</RelativeLayout>-->
 
-                    <!--android:id="@+id/i_H3"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="100dp" />-->
+    <!--<View-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0.9dp"-->
+    <!--android:background="#d7d7d7" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/t_H3"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:textColor="#1d1d1d"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="7dp">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/p3"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:layout_marginTop="14dp"-->
-                    <!--android:text="อ่านเพิ่มเติม >>"-->
-                    <!--android:textColor="#cccccc"-->
-                    <!--android:textSize="16dp" />-->
-                <!--<TextView-->
-                    <!--android:id="@+id/s3"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="190dp"-->
-                    <!--android:layout_marginTop="30dp"-->
-                    <!--android:text="3.5"-->
-                    <!--android:textColor="#ababab"-->
-                    <!--android:textSize="18dp" />-->
+    <!--<ImageView-->
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/star3"-->
-                    <!--android:layout_width="14dp"-->
-                    <!--android:layout_height="14dp"-->
-                    <!--android:layout_marginLeft="210dp"-->
-                    <!--android:layout_marginTop="33dp" />-->
-            <!--</RelativeLayout>-->
+    <!--android:id="@+id/i_H4"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="100dp" />-->
 
-            <!--<View-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0.9dp"-->
-                <!--android:background="#d7d7d7" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/t_H4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:textColor="#1d1d1d"-->
+    <!--android:textSize="18dp" />-->
 
-            <!--<RelativeLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="7dp">-->
+    <!--<TextView-->
+    <!--android:id="@+id/p4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="180dp"-->
+    <!--android:layout_marginTop="14dp"-->
+    <!--android:text="อ่านเพิ่มเติม >>"-->
+    <!--android:textColor="#cccccc"-->
+    <!--android:textSize="16dp" />-->
+    <!--<TextView-->
+    <!--android:id="@+id/s4"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="190dp"-->
+    <!--android:layout_marginTop="30dp"-->
+    <!--android:text="3.0"-->
+    <!--android:textColor="#ababab"-->
+    <!--android:textSize="18dp" />-->
 
-                <!--<ImageView-->
+    <!--<ImageView-->
+    <!--android:id="@+id/star4"-->
+    <!--android:layout_width="14dp"-->
+    <!--android:layout_height="14dp"-->
+    <!--android:layout_marginLeft="210dp"-->
+    <!--android:layout_marginTop="33dp" />-->
+    <!--</RelativeLayout>-->
 
-                    <!--android:id="@+id/i_H4"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="100dp" />-->
+    <!--<View-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0.9dp"-->
+    <!--android:background="#d7d7d7" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/t_H4"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:textColor="#1d1d1d"-->
-                    <!--android:textSize="18dp" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/p4"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="180dp"-->
-                    <!--android:layout_marginTop="14dp"-->
-                    <!--android:text="อ่านเพิ่มเติม >>"-->
-                    <!--android:textColor="#cccccc"-->
-                    <!--android:textSize="16dp" />-->
-                <!--<TextView-->
-                    <!--android:id="@+id/s4"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="190dp"-->
-                    <!--android:layout_marginTop="30dp"-->
-                    <!--android:text="3.0"-->
-                    <!--android:textColor="#ababab"-->
-                    <!--android:textSize="18dp" />-->
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/star4"-->
-                    <!--android:layout_width="14dp"-->
-                    <!--android:layout_height="14dp"-->
-                    <!--android:layout_marginLeft="210dp"-->
-                    <!--android:layout_marginTop="33dp" />-->
-            <!--</RelativeLayout>-->
-
-            <!--<View-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="0.9dp"-->
-                <!--android:background="#d7d7d7" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/null2"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:textColor="#ffffff"-->
-                <!--android:textSize="60dp" />-->
-
-
+    <!--<TextView-->
+    <!--android:id="@+id/null2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:textColor="#ffffff"-->
+    <!--android:textSize="60dp" />-->
 
 
 </LinearLayout>

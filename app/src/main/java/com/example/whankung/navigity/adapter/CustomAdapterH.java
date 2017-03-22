@@ -1,4 +1,4 @@
-package com.example.whankung.navigity;
+package com.example.whankung.navigity.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,17 +9,19 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.R;
+
 /**
  * Created by Admin on 8/9/2559.
  */
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapterH extends BaseAdapter {
 
     Context mContext;
     String[] strName;
     int[] resId;
 
-    public CustomAdapter(Context context, String[] strName, int[] resId) {
+    public CustomAdapterH(Context context, String[] strName, int[] resId) {
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
@@ -43,8 +45,8 @@ public class CustomAdapter extends BaseAdapter {
 
 
         if (view == null)
-            view = mInflater.inflate(R.layout.list_item_food, parent, false);
-        TextView textView = (TextView) view.findViewById(R.id.article);
+            view = mInflater.inflate(R.layout.list_item, parent, false);
+        TextView textView = (TextView) view.findViewById(R.id.herb);
         ImageView img = (ImageView) view.findViewById(R.id.img);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
         textView.setTypeface(font);

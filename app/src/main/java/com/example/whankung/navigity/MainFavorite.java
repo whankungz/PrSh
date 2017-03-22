@@ -79,7 +79,7 @@ public class MainFavorite extends android.support.v4.app.Fragment {
         if (AppState.getSingleInstance().isDataHerb2(true)) {
           //  fav.setText(AppState.getSingleInstance().getNameH());
 //            fav.setText(AppState.getSingleInstance().getNamePhama());
-            adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+         //   adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
             lv.setAdapter(adapter);
             lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
