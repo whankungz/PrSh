@@ -94,7 +94,7 @@ public class MainDisease extends android.support.v4.app.Fragment{
 //        star6 = (ImageView) rootView.findViewById(R.id.star6);
 //        star7 = (ImageView) rootView.findViewById(R.id.star7);
 //
-//        font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
+        font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
 //        t_H.setTypeface(font);
 //        t_H2.setTypeface(font);
 //        t_H3.setTypeface(font);

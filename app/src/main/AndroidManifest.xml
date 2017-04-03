@@ -28,8 +28,8 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
         <activity
-            android:name=".MainActivity"
-            android:label="Social"
+            android:name=".MainShow"
+            android:label="Social Herb"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -38,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".MainActivity" />-->
+        <activity android:name=".MainActivity" />
         <activity android:name=".Login" />
         <activity android:name=".Register"></activity>
 

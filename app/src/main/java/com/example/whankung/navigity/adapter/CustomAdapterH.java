@@ -45,7 +45,7 @@ public class CustomAdapterH extends BaseAdapter {
 
 
         if (view == null)
-            view = mInflater.inflate(R.layout.list_item, parent, false);
+            view = mInflater.inflate(R.layout.list_item, null);
         TextView textView = (TextView) view.findViewById(R.id.herb);
         ImageView img = (ImageView) view.findViewById(R.id.img);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
@@ -54,23 +54,6 @@ public class CustomAdapterH extends BaseAdapter {
 
         textView.setText(strName[position]);
         img.setBackgroundResource(resId[position]);
-
-        if (position % 2 == 0) {
-
-            //   view.setBackgroundResource(R.color.colorTop);
-
-        } else {
-
-            //    view.setBackgroundResource(R.color.color_bg_table);
-
-        }
-
-        View.OnClickListener yourClickListener = new View.OnClickListener() {
-            public void onClick(View v) {
-                //put your desired action here
-
-            }
-        };
 
 
         return view;

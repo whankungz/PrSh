@@ -12,14 +12,13 @@ import android.widget.TextView;
 import com.example.whankung.navigity.R;
 
 
-
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapterF extends BaseAdapter {
 
     Context mContext;
     String[] strName;
     int[] resId;
 
-    public CustomAdapter(Context context, String[] strName, int[] resId) {
+    public CustomAdapterF(Context context, String[] strName, int[] resId) {
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
@@ -44,7 +43,7 @@ public class CustomAdapter extends BaseAdapter {
 
         if (view == null)
 
-            view = mInflater.inflate(R.layout.list_item_article, parent, false);
+            view = mInflater.inflate(R.layout.list_item_food, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.article);
         ImageView img = (ImageView) view.findViewById(R.id.img);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
