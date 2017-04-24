@@ -29,7 +29,7 @@ public class MainInfo extends Fragment {
     private static final String TAG = "log";
     private String[] web;
     private int[] Imageid;
-
+    private String title;
 
     @Nullable
     @Override
@@ -48,7 +48,13 @@ public class MainInfo extends Fragment {
         gridview.setAdapter(adapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+
                 Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
+                FragmentManager m = getFragmentManager();
+                FragmentTransaction t = m.beginTransaction();
+                title = web[position];
+                t.replace(R.id.container, new DataInfo(title));
+                t.commit();
             }
         });
 
@@ -155,7 +161,7 @@ public class MainInfo extends Fragment {
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.container, new DataInfo());
+                transaction.replace(R.id.container, new DataInfo(title));
                 transaction.commit();
             }
         });

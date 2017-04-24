@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
 
@@ -36,14 +39,15 @@ import static com.example.whankung.navigity.Register.*;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date,post;
     private RatingBar rat;
     private EditText ment;
     private Register register;
     public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
-    private String title;
+    private String title,cMent;
     private String titleid;
+    private ConnectionClass connectionClass;
 
 
     public HowtoHerbFragment(String titleid,String title) {
@@ -53,7 +57,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.howto_herb, container, false);
-
+        connectionClass = new ConnectionClass();
         setView();
      //   setData();
 //        setRating();
@@ -92,6 +96,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         tdata = (TextView) rootView.findViewById(R.id.tdata);
         ment = (EditText) rootView.findViewById(R.id.ment);
         sub = (TextView) rootView.findViewById(R.id.submit);
+        post = (TextView) rootView.findViewById(R.id.post);
 
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
         p.setTypeface(font);
@@ -105,6 +110,47 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
+        rat.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    float touchPositionX = event.getX();
+                    float width = rat.getWidth();
+                    float starsf = (touchPositionX / width) * 5.0f;
+                    int stars = (int)starsf + 1;
+                    rat.setRating(stars);
+
+                    Toast.makeText(getActivity(), String.valueOf("test"), Toast.LENGTH_SHORT).show();
+                    v.setPressed(false);
+                }
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    v.setPressed(true);
+                }
+
+                if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+                    v.setPressed(false);
+                }
+
+
+
+
+                return true;
+            }});
+
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cMent = ment.getText().toString();
+                if(ment!=null){
+                    post.setText(cMent);
+
+                }
+
+
+            }
+        });
+
+
 //        sub.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

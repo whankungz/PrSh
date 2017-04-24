@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Herb.HimgRequest;
 import com.example.whankung.navigity.services.Http;

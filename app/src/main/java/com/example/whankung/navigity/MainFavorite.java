@@ -1,35 +1,21 @@
 package com.example.whankung.navigity;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.whankung.navigity.services.Herb.HRequest;
-import com.example.whankung.navigity.services.Http;
-
-import java.util.List;
-
-import retrofit2.Call;
+import com.example.whankung.navigity.adapter.AppState;
+import com.example.whankung.navigity.adapter.CustomAdapterH;
 
 
 /**
@@ -40,7 +26,9 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     private View rootView;
     private Typeface font;
     private TextView fav;
-    ArrayAdapter<String> adapter;
+    private String title,titleid;
+//    ArrayAdapter<String> adapter;
+    private CustomAdapterH adapter;
     ListView lv;
 //    private HRequest h;
 //    public MainFavorite(HRequest h) {
@@ -74,14 +62,23 @@ public class MainFavorite extends android.support.v4.app.Fragment {
 //                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
 //                "ตะไคร้หอม", "พริก"};
 
-
+        int[] resId = { R.drawable.img_ruby
+                , R.drawable.img_herb, R.drawable.img_lemon
+                , R.drawable.img_ruby2, R.drawable.img_lemon5};
+//        final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
+//                "ฟ้าทะลายโจร", "พญายอ"};
+        final String[] idH = new String[]{"1", "2", "3",
+                "4", "5"};
         final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
         if (AppState.getSingleInstance().isDataHerb2(true)) {
           //  fav.setText(AppState.getSingleInstance().getNameH());
 //            fav.setText(AppState.getSingleInstance().getNamePhama());
-         //   adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+
+// adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
+            adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId);
+
             lv.setAdapter(adapter);
-            lv.getAdapter().getCount();
+          //  lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
 //            fav.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -96,11 +93,12 @@ public class MainFavorite extends android.support.v4.app.Fragment {
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-//                    FragmentManager m = getFragmentManager();
-//                    FragmentTransaction t = m.beginTransaction();
-//                    t.replace(R.id.container, new SearchHerb());
-//                    t.commit();
+                    FragmentManager m = getFragmentManager();
+                    FragmentTransaction t = m.beginTransaction();
+//                    title = herbs[position];
+// titleid = idH[position];
+                    t.replace(R.id.container, new SearchHerb(title, titleid));
+                    t.commit();
 
                 }
             });

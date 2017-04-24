@@ -12,8 +12,8 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Article.ArRequest;
-import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.util.List;
@@ -21,8 +21,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.view.View.GONE;
 
 /**
  * Created by Whankung on 24/1/2560.

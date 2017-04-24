@@ -134,21 +134,21 @@
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="0.8dp"-->
                 <!--android:background="#eaeaea" />-->
-
+            <RatingBar
+                android:id="@+id/rat"
+                android:layout_centerHorizontal="true"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                android:layout_gravity="center"
+                android:layout_width="240dp"
+                android:layout_height="40dp" />
             <RelativeLayout
                 android:id="@+id/relarat"
                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RatingBar
-                    android:id="@+id/rat"
-                    android:layout_centerHorizontal="true"
-                    android:scaleX="0.5"
-                    android:scaleY="0.5"
-                    android:layout_gravity="center"
-                    android:layout_width="240dp"
-                    android:layout_height="40dp" />
+
                 <View
                     android:layout_below="@+id/rat"
                     android:layout_marginTop="7dp"

@@ -1,6 +1,5 @@
-package com.example.whankung.navigity;
+package com.example.whankung.navigity.adapter;
 
-import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,9 +18,18 @@ public class AppState {
 
     private static String indexlist;
     private boolean rating;
+
+    public static Boolean getFirstOpenApp() {
+        return firstOpenApp;
+    }
+
+    public static void setFirstOpenApp(Boolean firstOpenApp) {
+        AppState.firstOpenApp = firstOpenApp;
+    }
+
     private String nameH;
 
-
+    private static Boolean firstOpenApp;
 
     public String getRegis() {
         return regis;

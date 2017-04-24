@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,27 +14,17 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.example.whankung.navigity.ConnectionClass;
-import com.example.whankung.navigity.Login;
-import com.example.whankung.navigity.R;
+import com.example.whankung.navigity.adapter.AppState;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import info.hoang8f.android.segmented.SegmentedGroup;
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.RealmMigration;
-import io.realm.RealmModel;
-import io.realm.internal.RealmProxyMediator;
-import io.realm.internal.SharedRealm;
-import io.realm.rx.RxObservableFactory;
 
 /**
  * Created by Whankung on 18/1/2560.

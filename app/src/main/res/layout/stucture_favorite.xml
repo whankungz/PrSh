@@ -12,13 +12,11 @@
 
 
     <ListView
-        android:visibility="gone"
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
-        android:visibility="gone"
         android:textColor="@color/colorGreen"
         android:textSize="50dp"
         android:layout_width="match_parent"

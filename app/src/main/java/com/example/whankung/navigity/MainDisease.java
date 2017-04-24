@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.whankung.navigity.adapter.HideKeyboard;
 
 
 /**
@@ -42,7 +41,6 @@ public class MainDisease extends android.support.v4.app.Fragment{
     //    service
     public static final String BASE_URL = "http://localhost:8080/HerbServices/webresources/service.entityclass.admin";
     private static final String TAG = "log";
-    private ArrayList<String> lottory = new ArrayList<>();
 
 
 

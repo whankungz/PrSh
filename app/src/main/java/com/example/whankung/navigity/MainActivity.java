@@ -7,9 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -25,18 +23,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.adapter.AppState;
+import com.example.whankung.navigity.adapter.HideKeyboard;
+import com.sromku.simple.storage.SimpleStorage;
+import com.sromku.simple.storage.Storage;
 
 import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView tv, pro;
-
     ConnectionClass connectionClass;
     private View nav_header;
 
@@ -44,6 +42,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Storage storage = SimpleStorage.getInternalStorage(getApplicationContext());
 
 
         connectionClass = new ConnectionClass();

@@ -138,7 +138,7 @@
 
 
             <RatingBar
-                android:visibility="gone"
+
                 android:id="@+id/rat"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
@@ -161,7 +161,6 @@
                     android:layout_gravity="center"
                     android:background="#ffffff"
                     android:hint="แสดงความคิดเห็น..."
-                    android:onClick="ClickStart"
                     android:paddingLeft="10dp"
                     android:textColor="#7c7c7c"
                     android:textColorHint="#bcbbbb"
@@ -192,7 +191,18 @@
                     android:textColor="#ffffff"
                     android:textSize="18dp" />
             </RelativeLayout>
-
+            <TextView
+                android:id="@+id/post"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:paddingLeft="50dp"
+                android:textColor="@color/colorGreen"
+                android:paddingRight="50dp"
+                android:textSize="18dp" />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"

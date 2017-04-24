@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 
 
+import com.example.whankung.navigity.adapter.AppState;
+
 import java.util.ArrayList;
 import java.util.List;
 

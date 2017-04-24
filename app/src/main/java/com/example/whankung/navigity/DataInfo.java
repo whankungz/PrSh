@@ -1,6 +1,5 @@
 package com.example.whankung.navigity;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.whankung.navigity.adapter.AppState;
+
 /**
  * Created by Whankung on 13/3/2560.
  */
@@ -21,6 +22,11 @@ public class DataInfo extends Fragment {
     private TextView tvI, nameI, namefI, frI, submitI, nm2, un2, date2;
     private ImageView i_Info, img;
     private RelativeLayout rat;
+    private String title;
+    public DataInfo(String title) {
+        this.title = title;
+
+    }
 
     @Nullable
     @Override

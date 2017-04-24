@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,15 +8,25 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
+import com.sromku.simple.storage.SimpleStorage;
+import com.sromku.simple.storage.Storable;
+import com.sromku.simple.storage.Storage;
+import com.sromku.simple.storage.helpers.OrderType;
 
+
+import java.io.File;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +46,7 @@ public class SearchDisease extends Fragment {
     private RelativeLayout rat;
     private String title;
     //        service
-    public static final String BASE_URL = "http://192.168.181.106:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.103:8080/Servies/webresources/";
     private static final String TAG = "log";
 
     public SearchDisease(String title) {
@@ -46,10 +57,16 @@ public class SearchDisease extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.search_disease, container, false);
+        AppState.getSingleInstance().getFirstOpenApp();
+
+        setRating();
         setView();
         setSearch();
-        setRating();
+
         setServices();
+
+        AppState.getSingleInstance().setFirstOpenApp(false);
+
 
         return rootView;
     }
@@ -105,6 +122,7 @@ public class SearchDisease extends Fragment {
     }
 
     private void setServices() {
+        final Storage storage = SimpleStorage.getExternalStorage();
         final DRequest disease = new DRequest();
         Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
         calls.enqueue(new Callback<List<DRequest>>()
@@ -115,12 +133,37 @@ public class SearchDisease extends Fragment {
 
                 if (response.isSuccessful()) {
                     List<DRequest> disease = response.body();
+                   // List<File> disease = storage.getNestedFiles("MyDirName");
+//                    Storage storage = null;
+//                    if (SimpleStorage.isExternalStorageWritable()) {
+//                        storage = SimpleStorage.getExternalStorage();
+//                    } else {
+//                        storage = SimpleStorage.getInternalStorage(getContext());
+//                    }
 
                     // Can iterate through list and grab Getters from POJO
                     for (DRequest d : disease) {
 
+                        List<File> files = storage.getNestedFiles("d");
+
+//                        storage.createDirectory("MyDirName", true);
+                        // storage.createFile("MyDirName", "fileName", d.getDiseaseName());
+
+
+                        //   storage.createDirectory("MyDirName/MySubDirectory");
+
+//                storage.createFile("MyDirName", "fileName", "some content of the file");
+
+
                         if (d.getDiseaseName().equals(title)) {
+
+
+                            //String content = storage.readTextFile("MyDirName", "fileName");
                             Log.d(TAG, "qqq" + d.getSymptom());
+//t2.setText(storage);
+//                            t4.setText(d.getHerb());
+//                            t6.setText(d.getSymptom());
+//                            t8.setText(d.getHowtoRelief());
                             t2.setText(d.getDiseaseName());
                             t4.setText(d.getHerb());
                             t6.setText(d.getSymptom());

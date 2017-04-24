@@ -1,4 +1,4 @@
-package com.example.whankung.navigity;
+package com.example.whankung.navigity.adapter;
 
 import android.app.Activity;
 import android.content.Context;
