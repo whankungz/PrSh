@@ -47,9 +47,9 @@ public class MainFavorite extends android.support.v4.app.Fragment {
 
     private void setView() {
         fav = (TextView) rootView.findViewById(R.id.textF);
-//
-//        font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
-//        t_H.setTypeface(font);
+        font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
+        fav.setTypeface(font);
+        fav.setText("empty");
 //        t_H2.setTypeface(font);
 ////        tb.setTypeface(font);
 ////        t_H3.setTypeface(font);

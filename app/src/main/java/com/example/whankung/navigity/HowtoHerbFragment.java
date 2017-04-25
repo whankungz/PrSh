@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -56,7 +57,7 @@ import static com.example.whankung.navigity.Register.*;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date, time;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date, times;
     private ListView post;
     private RatingBar rat;
     private EditText ment;
@@ -68,9 +69,9 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private ConnectionClass connectionClass;
 
 
-    private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList;
-    //private CustomAdapterMent adapter;
+   private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList,arrayTime;
+   // private CustomAdapterMent adapter;
 
     public HowtoHerbFragment(String titleid, String title) {
         this.title = title;
@@ -115,7 +116,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         tdata = (TextView) rootView.findViewById(R.id.tdata);
         ment = (EditText) rootView.findViewById(R.id.ment);
         sub = (TextView) rootView.findViewById(R.id.submit);
-        time = (TextView) rootView.findViewById(R.id.setTime);
+        times = (TextView) rootView.findViewById(R.id.setTime);
         post = (ListView) rootView.findViewById(R.id.post);
 
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
@@ -130,7 +131,6 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
-        // time.setTypeface(font);
         rat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -157,13 +157,14 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        String[] m = {"whan", "qqqq"};
+       String[] m = {"comment"};
+       String[] t = {"time"};
 
-        //  String[] t = {"", ""};
 
         arrayList = new ArrayList<>(Arrays.asList(m));
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.disease, arrayList);
-        //adapter = new CustomAdapterMent(getActivity().getApplicationContext(), m, t);
+     //   arrayTime = new ArrayList<>(Arrays.asList(t));
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.mentP, arrayList);
+       // adapter = new CustomAdapterMent(getActivity().getApplicationContext(), arrayList,arrayTime);
         post.setAdapter(adapter);
 
         sub.setOnClickListener(new View.OnClickListener() {
@@ -172,12 +173,17 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                 cMent = ment.getText().toString();
                 TextClock time = (TextClock) rootView.findViewById(R.id.tClock);
                 tC = time.getText().toString();
-//                setDateTime();
-                arrayList.add(cMent+"            "+tC);
+
+              //  times.setText(tC);
+                arrayList.add(tC+"\n\n"+cMent);
+
+
                 adapter.notifyDataSetChanged();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
                 ment.getText().clear();
+
+
 
 //                if(   AppState.getSingleInstance().getFirstOpenApp()){
 //                    AppState.getSingleInstance().setFirstOpenApp(false);
@@ -229,7 +235,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //        });
 
     }
-    
+
 
     private void setServices() {
         Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();

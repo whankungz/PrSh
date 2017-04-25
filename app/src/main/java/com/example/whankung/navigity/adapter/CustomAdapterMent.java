@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.example.whankung.navigity.R;
 
+import java.util.ArrayList;
+
+import static com.example.whankung.navigity.R.id.textView;
+
 
 public class CustomAdapterMent extends BaseAdapter {
 
@@ -23,6 +27,10 @@ public class CustomAdapterMent extends BaseAdapter {
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
+    }
+
+    public CustomAdapterMent(Context applicationContext, ArrayList<String> arrayList, ArrayList<String> arrayTime) {
+
     }
 
     public int getCount() {
@@ -45,15 +53,15 @@ public class CustomAdapterMent extends BaseAdapter {
         if (view == null)
 
             view = mInflater.inflate(R.layout.list_item_ment, parent, false);
-        TextView textView = (TextView) view.findViewById(R.id.article);
-        TextClock time = (TextClock) view.findViewById(R.id.tClock);
+        TextView ment= (TextView) view.findViewById(R.id.mentP);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
-        textView.setTypeface(font);
+        ment.setTypeface(font);
+        TextClock time = (TextClock) view.findViewById(R.id.tClock);
+       String ments = time.getText().toString();
 
 
-        String tC = time.getText().toString();
-
-        textView.setText(strName[position]);
+       ment.setText(strName[position]);
+        time.setText(ments);
       //  img.setBackgroundResource(resId[position]);
 
         if (position % 2 == 0) {
