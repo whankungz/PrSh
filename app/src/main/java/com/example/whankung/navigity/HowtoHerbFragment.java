@@ -1,6 +1,7 @@
 package com.example.whankung.navigity;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +26,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.whankung.navigity.adapter.AppState;
+import com.example.whankung.navigity.adapter.CustomAdapterF;
+import com.example.whankung.navigity.adapter.CustomAdapterMent;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
 
@@ -51,7 +55,7 @@ import static com.example.whankung.navigity.Register.*;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date,time;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date, time;
     private ListView post;
     private RatingBar rat;
     private EditText ment;
@@ -65,6 +69,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 
     private ArrayAdapter<String> adapter;
     private ArrayList<String> arrayList;
+    //private CustomAdapterMent adapter;
 
     public HowtoHerbFragment(String titleid, String title) {
         this.title = title;
@@ -124,6 +129,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
+       // time.setTypeface(font);
         rat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -151,35 +157,28 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         });
 
         String[] m = {"whan", "qqqq"};
+
+      //  String[] t = {"", ""};
+
         arrayList = new ArrayList<>(Arrays.asList(m));
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.disease, arrayList);
-
+       //adapter = new CustomAdapterMent(getActivity().getApplicationContext(), m, t);
         post.setAdapter(adapter);
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cMent = ment.getText().toString();
-
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
-                TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time.setText( selectedHour + ":" + selectedMinute);
-                    }
-                }, hour, minute, true);//Yes 24 hour time
-               // mTimePicker.setTitle("Select Time");
-                //mTimePicker.show();
+//                setDateTime();
                 arrayList.add(cMent);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
 
                 adapter.notifyDataSetChanged();
 //                if(   AppState.getSingleInstance().getFirstOpenApp()){
 //                    AppState.getSingleInstance().setFirstOpenApp(false);
 //                }
 
-                    //arrayList.add(AppState.getSingleInstance().getNamePhama());
+                //arrayList.add(AppState.getSingleInstance().getNamePhama());
             }
 
         });
@@ -224,6 +223,33 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //            }
 //        });
 
+    }
+
+    public void setDateTime() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+
+        int minutes = c.get(Calendar.MINUTE);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        String curTime = String.format("%02d:%02d", hour, minutes);
+        String timeSet = curTime;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        int month = c.get(Calendar.MONTH);
+        month += 1;
+        int year = c.get(Calendar.YEAR);
+        String dateSet = day + "/" + month + "/" + year;
+
+        if (hour < 12 && hour >= 0) {
+            time.setText(timeSet);
+        } else {
+            hour -= 12;
+            if (hour == 0) {
+            }
+            time.setText(timeSet + " " + dateSet);
+        }
+
+
+        // txt_date.setText(date);
     }
 
     private void setServices() {

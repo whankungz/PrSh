@@ -16,9 +16,9 @@ public class CustomAdapterMent extends BaseAdapter {
 
     Context mContext;
     String[] strName;
-    int[] resId;
+    String[] resId;
 
-    public CustomAdapterMent(Context context, String[] strName, int[] resId) {
+    public CustomAdapterMent(Context context, String[] strName, String[] resId) {
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
@@ -51,7 +51,7 @@ public class CustomAdapterMent extends BaseAdapter {
 
 
         textView.setText(strName[position]);
-        img.setBackgroundResource(resId[position]);
+      //  img.setBackgroundResource(resId[position]);
 
         if (position % 2 == 0) {
 
