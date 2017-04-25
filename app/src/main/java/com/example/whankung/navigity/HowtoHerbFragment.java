@@ -21,6 +21,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Register register;
     public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
-    private String title, cMent;
+    private String title, cMent,tC;
     private String titleid;
     private ConnectionClass connectionClass;
 
@@ -129,7 +130,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
-       // time.setTypeface(font);
+        // time.setTypeface(font);
         rat.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -158,22 +159,26 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 
         String[] m = {"whan", "qqqq"};
 
-      //  String[] t = {"", ""};
+        //  String[] t = {"", ""};
 
         arrayList = new ArrayList<>(Arrays.asList(m));
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.disease, arrayList);
-       //adapter = new CustomAdapterMent(getActivity().getApplicationContext(), m, t);
+        //adapter = new CustomAdapterMent(getActivity().getApplicationContext(), m, t);
         post.setAdapter(adapter);
+
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cMent = ment.getText().toString();
+                TextClock time = (TextClock) rootView.findViewById(R.id.tClock);
+                tC = time.getText().toString();
 //                setDateTime();
-                arrayList.add(cMent);
+                arrayList.add(cMent+"            "+tC);
+                adapter.notifyDataSetChanged();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
+                ment.getText().clear();
 
-                adapter.notifyDataSetChanged();
 //                if(   AppState.getSingleInstance().getFirstOpenApp()){
 //                    AppState.getSingleInstance().setFirstOpenApp(false);
 //                }
@@ -224,33 +229,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //        });
 
     }
-
-    public void setDateTime() {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(System.currentTimeMillis());
-
-        int minutes = c.get(Calendar.MINUTE);
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        String curTime = String.format("%02d:%02d", hour, minutes);
-        String timeSet = curTime;
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int month = c.get(Calendar.MONTH);
-        month += 1;
-        int year = c.get(Calendar.YEAR);
-        String dateSet = day + "/" + month + "/" + year;
-
-        if (hour < 12 && hour >= 0) {
-            time.setText(timeSet);
-        } else {
-            hour -= 12;
-            if (hour == 0) {
-            }
-            time.setText(timeSet + " " + dateSet);
-        }
-
-
-        // txt_date.setText(date);
-    }
+    
 
     private void setServices() {
         Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();

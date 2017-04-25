@@ -55,7 +55,6 @@
                     android:id="@+id/nameH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
                     android:text="ชื่อสมุนไพร"
                     android:textColor="#848484"
                     android:textColorHint="#c1c1c1"
@@ -65,7 +64,6 @@
                     android:id="@+id/nameH2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textColorHint="#c1c1c1"
                     android:textSize="26dp" />
@@ -79,7 +77,6 @@
                     android:id="@+id/nameOther"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
                     android:text="ชื่ออื่นๆ"
                     android:textColor="#848484"
                     android:textColorHint="#c1c1c1"
@@ -90,7 +87,6 @@
                     android:id="@+id/nameOther2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="26dp" />
             </RelativeLayout>
@@ -106,7 +102,6 @@
                 android:id="@+id/nameSee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:text="ลักษณะการสังเกตุ"
                 android:textColor="#848484"
                 android:textColorHint="#c1c1c1"
@@ -116,7 +111,6 @@
                 android:id="@+id/nameSee2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:textColor="#212121"
                 android:textColorHint="#c1c1c1"
                 android:textSize="20dp" />
@@ -125,7 +119,6 @@
                 android:id="@+id/tree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="ใบ"
                 android:textColor="#b9b8b8"
@@ -149,7 +142,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView3"
-                    android:background="#ffffff"
                     android:text=""
                     android:textColor="#212121"
                     android:textSize="20dp" />
@@ -162,7 +154,6 @@
                 android:id="@+id/tree2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="กิ่ง"
                 android:textColor="#b9b8b8"
@@ -186,7 +177,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView4"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="20dp" />
             </RelativeLayout>
@@ -196,7 +186,6 @@
                 android:id="@+id/tree3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="ดอก"
                 android:textColor="#b9b8b8"
@@ -220,7 +209,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView5"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="20dp" />
             </RelativeLayout>
@@ -229,7 +217,6 @@
                 android:id="@+id/tree4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="ผล"
                 android:textColor="#b9b8b8"
@@ -252,7 +239,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView6"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="20dp" />
             </RelativeLayout>
@@ -261,7 +247,6 @@
                 android:id="@+id/tree5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="ราก"
                 android:textColor="#b9b8b8"
@@ -284,7 +269,6 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView7"
                     android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="20dp" />
             </RelativeLayout>
@@ -293,7 +277,6 @@
                 android:id="@+id/tree6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:padding="10dp"
                 android:text="เมล็ด"
                 android:textColor="#b9b8b8"
@@ -316,7 +299,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView8"
-                    android:background="#ffffff"
                     android:textColor="#212121"
                     android:textSize="20dp" />
 
@@ -326,7 +308,6 @@
                 android:id="@+id/null2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
                 android:textSize="22dp" />
         </LinearLayout>
     </ScrollView>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.example.whankung.navigity.R;
@@ -43,12 +44,14 @@ public class CustomAdapterMent extends BaseAdapter {
 
         if (view == null)
 
-            view = mInflater.inflate(R.layout.list_item_article, parent, false);
+            view = mInflater.inflate(R.layout.list_item_ment, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.article);
-        ImageView img = (ImageView) view.findViewById(R.id.img);
+        TextClock time = (TextClock) view.findViewById(R.id.tClock);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
         textView.setTypeface(font);
 
+
+        String tC = time.getText().toString();
 
         textView.setText(strName[position]);
       //  img.setBackgroundResource(resId[position]);
