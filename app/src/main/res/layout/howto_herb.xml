@@ -85,6 +85,7 @@
                 android:background="#eaeaea" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
@@ -148,7 +149,7 @@
 
             <RelativeLayout
                 android:id="@+id/relament"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
@@ -191,18 +192,13 @@
                     android:textColor="#ffffff"
                     android:textSize="18dp" />
             </RelativeLayout>
-            <TextView
-                android:id="@+id/post"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:paddingLeft="50dp"
-                android:textColor="@color/colorGreen"
-                android:paddingRight="50dp"
-                android:textSize="18dp" />
+
+                <ListView
+                    android:id="@+id/post"
+                    android:layout_width="fill_parent"
+                    android:layout_height="400dp"/>
+
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"

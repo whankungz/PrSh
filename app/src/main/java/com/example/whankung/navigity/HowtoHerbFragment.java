@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -10,20 +11,31 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -39,36 +51,37 @@ import static com.example.whankung.navigity.Register.*;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date,post;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date,time;
+    private ListView post;
     private RatingBar rat;
     private EditText ment;
     private Register register;
     public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
-    private String title,cMent;
+    private String title, cMent;
     private String titleid;
     private ConnectionClass connectionClass;
 
 
-    public HowtoHerbFragment(String titleid,String title) {
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList;
+
+    public HowtoHerbFragment(String titleid, String title) {
         this.title = title;
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.howto_herb, container, false);
         connectionClass = new ConnectionClass();
         setView();
-     //   setData();
+
+        //   setData();
 //        setRating();
         setServices();
         return rootView;
     }
-
-
-
-
-
 
 
     private void setRating() {
@@ -96,7 +109,8 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         tdata = (TextView) rootView.findViewById(R.id.tdata);
         ment = (EditText) rootView.findViewById(R.id.ment);
         sub = (TextView) rootView.findViewById(R.id.submit);
-        post = (TextView) rootView.findViewById(R.id.post);
+        time = (TextView) rootView.findViewById(R.id.setTime);
+        post = (ListView) rootView.findViewById(R.id.post);
 
         font = Typeface.createFromAsset(getContext().getAssets(), "tmedium.ttf");
         p.setTypeface(font);
@@ -117,7 +131,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                     float touchPositionX = event.getX();
                     float width = rat.getWidth();
                     float starsf = (touchPositionX / width) * 5.0f;
-                    int stars = (int)starsf + 1;
+                    int stars = (int) starsf + 1;
                     rat.setRating(stars);
 
                     Toast.makeText(getActivity(), String.valueOf("test"), Toast.LENGTH_SHORT).show();
@@ -132,22 +146,42 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                 }
 
 
-
-
                 return true;
-            }});
+            }
+        });
 
+        String[] m = {"whan", "qqqq"};
+        arrayList = new ArrayList<>(Arrays.asList(m));
+        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.disease, arrayList);
+
+        post.setAdapter(adapter);
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cMent = ment.getText().toString();
-                if(ment!=null){
-                    post.setText(cMent);
 
-                }
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        time.setText( selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+               // mTimePicker.setTitle("Select Time");
+                //mTimePicker.show();
+                arrayList.add(cMent);
 
+                adapter.notifyDataSetChanged();
+//                if(   AppState.getSingleInstance().getFirstOpenApp()){
+//                    AppState.getSingleInstance().setFirstOpenApp(false);
+//                }
 
+                    //arrayList.add(AppState.getSingleInstance().getNamePhama());
             }
+
         });
 
 
@@ -191,12 +225,12 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //        });
 
     }
+
     private void setServices() {
         Call<List<HRequest>> call = Http.getInstance().getHerb().loadJson();
 //        Call<List<HRequest>> call2 = Http.getInstance().getHerbimg().loadJson();
         //  call = Http.getInstance().getHerbre().loadJson();
-        call.enqueue(new Callback<List<HRequest>>()
-        {
+        call.enqueue(new Callback<List<HRequest>>() {
             @Override
             public void onResponse(Call<List<HRequest>> call, Response<List<HRequest>> response) {
 
@@ -207,7 +241,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                     for (HRequest h : herb) {
 
                         if (h.getHerbName().equals(title)) {
-                            Log.d(TAG,"oooooooooooooo"+h.getHowto());
+                            Log.d(TAG, "oooooooooooooo" + h.getHowto());
                             hdata.setText(h.getHowto());
                             tdata.setText(h.getWarning());
                             //  data.setText(h.getLeaf());
@@ -225,6 +259,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
             }
         });
     }
+
     private void setData() {
         pdata.setText("เปลือก – รักษาอาการท้องเสีย");
         hdata.setText("1.นำเปลือกทับทิมมาต้มกับน้ำจนเดือดให้เด็กดื่มน้ำทับทิมครั้งละ1-2 ช้อนชา ทุก 4 ชั่วโมงและ1 ช้อนโต๊ะสำหรับผู้ใหญ่\n" +
