@@ -169,7 +169,7 @@
                 android:onClick="ClickStart"
                 android:text="POST"
                 android:textColor="#60c0da"
-                android:textSize="18dp" />
+                android:textSize="24dp" />
             <!--android:paddingLeft="50dp"-->
             <!--android:paddingRight="50dp"-->
             <!--android:background="@drawable/login_bg"-->

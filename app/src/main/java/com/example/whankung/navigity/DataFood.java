@@ -21,6 +21,10 @@ public class DataFood extends Fragment {
     private TextView tvI, nameI, namefI, frI, howf, howfdata, useF, useFdata, frF, frFdata;
     private ImageView i_Info, img;
     private View rootView;
+    private String f;
+    public DataFood(String f) {
+        this.f = f;
+    }
 
     @Nullable
     @Override

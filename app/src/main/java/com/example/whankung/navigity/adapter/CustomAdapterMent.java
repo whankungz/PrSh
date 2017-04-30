@@ -56,12 +56,12 @@ public class CustomAdapterMent extends BaseAdapter {
         TextView ment= (TextView) view.findViewById(R.id.mentP);
         Typeface font = Typeface.createFromAsset(mContext.getAssets(), "tmedium.ttf");
         ment.setTypeface(font);
-        TextClock time = (TextClock) view.findViewById(R.id.tClock);
-       String ments = time.getText().toString();
+        //TextClock time = (TextClock) view.findViewById(R.id.tClock);
+      // String ments = time.getText().toString();
 
 
        ment.setText(strName[position]);
-        time.setText(ments);
+       // time.setText(ments);
       //  img.setBackgroundResource(resId[position]);
 
         if (position % 2 == 0) {

@@ -38,11 +38,10 @@ public class MainFood  extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_food, container, false);
 //        setView();
-        int[] resId = { R.drawable.img_a
-                , R.drawable.img_a2, R.drawable.img_a3
-                , R.drawable.img_a4, R.drawable.img_a5};
-        food = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
-                "ฟ้าทะลายโจร", "พญายอ"};
+        int[] resId = { R.drawable.img_f2
+                , R.drawable.img_f1, R.drawable.img_f
+                , R.drawable.img_f3};
+        food = new String[]{"น้ำพริกผักลวก","ไก่มะระ","ตำไข่เค็ม", "มัสมั่นไก่"};
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
@@ -59,7 +58,7 @@ public class MainFood  extends Fragment {
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
                 f = food[position];
-                t.replace(R.id.container, new DataArticle(f));
+                t.replace(R.id.container, new DataFood(f));
                 t.commit();
             }
         });

@@ -171,11 +171,11 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 cMent = ment.getText().toString();
-                TextClock time = (TextClock) rootView.findViewById(R.id.tClock);
-                tC = time.getText().toString();
+               // TextClock time = (TextClock) rootView.findViewById(R.id.tClock);
+               // tC = time.getText().toString();
 
               //  times.setText(tC);
-                arrayList.add(tC+"\n\n"+cMent);
+                arrayList.add(cMent);
 
 
                 adapter.notifyDataSetChanged();

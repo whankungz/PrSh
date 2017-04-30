@@ -25,10 +25,20 @@ import android.widget.TextView;
 
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.adapter.HideKeyboard;
+
+import com.facebook.stetho.Stetho;
 import com.sromku.simple.storage.SimpleStorage;
 import com.sromku.simple.storage.Storage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity
@@ -42,6 +52,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
+
 
         Storage storage = SimpleStorage.getInternalStorage(getApplicationContext());
 

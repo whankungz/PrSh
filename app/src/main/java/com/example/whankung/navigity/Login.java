@@ -150,7 +150,7 @@ public class Login extends AppCompatActivity {
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         if (rs.next()) {
-                            z = "อิอิอิอิอิอิ";
+                            z = "good";
                             isSuccess = true;
 
 

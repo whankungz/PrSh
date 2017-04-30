@@ -48,8 +48,8 @@ public class MainArticle extends android.support.v4.app.Fragment {
         int[] resId = { R.drawable.img_a
                 , R.drawable.img_a2, R.drawable.img_a3
                 , R.drawable.img_a4, R.drawable.img_a5};
-        arti = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
-                "ฟ้าทะลายโจร", "พญายอ"};
+        arti = new String[]{"โรคอ้วน", "ส้มซ่าและส้มสา", "กินยาเยอะ",
+                "กล้วย", "คอเลสเตอรอลในไข่ไก่"};
 
         lv = (ListView) rootView.findViewById(R.id.list_view);
 

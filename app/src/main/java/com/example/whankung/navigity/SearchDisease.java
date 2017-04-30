@@ -16,22 +16,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
+
+import com.facebook.stetho.Stetho;
 import com.sromku.simple.storage.SimpleStorage;
-import com.sromku.simple.storage.Storable;
+
 import com.sromku.simple.storage.Storage;
-import com.sromku.simple.storage.helpers.OrderType;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 
+
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by Whankung on 22/1/2560.
@@ -53,19 +62,27 @@ public class SearchDisease extends Fragment {
         this.title = title;
     }
 
+    private OkHttpClient client;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.search_disease, container, false);
-        AppState.getSingleInstance().getFirstOpenApp();
+        // AppState.getSingleInstance().getFirstOpenApp();
 
         setRating();
         setView();
         setSearch();
-
         setServices();
 
-        AppState.getSingleInstance().setFirstOpenApp(false);
+//        if(AppState.getSingleInstance().isNetworkAvailable(getActivity())) {
+//            setServices();
+//        } else {
+//            setNoServices();
+//        }
+
+
+        // AppState.getSingleInstance().setFirstOpenApp(false);
 
 
         return rootView;
@@ -100,6 +117,7 @@ public class SearchDisease extends Fragment {
 //        nm.setTypeface(font);
 //        un.setTypeface(font);
 //        date.setTypeface(font);
+
     }
 
     private void setSearch() {
@@ -121,19 +139,52 @@ public class SearchDisease extends Fragment {
         }
     }
 
-    private void setServices() {
-        final Storage storage = SimpleStorage.getExternalStorage();
-        final DRequest disease = new DRequest();
-        Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
-        calls.enqueue(new Callback<List<DRequest>>()
+    public void setNoServices() {
 
-        {
-            @Override
-            public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
 
-                if (response.isSuccessful()) {
-                    List<DRequest> disease = response.body();
-                   // List<File> disease = storage.getNestedFiles("MyDirName");
+//        OkHttpClient client = new OkHttpClient
+//                .Builder()
+//                .cache(new okhttp3.Cache(getActivity().getCacheDir(), 10 * 1024 * 1024)) // 10 MB
+//                .addInterceptor(new Interceptor() {
+//                    @Override public okhttp3.Response intercept(Chain chain) throws IOException {
+//                        Request request = chain.request();
+//                        if (AppState.getSingleInstance().isNetworkAvailable()) {
+//                            request = request.newBuilder().header("Cache-Control", "public, max-age=" + 60).build();
+//                        } else {
+//                            request = request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build();
+//                        }
+//                        return chain.proceed(request);
+//                    }
+//                })
+//                .build();
+        // Http.getInstance().getArticle();
+
+    }
+                private void setServices() {
+
+                    final Storage storage = SimpleStorage.getExternalStorage();
+                    final DRequest disease = new DRequest();
+
+
+
+                    final Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
+
+                    calls.request();
+                    Stetho.initializeWithDefaults(getActivity());
+
+                    calls.enqueue(new Callback<List<DRequest>>()
+
+                    {
+                        @Override
+                        public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
+
+                            if (response.isSuccessful()) {
+
+                                List<DRequest> disease = response.body();
+
+
+
+                                // List<File> disease = storage.getNestedFiles("MyDirName");
 //                    Storage storage = null;
 //                    if (SimpleStorage.isExternalStorageWritable()) {
 //                        storage = SimpleStorage.getExternalStorage();
@@ -141,54 +192,55 @@ public class SearchDisease extends Fragment {
 //                        storage = SimpleStorage.getInternalStorage(getContext());
 //                    }
 
-                    // Can iterate through list and grab Getters from POJO
-                    for (DRequest d : disease) {
+                                // Can iterate through list and grab Getters from POJO
 
-                        List<File> files = storage.getNestedFiles("d");
+
+                                for (DRequest d : disease) {
+
+                                   // List<File> files = storage.getNestedFiles("d");
 
 //                        storage.createDirectory("MyDirName", true);
-                        // storage.createFile("MyDirName", "fileName", d.getDiseaseName());
+                                    // storage.createFile("MyDirName", "fileName", d.getDiseaseName());
 
 
-                        //   storage.createDirectory("MyDirName/MySubDirectory");
+                                    //   storage.createDirectory("MyDirName/MySubDirectory");
 
 //                storage.createFile("MyDirName", "fileName", "some content of the file");
 
 
-                        if (d.getDiseaseName().equals(title)) {
+                                    if (d.getDiseaseName().equals(title)) {
 
 
-                            //String content = storage.readTextFile("MyDirName", "fileName");
-                            Log.d(TAG, "qqq" + d.getSymptom());
+                                        //String content = storage.readTextFile("MyDirName", "fileName");
+                                      //  Log.d(TAG, "qqq" + );
+
 //t2.setText(storage);
 //                            t4.setText(d.getHerb());
 //                            t6.setText(d.getSymptom());
 //                            t8.setText(d.getHowtoRelief());
-                            t2.setText(d.getDiseaseName());
-                            t4.setText(d.getHerb());
-                            t6.setText(d.getSymptom());
-                            t8.setText(d.getHowtoRelief());
+                                        t2.setText(d.getDiseaseName());
+                                        t4.setText(d.getHerb());
+                                        t6.setText(d.getSymptom());
+                                        t8.setText(d.getHowtoRelief());
+
+
+
+
+                                    }
+
+                                }
+
+                            } else{
+
+                            }
                         }
 
-                    }
-
-                } else {
-                    // Error response...
+                        @Override
+                        public void onFailure(Call<List<DRequest>> call, Throwable t) {
+                            Log.d(TAG, "onFailure:  " + t.toString());
+                        }
+                    });
                 }
-//                t2.setText(response.body().getHerb().get(0));
-//                t4.setText(response.body().getDiseaseName().get(0));
-
-//                t2.setText(response.body().getPasswordAd());
-//                t4.setText(response.body().getUsernameAd());
 
 
             }
-
-            @Override
-            public void onFailure(Call<List<DRequest>> call, Throwable t) {
-                Log.d(TAG, "onFailure:  " + t.toString());
-            }
-        });
-    }
-
-}

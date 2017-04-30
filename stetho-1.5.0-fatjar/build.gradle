@@ -1,0 +1,5 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('stetho-1.5.0-fatjar.jar'))
+dependencies {
+    compile files('stetho-1.5.0-fatjar.jar')
+}

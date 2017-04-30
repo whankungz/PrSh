@@ -44,8 +44,7 @@ public class MainOffice extends Fragment {
 //        เปลี่ยนfont
         font = Typeface.createFromAsset(getActivity().getAssets(), "tmedium.ttf");
 
-        final String[] office = new String[] {"ปวดท้อง", "ปวดหัว", "ข้อเท้าแพลง",
-                "แมลงกัดต่อย", "คลื่นไส้อาเจียน", "โรคผิวหนัง"};
+        final String[] office = new String[] {"สถาบันวิจัยสมุนไพร"};
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
 

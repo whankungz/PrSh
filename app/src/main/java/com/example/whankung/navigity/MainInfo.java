@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class MainInfo extends Fragment {
     private View rootView;
     private Typeface font;
     private TextView tv, im, im2, im3, im4, im5, im6, p, p2, p3, p4, p5, p6, st, st2, st3, st4, st5, st6;
-    private ImageView img, i, i2, i3, i4, i5, i6, sta, sta2, sta3, sta4, sta5, sta6;
+    private ImageView img, i;
     public static final String BASE_URL = "http://192.168.181.50:8080/Servies/webresources/";
     private static final String TAG = "log";
     private String[] web;
@@ -37,7 +38,8 @@ public class MainInfo extends Fragment {
         rootView = inflater.inflate(R.layout.stucture_info, container, false);
         // setView();
         // setInfo();
-        web = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        img = (ImageView) rootView.findViewById(R.id.i_Info);
+        web = new String[]{"ยังรับได้ยังทำได้", "ดื่มไม่ขับ", "วิธีจัดการตัวเอง", "อุบัติเหตุบนท้องถนน", "ลดความเร็วลดความเสี่ยง", "FAST", "มะเร็งช่องปาก", "กลุ่มโรคเสี่ยงป้องกันได้", "ดื่มไม่ขับ"};
         Imageid = new int[]{R.drawable.img_in
                 , R.drawable.img_in2, R.drawable.img_in3
                 , R.drawable.img_in4, R.drawable.img_in5, R.drawable.img_in6
@@ -48,8 +50,16 @@ public class MainInfo extends Fragment {
         gridview.setAdapter(adapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+//                Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
+//                switch (position) {
+//
+//                    case 0:
+//                        img.setImageResource(R.drawable.img_in_big);
+//                        break;
+//                    case 1:
+//                        img.setImageResource(R.drawable.img_in2);
+//                }
 
-                Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
                 FragmentManager m = getFragmentManager();
                 FragmentTransaction t = m.beginTransaction();
                 title = web[position];

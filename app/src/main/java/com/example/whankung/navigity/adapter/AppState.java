@@ -1,5 +1,10 @@
 package com.example.whankung.navigity.adapter;
 
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -7,7 +12,7 @@ import android.widget.TextView;
  * Created by Whankung on 11/3/2560.
  */
 
-public class AppState {
+public class AppState{
     private static AppState singleInstance;
 
     private boolean isLoggingOut;
@@ -27,6 +32,33 @@ public class AppState {
         AppState.firstOpenApp = firstOpenApp;
     }
 
+
+
+        public boolean isNetworkAvailables(Context context) {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
+
+    }
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivity =(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (connectivity == null) {
+            return false;
+        } else {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
     private String nameH;
 
     private static Boolean firstOpenApp;
