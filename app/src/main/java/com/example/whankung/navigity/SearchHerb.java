@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class SearchHerb extends android.support.v4.app.Fragment {
     private View rootView;
     private TabLayout tabLayout;
     private RatingBar rat;
-    private RelativeLayout ment;
+    private CardView ment;
     private String title;
     private String titleid;
 
@@ -63,7 +64,7 @@ public class SearchHerb extends android.support.v4.app.Fragment {
 
             @Override
             public void onPageSelected(int position) {
-               // ment = (RelativeLayout) rootView.findViewById(R.id.relament);
+                ment = (CardView) rootView.findViewById(R.id.card_view);
                 rat = (RatingBar) rootView.findViewById(R.id.rat);
                 if (AppState.getSingleInstance().isRating(true)) {
                     rat.setVisibility(VISIBLE);

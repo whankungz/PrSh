@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,128 +6,124 @@
     android:orientation="vertical">
 
 
-
-
-            <TextView
-                android:id="@+id/proper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="สรรพคุณ"
-                android:textColor="#a3a2a2"
-                android:textSize="4dp"
-                android:visibility="gone" />
-
-
-            <TextView
-                android:id="@+id/properdata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#1a1919"
-                android:textSize="20dp"
-                android:visibility="gone" />
-
-
-            <TextView
-                android:id="@+id/how"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="วิธีรับประทาน"
-                android:textColor="#a3a2a2"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/howdata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/how"
-                android:textColor="#1a1919"
-                android:textSize="20dp" />
-
-
+    <TextView
+        android:id="@+id/proper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="สรรพคุณ"
+        android:textColor="#a3a2a2"
+        android:textSize="4dp"
+        android:visibility="gone" />
 
 
     <TextView
-                android:id="@+id/t"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/howdata"
-                android:layout_marginTop="14dp"
-                android:text="ข้อควรระวัง"
-                android:textColor="#a3a2a2"
-                android:textSize="16dp" />
-
-            <TextView
-                android:id="@+id/tdata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/t"
-                android:textColor="#1a1919"
-                android:textSize="20dp" />
+        android:id="@+id/properdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1a1919"
+        android:textSize="20dp"
+        android:visibility="gone" />
 
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.8dp"
-                android:layout_marginTop="14dp"
-                android:background="#eaeaea"
-                android:visibility="gone" />
+    <TextView
+        android:id="@+id/how"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="วิธีรับประทาน"
+        android:textColor="#a3a2a2"
+        android:textSize="16dp" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="14dp"
-                android:visibility="gone">
+    <TextView
+        android:id="@+id/howdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/how"
+        android:textColor="#1a1919"
+        android:textSize="20dp" />
 
-                <ImageView
-                    android:id="@+id/peop"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_whan" />
 
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="240dp"
-                    android:background="#ffffff"
-                    android:text="12/01/60"
-                    android:textColor="#d6d6d6"
-                    android:textSize="14dp" />
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/howdata"
+        android:layout_marginTop="14dp"
+        android:text="ข้อควรระวัง"
+        android:textColor="#a3a2a2"
+        android:textSize="16dp" />
 
-                <TextView
-                    android:id="@+id/nameMe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="17dp"
-                    android:background="#ffffff"
-                    android:text="รสชาติอร่อยถูกปากคนไทย"
-                    android:textColor="#5e5e5e"
-                    android:textSize="16dp" />
+    <TextView
+        android:id="@+id/tdata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/t"
+        android:textColor="#1a1919"
+        android:textSize="20dp" />
 
-            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/Uname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:text="whankungz"
-                android:textColor="#c4c4c4"
-                android:textSize="18dp"
-                android:visibility="gone" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="14dp"
+        android:background="#eaeaea"
+        android:visibility="gone" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.8dp"
-                android:layout_below="@id/tdata"
-                android:layout_marginTop="14dp"
-                android:background="#eaeaea"
-                android:visibility="gone" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="14dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/peop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_whan" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240dp"
+            android:background="#ffffff"
+            android:text="12/01/60"
+            android:textColor="#d6d6d6"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/nameMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="17dp"
+            android:background="#ffffff"
+            android:text="รสชาติอร่อยถูกปากคนไทย"
+            android:textColor="#5e5e5e"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/Uname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:text="whankungz"
+        android:textColor="#c4c4c4"
+        android:textSize="18dp"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:layout_below="@id/tdata"
+        android:layout_marginTop="14dp"
+        android:background="#eaeaea"
+        android:visibility="gone" />
 
 
     <android.support.v7.widget.CardView
@@ -139,9 +134,11 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="4dp"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/cardview_light_background">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="4dp">
@@ -159,11 +156,11 @@
                 android:stepSize="1.0" />
 
             <TextView
-                android:layout_below="@id/rat"
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_below="@id/rat"
                 android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:onClick="ClickStart"
@@ -188,14 +185,14 @@
                 android:textSize="20dp" />
 
 
-
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
     <ListView
-        android:layout_below="@id/ment"
         android:id="@+id/post"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ment" />
 
 </LinearLayout>

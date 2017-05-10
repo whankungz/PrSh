@@ -1,6 +1,9 @@
 package com.example.whankung.navigity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,17 +21,27 @@ import android.widget.Toast;
 
 
 import com.example.whankung.navigity.adapter.AppState;
+import com.example.whankung.navigity.db.DBHandler;
 import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
 
-import com.facebook.stetho.Stetho;
+
+import com.google.appengine.repackaged.com.google.common.base.Flag;
+import com.koushikdutta.async.util.FileCache;
 import com.sromku.simple.storage.SimpleStorage;
 
+import com.sromku.simple.storage.Storable;
 import com.sromku.simple.storage.Storage;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -42,11 +55,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+
 /**
  * Created by Whankung on 22/1/2560.
  */
 
 public class SearchDisease extends Fragment {
+    private static final String TABLE_CONTACTS = "Disease";
+    private static final String KEY_NAME_D = "dName";
+    private static final String KEY_NAME_H = "hName";
     private View rootView;
     private TabLayout tabLayout;
     private Typeface font;
@@ -57,24 +74,48 @@ public class SearchDisease extends Fragment {
     //        service
     public static final String BASE_URL = "http://192.168.181.103:8080/Servies/webresources/";
     private static final String TAG = "log";
+    private List<DRequest> disease;
 
     public SearchDisease(String title) {
         this.title = title;
     }
 
+    private Storage storage, storage2;
     private OkHttpClient client;
+    //    SQLiteDatabase db;
+    private String content;
+    private Call<List<DRequest>> calls;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.search_disease, container, false);
         // AppState.getSingleInstance().getFirstOpenApp();
-
+        storage2 = SimpleStorage.getInternalStorage(getActivity().getApplicationContext());
         setRating();
         setView();
-        setSearch();
+        writeToFile(disease, getActivity().getApplicationContext());
+        readFromFile(getActivity().getApplicationContext());
         setServices();
+        setSearch();
 
+        /**
+         * CRUD Operations
+         * */
+        // Inserting Contacts
+        Log.d("Insert: ", "Inserting ..");
+//        db.addContact(new Contact("Ravi", "9100000000"));
+//        db.addContact(new Contact("Srinivas", "9199999999"));
+//        db.addContact(new Contact("Tommy", "9522222222"));
+//        db.addContact(new Contact("Karthik", "9533333333"));
+
+        // Reading all contacts
+//        Log.d("Reading: ", "Reading all contacts..");
+//        List<DRequest> contacts = db.addContact();
+//        for (DRequest cn : contacts) {
+//            String log = "Id: "+cn.getID()+" ,Name: " + cn.getName() + " ,Phone: " + cn.getPhoneNumber();
+//            // Writing Contacts to log
+//            Log.d("Name: ", log);
 //        if(AppState.getSingleInstance().isNetworkAvailable(getActivity())) {
 //            setServices();
 //        } else {
@@ -120,14 +161,6 @@ public class SearchDisease extends Fragment {
 
     }
 
-    private void setSearch() {
-//        t2.setText("ปวดฟัน");
-//        t4.setText("กานพลู ดาวเรือง เมล็ดผักชี ผักบุ้งนา มะระ ว่านหางจระเข้ น้ำมันกระเทียม ใบชา เมล็ดกุยช่าย");
-//        t6.setText("เวลากินของเย็น ของหวาน หรือเมื่อตอนเคี้ยวอาหารและอาการเหล่านี้จะหายไปเมื่อหยุดกินอาหารดังกล่าวภายในไม่กี่นาึ่งลักษณะของอาการปวดเช่นนี้มักเกิดจากฟันผุหรือฟันบิ่นจนถึงเนื้อฟันชั้นในจึงทำให้ความเย็นหรือแรงจากการเคี้ยวอาหารมีโอกาสกระตุ้นเส้นประสาทที่อยู่ในโพรงประสาทใต้เนื้อฟันได้มากกว่าปกติ จึงทำให้เกิดความรู้สึกเสียวฟันทุกครั้งเมื่อกินอาหาร ส่วนอาการปวดฟันอีกประเภทหนึ่ง ซึ่งจะมีความรุนแรงกว่า คือ การปวดเป็นจังหวะ ตุ้บ ๆ ซึ่งอาจปวดโดยอยู่เฉย ๆ ก็ปวด หรืออาจปวดมากขึ้นเวลากินของเย็นหรือของร้อน หรือเวลาเคี้ยวอาหาร และอาการปวดนี้จะไม่หายไปแม้จะเลิกกินอาหารเหล่านี้แล้วก็ตาม");
-//        t8.setText("หลีกเลี่ยงอาหารประเภทดังกล่าวพร้อมกับการรับประทานยาแก้ปวด");
-
-
-    }
 
     private void setRating() {
 
@@ -139,108 +172,152 @@ public class SearchDisease extends Fragment {
         }
     }
 
-    public void setNoServices() {
+    public void setServices() {
+        storage = null;
+        if (SimpleStorage.isExternalStorageWritable()) {
+
+            storage = SimpleStorage.getExternalStorage();
+        } else {
+            storage = SimpleStorage.getInternalStorage(getActivity());
+        }
+        //  storage = SimpleStorage.getExternalStorage();
+        //   final DRequest disease = new DRequest();
+
+        calls = Http.getInstance().getDisease().loadJson();
+        calls.request();
+
+        calls.enqueue(new Callback<List<DRequest>>() {
+            @Override
+            public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    disease = response.body();
+                    DBHandler db = new DBHandler(getActivity());
+                    Log.d("Reading: ", "Reading all contacts..");
+                    //  disease = db.addContact();
 
 
-//        OkHttpClient client = new OkHttpClient
-//                .Builder()
-//                .cache(new okhttp3.Cache(getActivity().getCacheDir(), 10 * 1024 * 1024)) // 10 MB
-//                .addInterceptor(new Interceptor() {
-//                    @Override public okhttp3.Response intercept(Chain chain) throws IOException {
-//                        Request request = chain.request();
-//                        if (AppState.getSingleInstance().isNetworkAvailable()) {
-//                            request = request.newBuilder().header("Cache-Control", "public, max-age=" + 60).build();
-//                        } else {
-//                            request = request.newBuilder().header("Cache-Control", "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7).build();
-//                        }
-//                        return chain.proceed(request);
-//                    }
-//                })
-//                .build();
-        // Http.getInstance().getArticle();
+                    for (DRequest d : disease) {
 
-    }
-                private void setServices() {
+                        try {
+                            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+                           // outputStreamWriter.write(d.getDiseaseName());
+                            outputStreamWriter.write(d.getDiseaseName());
+                            outputStreamWriter.close();
+                        } catch (IOException e) {
+                            Log.e("Exception", "File write failed: " + e.toString());
+                        }
 
-                    final Storage storage = SimpleStorage.getExternalStorage();
-                    final DRequest disease = new DRequest();
+                        storage.createDirectory("MyDirName");
+                        storage.createDirectory("MyDirName/MySubDirectory");
+                        storage.createDirectory("MyDirName", true);
+                        storage.createFile("MyDirName", "fileName", d.getDiseaseName());
 
+                        db.addContact(new DRequest(d.getDiseaseName(), d.getHerb()));
+                        db.getAllShops();
+                        String log = d.getDiseaseName();
+                        Log.d("Name: ", log);
 
+                        if (d.getDiseaseName().equals(title)) {
+                            String ret = "";
 
-                    final Call<List<DRequest>> calls = Http.getInstance().getDisease().loadJson();
+                            try {
+                                InputStream inputStream = getContext().openFileInput("d.txt");
 
-                    calls.request();
-                    Stetho.initializeWithDefaults(getActivity());
+                                if (inputStream != null) {
+                                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                                    String receiveString = "";
+                                    StringBuilder stringBuilder = new StringBuilder();
 
-                    calls.enqueue(new Callback<List<DRequest>>()
-
-                    {
-                        @Override
-                        public void onResponse(Call<List<DRequest>> call, Response<List<DRequest>> response) {
-
-                            if (response.isSuccessful()) {
-
-                                List<DRequest> disease = response.body();
-
-
-
-                                // List<File> disease = storage.getNestedFiles("MyDirName");
-//                    Storage storage = null;
-//                    if (SimpleStorage.isExternalStorageWritable()) {
-//                        storage = SimpleStorage.getExternalStorage();
-//                    } else {
-//                        storage = SimpleStorage.getInternalStorage(getContext());
-//                    }
-
-                                // Can iterate through list and grab Getters from POJO
-
-
-                                for (DRequest d : disease) {
-
-                                   // List<File> files = storage.getNestedFiles("d");
-
-//                        storage.createDirectory("MyDirName", true);
-                                    // storage.createFile("MyDirName", "fileName", d.getDiseaseName());
-
-
-                                    //   storage.createDirectory("MyDirName/MySubDirectory");
-
-//                storage.createFile("MyDirName", "fileName", "some content of the file");
-
-
-                                    if (d.getDiseaseName().equals(title)) {
-
-
-                                        //String content = storage.readTextFile("MyDirName", "fileName");
-                                      //  Log.d(TAG, "qqq" + );
-
-//t2.setText(storage);
-//                            t4.setText(d.getHerb());
-//                            t6.setText(d.getSymptom());
-//                            t8.setText(d.getHowtoRelief());
-                                        t2.setText(d.getDiseaseName());
-                                        t4.setText(d.getHerb());
-                                        t6.setText(d.getSymptom());
-                                        t8.setText(d.getHowtoRelief());
-
-
-
+                                    while ((receiveString = bufferedReader.readLine()) != null) {
+                                        stringBuilder.append(receiveString);
 
                                     }
 
+                                    inputStream.close();
+                                    ret = stringBuilder.toString();
+                                    t2.setText(ret);
                                 }
-
-                            } else{
+                            } catch (FileNotFoundException e) {
+                                Log.e("login activity", "File not found: " + e.toString());
+                            } catch (IOException e) {
+                                Log.e("login activity", "Can not read file: " + e.toString());
 
                             }
+                            byte[] bytes = storage.readFile("MyDirName", "fileName");
+                            content = storage.readTextFile("MyDirName", "fileName");
+                            // t2.setText(content);
+                            // t2.setText(d.getDiseaseName());
+
+
+                            t4.setText(d.getHerb());
+                            t6.setText(d.getSymptom());
+                            t8.setText(d.getHowtoRelief());
+
+
                         }
 
-                        @Override
-                        public void onFailure(Call<List<DRequest>> call, Throwable t) {
-                            Log.d(TAG, "onFailure:  " + t.toString());
-                        }
-                    });
+                    }
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DRequest>> call, Throwable t) {
+
+
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
+    }
+
+    private void setSearch() {
+//        content = storage.readTextFile("MyDirName", "fileName");
+     //   t2.setText(content);
+
+
+    }
+
+    private void writeToFile(List<DRequest> data, Context context) {
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("d", Context.MODE_PRIVATE));
+            outputStreamWriter.write(String.valueOf(data));
+            t2.setText((CharSequence) data);
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
+        }
+    }
+
+    private String readFromFile(Context context) {
+
+        String ret = "";
+
+        try {
+            InputStream inputStream = context.openFileInput("d");
+
+            if (inputStream != null) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((receiveString = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(receiveString);
                 }
 
-
+                inputStream.close();
+                ret = stringBuilder.toString();
             }
+        } catch (FileNotFoundException e) {
+            Log.e("login activity", "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e("login activity", "Can not read file: " + e.toString());
+        }
+
+        return ret;
+    }
+}

@@ -17,6 +17,11 @@ import android.widget.TextView;
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.adapter.CustomAdapterH;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.example.whankung.navigity.R.id.post;
+
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -27,8 +32,10 @@ public class MainFavorite extends android.support.v4.app.Fragment {
     private Typeface font;
     private TextView fav;
     private String title,titleid;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList,arrayTime;
 //    ArrayAdapter<String> adapter;
-    private CustomAdapterH adapter;
+    //private CustomAdapterH adapter;
     ListView lv;
 //    private HRequest h;
 //    public MainFavorite(HRequest h) {
@@ -62,22 +69,31 @@ public class MainFavorite extends android.support.v4.app.Fragment {
 //                "ชมพู่", "กา", "ว่านหาง", "กระชายดำ", "ขิง",
 //                "ตะไคร้หอม", "พริก"};
 
-        int[] resId = { R.drawable.img_ruby
-                , R.drawable.img_herb, R.drawable.img_lemon
-                , R.drawable.img_ruby2, R.drawable.img_lemon5};
-//        final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
-//                "ฟ้าทะลายโจร", "พญายอ"};
-        final String[] idH = new String[]{"1", "2", "3",
-                "4", "5"};
-        final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
+//        int[] resId = { R.drawable.img_ruby
+//                , R.drawable.img_herb, R.drawable.img_lemon
+//                , R.drawable.img_ruby2, R.drawable.img_lemon5};
+        String[] m = {"q"};
+
+
+
+        arrayList = new ArrayList<>(Arrays.asList(m));
+
+
+
+
+
+//        final String[] idH = new String[]{"1", "2", "3",
+//                "4", "5"};
+      //  final String[] herbs = new String[]{AppState.getSingleInstance().getDataHerb()};
         if (AppState.getSingleInstance().isDataHerb2(true)) {
           //  fav.setText(AppState.getSingleInstance().getNameH());
 //            fav.setText(AppState.getSingleInstance().getNamePhama());
 
 // adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name, herbs);
-            adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId);
-
+         //   adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId);
+            adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.mentP, arrayList);
             lv.setAdapter(adapter);
+           // arrayList.add();
           //  lv.getAdapter().getCount();
             lv.setTextFilterEnabled(true);
 //            fav.setOnClickListener(new View.OnClickListener() {

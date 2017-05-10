@@ -16,6 +16,17 @@ public class DRequest {
     private String howtoRelief;
     private String diseaseID;
 
+    public DRequest(String herb, String diseaseName) {
+        this.diseaseName=diseaseName;
+        this.herb=herb;
+
+    }
+
+    public DRequest() {
+
+    }
+
+
     public String getDiseaseID() {
         return diseaseID;
     }

@@ -120,6 +120,7 @@ private Retrofit retrofit;
 //
         OkHttpClient Client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
+
                 // Enable response caching
                 //.addNetworkInterceptor(new ResponseCacheInterceptor())
 //                .addInterceptor(new OfflineResponseCacheInterceptor() {
@@ -638,6 +639,7 @@ private Retrofit retrofit;
         info = retrofit.create(InfoInterface.class);
         office = retrofit.create(OfInterface.class);
     }
+
     private static class ResponseCacheInterceptor implements Interceptor {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -651,7 +653,7 @@ private Retrofit retrofit;
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
-            if (AppState.getSingleInstance().isNetworkAvailable(this)) {
+            if (!AppState.getSingleInstance().isNetworkAvailable(this)) {
                 request = request.newBuilder()
                         .url(BASE_URL)
                         .header("Cache-Control",
