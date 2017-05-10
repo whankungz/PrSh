@@ -26,8 +26,6 @@ import com.example.whankung.navigity.services.Disease.DRequest;
 import com.example.whankung.navigity.services.Http;
 
 
-import com.google.appengine.repackaged.com.google.common.base.Flag;
-import com.koushikdutta.async.util.FileCache;
 import com.sromku.simple.storage.SimpleStorage;
 
 import com.sromku.simple.storage.Storable;
@@ -70,7 +68,7 @@ public class SearchDisease extends Fragment {
     private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date;
     private RatingBar rata;
     private RelativeLayout rat;
-    private String title;
+    private String title, d1, d2, d3, d4;
     //        service
     public static final String BASE_URL = "http://192.168.181.103:8080/Servies/webresources/";
     private static final String TAG = "log";
@@ -94,10 +92,9 @@ public class SearchDisease extends Fragment {
         storage2 = SimpleStorage.getInternalStorage(getActivity().getApplicationContext());
         setRating();
         setView();
-        writeToFile(disease, getActivity().getApplicationContext());
-        readFromFile(getActivity().getApplicationContext());
+
         setServices();
-        setSearch();
+        setSearch(getContext());
 
         /**
          * CRUD Operations
@@ -193,60 +190,55 @@ public class SearchDisease extends Fragment {
                 if (response.isSuccessful()) {
                     disease = response.body();
                     DBHandler db = new DBHandler(getActivity());
-                    Log.d("Reading: ", "Reading all contacts..");
+
                     //  disease = db.addContact();
 
 
                     for (DRequest d : disease) {
 
-                        try {
-                            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-                           // outputStreamWriter.write(d.getDiseaseName());
-                            outputStreamWriter.write(d.getDiseaseName());
-                            outputStreamWriter.close();
-                        } catch (IOException e) {
-                            Log.e("Exception", "File write failed: " + e.toString());
-                        }
+//                        storage.createDirectory("MyDirName");
+//                        storage.createDirectory("MyDirName/MySubDirectory");
+//                        storage.createDirectory("MyDirName", true);
+//                        storage.createFile("MyDirName", "fileName", d.getDiseaseName());
+//
+//                        db.addContact(new DRequest(d.getDiseaseName(), d.getHerb()));
+//                        db.getAllShops();
 
-                        storage.createDirectory("MyDirName");
-                        storage.createDirectory("MyDirName/MySubDirectory");
-                        storage.createDirectory("MyDirName", true);
-                        storage.createFile("MyDirName", "fileName", d.getDiseaseName());
-
-                        db.addContact(new DRequest(d.getDiseaseName(), d.getHerb()));
-                        db.getAllShops();
-                        String log = d.getDiseaseName();
-                        Log.d("Name: ", log);
 
                         if (d.getDiseaseName().equals(title)) {
-                            String ret = "";
-
                             try {
-                                InputStream inputStream = getContext().openFileInput("d.txt");
+                                if (d.getDiseaseName().equals(title)) {
+                                    OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+                                    outputStreamWriter.write(d.getDiseaseName());
 
-                                if (inputStream != null) {
-                                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                                    String receiveString = "";
-                                    StringBuilder stringBuilder = new StringBuilder();
 
-                                    while ((receiveString = bufferedReader.readLine()) != null) {
-                                        stringBuilder.append(receiveString);
-
-                                    }
-
-                                    inputStream.close();
-                                    ret = stringBuilder.toString();
-                                    t2.setText(ret);
+//                                outputStreamWriter.write(d.getHerb());
+//                                outputStreamWriter.write(d.getSymptom());
+//                                outputStreamWriter.write(d.getHowtoRelief());
+                                    outputStreamWriter.close();
                                 }
-                            } catch (FileNotFoundException e) {
-                                Log.e("login activity", "File not found: " + e.toString());
                             } catch (IOException e) {
-                                Log.e("login activity", "Can not read file: " + e.toString());
-
+                                Log.e("Exception", "File write failed: " + e.toString());
                             }
-                            byte[] bytes = storage.readFile("MyDirName", "fileName");
-                            content = storage.readTextFile("MyDirName", "fileName");
+                            if (d.getDiseaseName().equals(title)) {
+                                try {
+                                    if (d.getDiseaseName().equals(title)) {
+                                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("db.txt", Context.MODE_PRIVATE));
+                                        outputStreamWriter.write(d.getHerb());
+
+
+//                                outputStreamWriter.write(d.getHerb());
+//                                outputStreamWriter.write(d.getSymptom());
+//                                outputStreamWriter.write(d.getHowtoRelief());
+                                        outputStreamWriter.close();
+                                    }
+                                } catch (IOException e) {
+                                    Log.e("Exception", "File write failed: " + e.toString());
+                                }
+                            }
+t2.setText(d.getDiseaseName());
+//                            byte[] bytes = storage.readFile("MyDirName", "fileName");
+//                            content = storage.readTextFile("MyDirName", "fileName");
                             // t2.setText(content);
                             // t2.setText(d.getDiseaseName());
 
@@ -256,13 +248,13 @@ public class SearchDisease extends Fragment {
                             t8.setText(d.getHowtoRelief());
 
 
-                        }
-
-                    }
+                        }}
 
                 } else {
 
+
                 }
+
             }
 
             @Override
@@ -272,32 +264,18 @@ public class SearchDisease extends Fragment {
                 Log.d(TAG, "onFailure:  " + t.toString());
             }
         });
-    }
-
-    private void setSearch() {
-//        content = storage.readTextFile("MyDirName", "fileName");
-     //   t2.setText(content);
-
 
     }
 
-    private void writeToFile(List<DRequest> data, Context context) {
+    private void setSearch(Context context) {
+        d1 = "";
+
+
+//    d2 = "";
+//    d3 = "";
+//    d4 = "";
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("d", Context.MODE_PRIVATE));
-            outputStreamWriter.write(String.valueOf(data));
-            t2.setText((CharSequence) data);
-            outputStreamWriter.close();
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
-
-    private String readFromFile(Context context) {
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = context.openFileInput("d");
+            InputStream inputStream = getContext().openFileInput("d.txt");
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -307,17 +285,102 @@ public class SearchDisease extends Fragment {
 
                 while ((receiveString = bufferedReader.readLine()) != null) {
                     stringBuilder.append(receiveString);
+
                 }
 
                 inputStream.close();
-                ret = stringBuilder.toString();
+                d1 = stringBuilder.toString();
+
+                t2.setText(d1);
+//                t4.setText(d2);
+//                t6.setText(d3);
+//                t8.setText(d4);
             }
         } catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             Log.e("login activity", "Can not read file: " + e.toString());
+
+            d2 = "";
+
+
+//    d2 = "";
+//    d3 = "";
+//    d4 = "";
+            try {
+                InputStream inputStream = getContext().openFileInput("db.txt");
+
+                if (inputStream != null) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                    String receiveString = "";
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    while ((receiveString = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(receiveString);
+
+                    }
+
+                    inputStream.close();
+                    d2 = stringBuilder.toString();
+
+                    t4.setText(d2);
+//                t4.setText(d2);
+//                t6.setText(d3);
+//                t8.setText(d4);
+                }
+            } catch (FileNotFoundException e2) {
+                Log.e("login activity", "File not found: " + e.toString());
+            } catch (IOException e2) {
+                Log.e("login activity", "Can not read file: " + e.toString());
+
+            }
+
+
+//        content = storage.readTextFile("MyDirName", "fileName");
+            //   t2.setText(content);
+
         }
 
-        return ret;
+
+//    private void writeToFile(List<DRequest> data, Context context) {
+//        try {
+//            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("d", Context.MODE_PRIVATE));
+//            outputStreamWriter.write(String.valueOf(data));
+//            t2.setText((CharSequence) data);
+//            outputStreamWriter.close();
+//        } catch (IOException e) {
+//            Log.e("Exception", "File write failed: " + e.toString());
+//        }
+//    }
+//
+//    private String readFromFile(Context context) {
+//
+//        String ret = "";
+//
+//        try {
+//            InputStream inputStream = context.openFileInput("d");
+//
+//            if (inputStream != null) {
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//                String receiveString = "";
+//                StringBuilder stringBuilder = new StringBuilder();
+//
+//                while ((receiveString = bufferedReader.readLine()) != null) {
+//                    stringBuilder.append(receiveString);
+//                }
+//
+//                inputStream.close();
+//                ret = stringBuilder.toString();
+//            }
+//        } catch (FileNotFoundException e) {
+//            Log.e("login activity", "File not found: " + e.toString());
+//        } catch (IOException e) {
+//            Log.e("login activity", "Can not read file: " + e.toString());
+//        }
+//
+//        return ret;
+//    }
     }
 }

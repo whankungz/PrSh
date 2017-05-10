@@ -28,7 +28,7 @@ dependencies {
     })
     compile project(':jtds-1.2.7')
     compile project(':jtds-1.2.7-sources')
-    compile files('libs/FileCacher.jar')
+
 
 
 
