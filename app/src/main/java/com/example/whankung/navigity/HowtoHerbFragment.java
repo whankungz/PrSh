@@ -252,10 +252,11 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                             try {
 
                                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-                                outputStreamWriter.write(h.getHowto());
+
+                                outputStreamWriter.write("วิธีใช้      "+h.getHowto());
 
 
-                                outputStreamWriter.write(h.getWarning());
+                                outputStreamWriter.write("\n"+"ข้อควรระวัง     "+h.getWarning());
 
 //                                outputStreamWriter.write(d.getSymptom());
 //                                outputStreamWriter.write(d.getHowtoRelief());
