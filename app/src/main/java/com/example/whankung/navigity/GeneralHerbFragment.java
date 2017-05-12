@@ -48,7 +48,10 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     public GeneralHerbFragment(String titleid, String title) {
         this.title = title;
         this.titleid = titleid;
+
     }
+
+
 
     @Nullable
     @Override
@@ -113,6 +116,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
                             herb2.setText(h.getHerbName());
                             other2.setText(h.getHerbOtherName());
                             see2.setText(h.getProperties());
+                           // i1.setImageResource(pic);
 
                         }
 
@@ -305,7 +309,8 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
 
 //        herb2.setText("ทับทิม");
 //        other2.setText("เซี๊ยะลิ้ว, พิลา, พิลาขาว, มะก่องแก้ว, มะเก๊าะ, หมากจัง");
-        //     i1.setImageResource(R.drawable.img_ruby);
+
+        //    i1.setImageResource(R.drawable.img_ruby);
 //        see2.setText("ไม้พุ่ม ปลายกิ่งอ่อนโค้งเล็กและมักมีหนามแหลม");
         //     i2.setImageResource(R.drawable.img_ruby3);
         //    data.setText("ใบเดี่ยว ออกเป็นคู่ตรงข้ามกัน รูปรีแกมขอบขนาน โคนใบสอบแคบ ปลายใบกว้าง เนื้อใบบางและเป็นมัน");

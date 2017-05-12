@@ -38,6 +38,8 @@ public class SearchHerb extends android.support.v4.app.Fragment {
         this.titleid = titleid;
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {

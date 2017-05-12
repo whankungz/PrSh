@@ -87,7 +87,7 @@ private  String[] ratS=new String[]{};
                 Log.d(TAG, "onFailure:  " + t.toString());
             }
         });
-        int[] resId = { R.drawable.img_ruby
+        final int[] resId = { R.drawable.img_ruby
                 , R.drawable.img_herb, R.drawable.img_lemon
                 , R.drawable.img_ruby2, R.drawable.img_lemon5};
         final String[] herbs = new String[]{"ทับทิม", "ตะไคร้หอม", "มะนาว",
@@ -111,6 +111,7 @@ private  String[] ratS=new String[]{};
                 FragmentTransaction t = m.beginTransaction();
                 title = herbs[position];
                 String titleid = idH[position];
+               // int pic=resId[position];
                 t.replace(R.id.container, new SearchHerb(title, titleid));
                 t.commit();
 
