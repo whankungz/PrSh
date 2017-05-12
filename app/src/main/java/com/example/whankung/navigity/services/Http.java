@@ -42,9 +42,11 @@ import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Article.AInterface;
 import com.example.whankung.navigity.services.Disease.DInterface;
 import com.example.whankung.navigity.services.Food.FInterface;
+import com.example.whankung.navigity.services.Hcomment.CInterface;
 import com.example.whankung.navigity.services.Herb.HInterface;
 import com.example.whankung.navigity.services.Herb.HimgInterface;
 import com.example.whankung.navigity.services.Herb.HreInterface;
+import com.example.whankung.navigity.services.HerbRating.RatInterface;
 import com.example.whankung.navigity.services.InfoG.InfoInterface;
 import com.example.whankung.navigity.services.Office.OfInterface;
 import com.facebook.stetho.DumperPluginsProvider;
@@ -93,6 +95,26 @@ public class Http  {
     FInterface food;
     InfoInterface info;
     OfInterface office;
+    RatInterface rating;
+    CInterface comment;
+
+    public CInterface getComment() {
+        return comment;
+    }
+
+    public void setComment(CInterface comment) {
+        this.comment = comment;
+    }
+
+    public RatInterface getRating() {
+        return rating;
+    }
+
+    public void setRating(RatInterface rating) {
+        this.rating = rating;
+    }
+
+
 private Retrofit retrofit;
 
     private static final String CACHE_CONTROL = "Cache-Control";
@@ -638,6 +660,8 @@ private Retrofit retrofit;
         food = retrofit.create(FInterface.class);
         info = retrofit.create(InfoInterface.class);
         office = retrofit.create(OfInterface.class);
+        rating = retrofit.create(RatInterface.class);
+        comment = retrofit.create(CInterface.class);
     }
 
     private static class ResponseCacheInterceptor implements Interceptor {

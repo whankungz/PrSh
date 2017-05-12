@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Herb.HimgRequest;
+import com.example.whankung.navigity.services.HerbRating.RatRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
     private View rootView;
     private Typeface font;
     private EditText search;
-    private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6;
+    private TextView herb, herb2, other, other2, see, see2, t, t2, t3, t4, t5, t6, data, data2, data3, data4, data5, data6,ratS;
     private ImageView i1, i2, i3, i4, i5, i6, i7, fav, favC;
     private ProgressBar progressBar;
     public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
@@ -57,8 +58,41 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         setSearch();
         setServices();
         setServices2();
+        setSerRat();
         fav.setVisibility(View.VISIBLE);
         return rootView;
+    }
+
+    private void setSerRat() {
+        Call<List<RatRequest>> call = Http.getInstance().getRating().loadJson();
+        call.enqueue(new Callback<List<RatRequest>>() {
+            public static final String TAG = "";
+
+            @Override
+            public void onResponse(Call<List<RatRequest>> call, Response<List<RatRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    List<RatRequest> rating = response.body();
+                    for (RatRequest r : rating) {
+
+                        if (r.getHerbIdRat().equals(title)) {
+
+                            //   ratS=new String[]{String.valueOf(r.getRatingHerb())};
+                            //p.setText(String.valueOf(r.getRatingHerb()));
+                           ratS.setText("Rating: "+String.valueOf(r.getRatingHerb()));
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RatRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
     }
 
     private void setServices() {
@@ -171,6 +205,7 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
         data4 = (TextView) rootView.findViewById(R.id.tree_t4);
         data5 = (TextView) rootView.findViewById(R.id.tree_t5);
         data6 = (TextView) rootView.findViewById(R.id.tree_t6);
+        ratS = (TextView) rootView.findViewById(R.id.ratShow);
         i1 = (ImageView) rootView.findViewById(R.id.imageView2);
         i2 = (ImageView) rootView.findViewById(R.id.imageView3);
         i3 = (ImageView) rootView.findViewById(R.id.imageView4);

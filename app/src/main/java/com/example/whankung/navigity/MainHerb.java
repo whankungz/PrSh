@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,14 @@ import android.widget.TextView;
 
 import com.example.whankung.navigity.adapter.CustomAdapterH;
 import com.example.whankung.navigity.adapter.HideKeyboard;
+import com.example.whankung.navigity.services.HerbRating.RatRequest;
+import com.example.whankung.navigity.services.Http;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Whankung on 16/1/2560.
@@ -33,7 +42,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private TabLayout tabLayout;
     private Typeface font;
     private EditText search;
-    private TextView t_H, t_H2, t_H3, t_H4, p, p2, p3, p4, s, s2, s3, s4, tb;
+    private TextView rat;
     private ImageView i_H, i_H2, i_H3, i_H4, star, star2, star3, star4;
    // ArrayAdapter<String> adapter;
     ListView lv;
@@ -41,7 +50,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
     private String[] herbs;
     private CustomAdapterH adapter;
     // private String[] herbs;
-
+private  String[] ratS=new String[]{};
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
@@ -49,6 +58,35 @@ public class MainHerb extends android.support.v4.app.Fragment {
         setView();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         HideKeyboard.hideKeyboard(getActivity());
+        Call<List<RatRequest>> call = Http.getInstance().getRating().loadJson();
+        call.enqueue(new Callback<List<RatRequest>>() {
+            public static final String TAG ="" ;
+
+            @Override
+            public void onResponse(Call<List<RatRequest>> call, Response<List<RatRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    List<RatRequest> rating= response.body();
+                    for (RatRequest r : rating) {
+
+                        if (r.getHerbIdRat().equals(title)) {
+
+                          ratS=new String[]{String.valueOf(r.getRatingHerb())};
+                            //p.setText(String.valueOf(r.getRatingHerb()));
+
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<RatRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
         int[] resId = { R.drawable.img_ruby
                 , R.drawable.img_herb, R.drawable.img_lemon
                 , R.drawable.img_ruby2, R.drawable.img_lemon5};
@@ -56,10 +94,12 @@ public class MainHerb extends android.support.v4.app.Fragment {
                 "ฟ้าทะลายโจร", "พญายอ"};
         final String[] idH = new String[]{"1", "2", "3",
                 "4", "5"};
+
+
         lv = (ListView) rootView.findViewById(R.id.list_view);
 
        // adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item, R.id.product_name,herbs);
-        adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId);
+        adapter = new CustomAdapterH(getActivity().getApplicationContext(), herbs, resId,ratS);
         lv.setAdapter(adapter);
         lv.setTextFilterEnabled(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -205,18 +245,18 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
 
     private void setShowHerb() {
-        i_H.setImageResource(R.drawable.img_grass);
-        t_H.setText("ตะไคร้");
-        i_H2.setImageResource(R.drawable.img_ruby4);
-        t_H2.setText("ทับทิม");
-        i_H3.setImageResource(R.drawable.img_lemon2);
-        t_H3.setText("มะนาว");
-        i_H4.setImageResource(R.drawable.img_fa);
-        t_H4.setText("ฟ้าทะลายโจร");
-        star.setImageResource(R.drawable.ic_star2);
-        star2.setImageResource(R.drawable.ic_star2);
-        star3.setImageResource(R.drawable.ic_star2);
-        star4.setImageResource(R.drawable.ic_star2);
+//        i_H.setImageResource(R.drawable.img_grass);
+//        t_H.setText("ตะไคร้");
+//        i_H2.setImageResource(R.drawable.img_ruby4);
+//        t_H2.setText("ทับทิม");
+//        i_H3.setImageResource(R.drawable.img_lemon2);
+//        t_H3.setText("มะนาว");
+//        i_H4.setImageResource(R.drawable.img_fa);
+//        t_H4.setText("ฟ้าทะลายโจร");
+//        star.setImageResource(R.drawable.ic_star2);
+//        star2.setImageResource(R.drawable.ic_star2);
+//        star3.setImageResource(R.drawable.ic_star2);
+//        star4.setImageResource(R.drawable.ic_star2);
 
     }
 

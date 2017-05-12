@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="6dp"
     android:orientation="vertical">
 
 
@@ -10,9 +11,8 @@
         android:id="@+id/proper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="สรรพคุณ"
-        android:textColor="#a3a2a2"
-        android:textSize="4dp"
+        android:textColor="#3d3d3d"
+        android:textSize="40dp"
         android:visibility="gone" />
 
 
@@ -154,10 +154,10 @@
                 android:stepSize="1.0" />
 
             <Button
-                android:layout_alignParentRight="true"
                 android:id="@+id/submit2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:text="Submit"
                 android:textSize="10dp"
                 android:visibility="gone" />
@@ -201,7 +201,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ment" />
-
 
 
 </LinearLayout>

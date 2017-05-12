@@ -2,57 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-  >
+    android:layout_height="fill_parent">
 
     <!--<android.support.v7.widget.CardView-->
-        <!--android:id="@+id/card_view"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:layout_marginTop="4dp"-->
-        <!--android:background="@color/cardview_light_background">-->
+    <!--android:id="@+id/card_view"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="70dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:layout_marginTop="4dp"-->
+    <!--android:background="@color/cardview_light_background">-->
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="10dp">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp">
 
-            <ImageView
-                android:layout_centerVertical="true"
-                android:id="@+id/img"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true" />
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true" />
 
-            <TextView
-                android:id="@+id/herb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textColor="#767676"
-                android:textSize="22dp" />
+        <TextView
+            android:id="@+id/herb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="#767676"
+            android:textSize="22dp" />
 
-            <ImageView
-                android:id="@+id/more"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_more" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/ratingS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="#b7b7b7"
+            android:textSize="16dp" />
 
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/more"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_more" />
+
+
+    </RelativeLayout>
     <!--</android.support.v7.widget.CardView>-->
     <!--<com.like.LikeButton-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--app:icon_type="heart"-->
-        <!--app:icon_size="20dp"-->
-        <!--android:id="@+id/star_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"/>-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--app:icon_type="heart"-->
+    <!--app:icon_size="20dp"-->
+    <!--android:id="@+id/star_button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
 
 </LinearLayout>

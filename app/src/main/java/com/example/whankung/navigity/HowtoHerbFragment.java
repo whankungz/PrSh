@@ -30,7 +30,10 @@ import android.widget.Toast;
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.adapter.CustomAdapterF;
 import com.example.whankung.navigity.adapter.CustomAdapterMent;
+import com.example.whankung.navigity.services.Disease.DRequest;
+import com.example.whankung.navigity.services.Hcomment.CRequest;
 import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.HerbRating.RatRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.io.IOException;
@@ -91,7 +94,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         connectionClass = new ConnectionClass();
         setView();
 
-        //   setData();
+          setData();
 //        setRating();
         setServices();
         if (AppState.getSingleInstance().isRating(true)) {
@@ -153,7 +156,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                 Statement statement = getStatement((Connection) con);
                 String now = AppState.getSingleInstance().getNamePhama();
                 Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String formattedDate = df.format(c.getTime());
                 ResultSet rs = null;
                 try {
@@ -173,7 +176,10 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
 //                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
 //                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
                     rs = statement.executeQuery("INSERT INTO HerbRating "
-                            + "  VALUES ('" + null + "','" + String.valueOf(rat.getRating()) + "','" + null + "','" + AppState.getSingleInstance().getNamePhama() + "','"+formattedDate+"')");
+                            + "  VALUES ('" + null + "','" + String.valueOf(rat.getRating()) + "','" + title + "','" + AppState.getSingleInstance().getNamePhama() + "','"+formattedDate+"')");
+//                   rs=statement.executeQuery(("UPDATE Herb" +
+//                           "SET herbRate = '"+String.valueOf(rat.getRating())+
+//                           "WHERE herbName = '"+title));
                     rs.close();
                     statement.close();
 
@@ -208,7 +214,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        String[] m = {"comment"};
+        String[] m = {"ความคิดเห็นของเภสัชกร"};
         String[] t = {"time"};
 
 
@@ -218,74 +224,6 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         // adapter = new CustomAdapterMent(getActivity().getApplicationContext(), arrayList,arrayTime);
         post.setAdapter(adapter);
 
-        sub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cMent = ment.getText().toString();
-             //   time = (TextClock) rootView.findViewById(R.id.tClock);
-               //  tC = time.getText().toString();
-
-                //  times.setText(tC);
-
-                Connection con = connectionClass.connection();
-                Statement statement = getStatement((Connection) con);
-                String now = AppState.getSingleInstance().getNamePhama();
-                Calendar c = Calendar.getInstance();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                String formattedDate = df.format(c.getTime());
-                arrayList.add("  "+"username : "+AppState.getSingleInstance().getNamePhama()+"       "+   formattedDate+"\n"+cMent);
-                ResultSet rs = null;
-                try {
-                    rs = statement.executeQuery("SELECT usernameDi FROM DiseaseRating");
-                    Log.e("RSSSSSSSSSSSSSSSS", "555555 " + rs.toString());
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    rs.next();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                // if (rs.getArray()!=AppState.getSingleInstance().getNamePhama() )
-                try {
-                    Object o = null;
-//                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
-//                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
-                    rs = statement.executeQuery("INSERT INTO HerbComment "
-                            + "  VALUES ('" + null + "','" + cMent + "','" + null + "','" +  AppState.getSingleInstance().getNamePhama() + "','"+ formattedDate+"')");
-                    rs.close();
-                    statement.close();
-
-                } catch (SQLException e) {
-
-                    e.printStackTrace();
-
-
-                }
-
-                adapter.notifyDataSetChanged();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
-                ment.getText().clear();
-
-            }
-
-            private Statement getStatement(Connection connection) {
-
-                try {
-
-                    return connection.createStatement();
-
-                } catch (Exception e) {
-
-                    throw new RuntimeException(e);
-
-
-                }
-
-            }
-
-        });
 
 
 
@@ -329,6 +267,7 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                             Log.d(TAG, "oooooooooooooo" + h.getHowto());
                             hdata.setText(h.getHowto());
                             tdata.setText(h.getWarning());
+
                             //  data.setText(h.getLeaf());
                         }
 
@@ -346,21 +285,101 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     }
 
     private void setData() {
-        pdata.setText("เปลือก – รักษาอาการท้องเสีย");
-        hdata.setText("1.นำเปลือกทับทิมมาต้มกับน้ำจนเดือดให้เด็กดื่มน้ำทับทิมครั้งละ1-2 ช้อนชา ทุก 4 ชั่วโมงและ1 ช้อนโต๊ะสำหรับผู้ใหญ่\n" +
-                "2.ใช้เปลือกแห้งฝนน้ำรับประทาน");
-        tdata.setText("คนที่แพ้ทับทิมจะเกิดอาการเป็นผื่นลมพิษ การบวมที่ลิ้น ริมฝีปาก มือ แขน ใบหน้า คันตา ตาแดง ระคายเคืองจูก หายใจลำบาก และเกิดภาวะแพ้รุนแรง(anaphylactic) และยังมีรายงานว่าเด็กที่รับประทานเมล็ดทับทิมแล้วเกิดอาการหอบหืดชนิดที่เกี่ยวข้องกับ IgE ขึ้น นอกจากนี้การทดสอบการแพ้ทางผิวหนังของผลสด พบว่ามีอาการแพ้");
+        Call<List<CRequest>> call = Http.getInstance().getComment().loadJson();
+        call.enqueue(new Callback<List<CRequest>>() {
+            @Override
+            public void onResponse(Call<List<CRequest>> call, Response<List<CRequest>> response) {
+
+                if (response.isSuccessful()) {
+                    List<CRequest> comment = response.body();
+                    for (CRequest c : comment) {
+
+                        if (c.getHerbIdCom().equals(title)) {
+                            arrayList.add(c.getHerbComment()+"\n\n"+"username :"+c.getUsernameHerbCom());
+                            sub.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    cMent = ment.getText().toString();
+                                    //   time = (TextClock) rootView.findViewById(R.id.tClock);
+                                    //  tC = time.getText().toString();
+
+                                    //  times.setText(tC);
+
+                                    Connection con = connectionClass.connection();
+                                    Statement statement = getStatement((Connection) con);
+                                    String now = AppState.getSingleInstance().getNamePhama();
+                                    Calendar c = Calendar.getInstance();
+                                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                    String formattedDate = df.format(c.getTime());
+
+                                //    arrayList.add("  "+"username : "+AppState.getSingleInstance().getNamePhama()+"       "+   formattedDate+"\n"+cMent);
+                                    ResultSet rs = null;
+                                    try {
+                                        rs = statement.executeQuery("SELECT usernameDi FROM DiseaseRating");
+                                        Log.e("RSSSSSSSSSSSSSSSS", "555555 " + rs.toString());
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                    try {
+                                        rs.next();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                    // if (rs.getArray()!=AppState.getSingleInstance().getNamePhama() )
+                                    try {
+                                        Object o = null;
+//                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+//                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
+                                        rs = statement.executeQuery("INSERT INTO HerbComment "
+                                                + "  VALUES ('" + null + "','" + cMent + "','" + title + "','" +  AppState.getSingleInstance().getNamePhama() + "','"+ formattedDate+"')");
+                                        rs.close();
+                                        statement.close();
+
+                                    } catch (SQLException e) {
+
+                                        e.printStackTrace();
+
+
+                                    }
+
+                                    adapter.notifyDataSetChanged();
+                                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
+                                    ment.getText().clear();
+
+                                }
+
+                                private Statement getStatement(Connection connection) {
+
+                                    try {
+
+                                        return connection.createStatement();
+
+                                    } catch (Exception e) {
+
+                                        throw new RuntimeException(e);
+
+
+                                    }
+
+                                }
+
+                            });
+
+                            p.setText(String.valueOf(c.getHerbComment()+c.getUsernameHerbCom()));
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
     }
-//    private Statement getStatement(Connection connection) {
-//
-//        try {
-//
-//            return connection.createStatement();
-//
-//        } catch (Exception e) {
-//
-//            throw new RuntimeException(e);
-//
-//        }
-//    }
+
 }

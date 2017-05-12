@@ -84,7 +84,7 @@ public class SearchDisease extends Fragment {
     private RelativeLayout rat;
     private String title, d1, d2, d3, d4;
     //        service
-    public static final String BASE_URL = "http://192.168.43.68:8080/Servies/webresources/";
+    public static final String BASE_URL = "http://192.168.181.103:8080/Servies/webresources/";
     private static final String TAG = "log";
     private List<DRequest> disease;
     private Button b;
