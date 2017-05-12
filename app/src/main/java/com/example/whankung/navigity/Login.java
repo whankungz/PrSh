@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(String r) {
             progressBar.setVisibility(GONE);
-            Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(Login.this, r, Toast.LENGTH_SHORT).show();
             if (isSuccess) {
 
                 //   Toast.makeText(Login.this, "Login Successfull", Toast.LENGTH_LONG).show();
@@ -150,7 +150,7 @@ public class Login extends AppCompatActivity {
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         if (rs.next()) {
-                            z = "good";
+                            z = "hi ";
                             isSuccess = true;
 
 

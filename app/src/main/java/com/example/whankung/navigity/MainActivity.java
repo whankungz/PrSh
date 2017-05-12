@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
@@ -13,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -288,27 +290,41 @@ public class MainActivity extends AppCompatActivity
             startActivity(chooserIntent);
 
         } else if (id == R.id.nav_logout) {
-            SharedPreferences myPrefs = getSharedPreferences("MY",
-                    MODE_PRIVATE);
-            SharedPreferences.Editor editor = myPrefs.edit();
-            editor.clear();
-            editor.commit();
-            AppState.getSingleInstance().setLoggingOut(true);
-            String TAG = "";
-            Log.d(TAG, "Now log out and start the activity login");
-            Intent intent = new Intent(MainActivity.this,
-                    Login.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener(this);
-            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("ออกจากระบบ")
+                    .setMessage("คุณต้องการออกจากระบบหรือไม่ ?")
+                    .setPositiveButton("ใช่", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences myPrefs = getSharedPreferences("MY",
+                                    MODE_PRIVATE);
+                            SharedPreferences.Editor editor = myPrefs.edit();
+                            editor.clear();
+                            editor.commit();
+                            AppState.getSingleInstance().setLoggingOut(true);
+                            String TAG = "";
+                            Log.d(TAG, "Now log out and start the activity login");
+                            Intent intent = new Intent(MainActivity.this,
+                                    Login.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                           // navigationView.setNavigationItemSelectedListener(this);
+                            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+                            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+                            navigationView.getMenu().findItem(R.id.nav_invite).setVisible(false);
 
-            // navigationView.removeHeaderView(nav_header);
-            pro.setVisibility(View.GONE);
-            AppState.getSingleInstance().setRating(false);
-            startActivity(intent);
+                            // navigationView.removeHeaderView(nav_header);
+                            pro.setVisibility(View.GONE);
+                            AppState.getSingleInstance().setRating(false);
+                            startActivity(intent);
+                        }
+                    }).setNegativeButton("ให้ฉันอยู่ต่อ", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).show();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

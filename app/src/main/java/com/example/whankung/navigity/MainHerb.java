@@ -86,6 +86,7 @@ public class MainHerb extends android.support.v4.app.Fragment {
 
 
     private void setView() {
+
         //  tb = (TextView) rootView.findViewById(R.id.toolbar_title);
         //  tb.setText("สมุนไพร");
 //        s = (TextView) rootView.findViewById(R.id.s);

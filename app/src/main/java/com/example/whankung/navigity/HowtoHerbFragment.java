@@ -33,22 +33,29 @@ import com.example.whankung.navigity.adapter.CustomAdapterMent;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.whankung.navigity.Register.*;
+import static java.util.Calendar.AM;
 
 
 /**
@@ -57,21 +64,21 @@ import static com.example.whankung.navigity.Register.*;
 public class HowtoHerbFragment extends android.support.v4.app.Fragment {
     private Typeface font;
     private View rootView;
-    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date, times;
+    private TextView p, pdata, h, hdata, t, tdata, sub, nm, un, date, times,t9;
     private ListView post;
     private RatingBar rat;
     private EditText ment;
     private Register register;
     public static final String BASE_URL = "http://192.168.181.1:8080/Servies/webresources/";
     private static final String TAG = "log";
-    private String title, cMent,tC;
+    private String title, cMent, tC;
     private String titleid;
     private ConnectionClass connectionClass;
+    private TextClock time;
 
-
-   private ArrayAdapter<String> adapter;
-    private ArrayList<String> arrayList,arrayTime;
-   // private CustomAdapterMent adapter;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList, arrayTime;
+    // private CustomAdapterMent adapter;
 
     public HowtoHerbFragment(String titleid, String title) {
         this.title = title;
@@ -87,6 +94,13 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         //   setData();
 //        setRating();
         setServices();
+        if (AppState.getSingleInstance().isRating(true)) {
+            t9.setVisibility(View.VISIBLE);
+            // t9.setVisibility(View.VISIBLE);
+        } else if (AppState.getSingleInstance().isRating(false)) {
+            t9.setVisibility(View.GONE);
+            //   t9.setVisibility(View.GONE);
+        }
         return rootView;
     }
 
@@ -131,110 +145,155 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
         nm.setTypeface(font);
         un.setTypeface(font);
         date.setTypeface(font);
-        rat.setOnTouchListener(new View.OnTouchListener() {
+        t9 = (TextView) rootView.findViewById(R.id.submit2);
+        t9.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    float touchPositionX = event.getX();
-                    float width = rat.getWidth();
-                    float starsf = (touchPositionX / width) * 5.0f;
-                    int stars = (int) starsf + 1;
-                    rat.setRating(stars);
-
-                    Toast.makeText(getActivity(), String.valueOf("test"), Toast.LENGTH_SHORT).show();
-                    v.setPressed(false);
+            public void onClick(View v) {
+                Connection con = connectionClass.connection();
+                Statement statement = getStatement((Connection) con);
+                String now = AppState.getSingleInstance().getNamePhama();
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String formattedDate = df.format(c.getTime());
+                ResultSet rs = null;
+                try {
+                    rs = statement.executeQuery("SELECT usernameDi FROM DiseaseRating");
+                    Log.e("RSSSSSSSSSSSSSSSS", "555555 " + rs.toString());
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    v.setPressed(true);
+                try {
+                    rs.next();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                // if (rs.getArray()!=AppState.getSingleInstance().getNamePhama() )
+                try {
+                    Object o = null;
+//                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+//                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
+                    rs = statement.executeQuery("INSERT INTO HerbRating "
+                            + "  VALUES ('" + null + "','" + String.valueOf(rat.getRating()) + "','" + null + "','" + AppState.getSingleInstance().getNamePhama() + "','"+formattedDate+"')");
+                    rs.close();
+                    statement.close();
+
+                } catch (SQLException e) {
+
+                    e.printStackTrace();
+
+
                 }
 
-                if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setPressed(false);
+
+            }
+
+            private Statement getStatement(Connection connection) {
+
+                try {
+
+                    return connection.createStatement();
+
+                } catch (Exception e) {
+
+                    throw new RuntimeException(e);
+
+
                 }
+                // Toast.makeText(getActivity().getApplicationContext(), String.valueOf(rata.getRating()), Toast.LENGTH_LONG).show();
 
 
-                return true;
+
+               // Toast.makeText(getActivity().getApplicationContext(), String.valueOf(rat.getRating()), Toast.LENGTH_LONG).show();
+
             }
         });
 
-       String[] m = {"comment"};
-       String[] t = {"time"};
+        String[] m = {"comment"};
+        String[] t = {"time"};
 
 
         arrayList = new ArrayList<>(Arrays.asList(m));
-     //   arrayTime = new ArrayList<>(Arrays.asList(t));
+        //   arrayTime = new ArrayList<>(Arrays.asList(t));
         adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.list_item_ment, R.id.mentP, arrayList);
-       // adapter = new CustomAdapterMent(getActivity().getApplicationContext(), arrayList,arrayTime);
+        // adapter = new CustomAdapterMent(getActivity().getApplicationContext(), arrayList,arrayTime);
         post.setAdapter(adapter);
 
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cMent = ment.getText().toString();
-               // TextClock time = (TextClock) rootView.findViewById(R.id.tClock);
-               // tC = time.getText().toString();
+             //   time = (TextClock) rootView.findViewById(R.id.tClock);
+               //  tC = time.getText().toString();
 
-              //  times.setText(tC);
-                arrayList.add(cMent);
+                //  times.setText(tC);
 
+                Connection con = connectionClass.connection();
+                Statement statement = getStatement((Connection) con);
+                String now = AppState.getSingleInstance().getNamePhama();
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedDate = df.format(c.getTime());
+                arrayList.add("  "+"username : "+AppState.getSingleInstance().getNamePhama()+"       "+   formattedDate+"\n"+cMent);
+                ResultSet rs = null;
+                try {
+                    rs = statement.executeQuery("SELECT usernameDi FROM DiseaseRating");
+                    Log.e("RSSSSSSSSSSSSSSSS", "555555 " + rs.toString());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    rs.next();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                // if (rs.getArray()!=AppState.getSingleInstance().getNamePhama() )
+                try {
+                    Object o = null;
+//                ResultSet rs = statement.executeQuery("INSERT INTO Pharmacist "
+//                        + "  VALUES ('',"+u+" ,"+p+" , "+m+")");
+                    rs = statement.executeQuery("INSERT INTO HerbComment "
+                            + "  VALUES ('" + null + "','" + cMent + "','" + null + "','" +  AppState.getSingleInstance().getNamePhama() + "','"+ formattedDate+"')");
+                    rs.close();
+                    statement.close();
+
+                } catch (SQLException e) {
+
+                    e.printStackTrace();
+
+
+                }
 
                 adapter.notifyDataSetChanged();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(ment.getWindowToken(), 0);
                 ment.getText().clear();
 
+            }
+
+            private Statement getStatement(Connection connection) {
+
+                try {
+
+                    return connection.createStatement();
+
+                } catch (Exception e) {
+
+                    throw new RuntimeException(e);
 
 
-//                if(   AppState.getSingleInstance().getFirstOpenApp()){
-//                    AppState.getSingleInstance().setFirstOpenApp(false);
-//                }
+                }
 
-                //arrayList.add(AppState.getSingleInstance().getNamePhama());
             }
 
         });
 
 
-//        sub.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Connection con = connectionClass.connection();
-//                String ments = ment.getText().toString();
-//
-//                Statement statement = getStatement((Connection) con);
-//
-//                try {
-//                    ResultSet rs =statement.executeQuery("SELECT * FROM HerbComment");
-//                    rs.next();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    Object o = null;
-//
-//                    ResultSet rs = statement.executeQuery("INSERT INTO HerbComment "
-//                            + "  VALUES ('1','hhh','hhhhh','uuuu','123456')");
-//                    rs.close();
-//                    statement.close();
-//
-//                } catch (SQLException e) {
-//
-//                    e.printStackTrace();
-//
-//                }
-//
-//
-//
-//
-//                Intent intent = new Intent(getActivity(), GeneralHerbFragment.class);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
+
 
     }
+
+
+
 
 
     private void setServices() {
@@ -252,6 +311,21 @@ public class HowtoHerbFragment extends android.support.v4.app.Fragment {
                     for (HRequest h : herb) {
 
                         if (h.getHerbName().equals(title)) {
+                            try {
+
+                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter.write(h.getHowto());
+
+
+                                outputStreamWriter.write(h.getWarning());
+
+//                                outputStreamWriter.write(d.getSymptom());
+//                                outputStreamWriter.write(d.getHowtoRelief());
+                                outputStreamWriter.close();
+
+                            } catch (IOException e) {
+                                Log.e("Exception", "File write failed: " + e.toString());
+                            }
                             Log.d(TAG, "oooooooooooooo" + h.getHowto());
                             hdata.setText(h.getHowto());
                             tdata.setText(h.getWarning());

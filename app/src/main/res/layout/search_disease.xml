@@ -110,15 +110,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.8dp"
                 android:background="#eaeaea" />
-
+            <!--<android.support.v7.widget.AppCompatRatingBar-->
+                <!--android:id="@+id/rat"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:max="5"-->
+                <!--android:numStars="5"-->
+                <!--android:stepSize="1"-->
+                <!--android:isIndicator="true"-->
+                <!--android:layout_marginTop="4dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
             <RatingBar
+                android:stepSize="1"
                 android:layout_centerHorizontal="true"
+                android:numStars="5"
                 android:id="@+id/rat"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
                 android:layout_gravity="center"
                 android:layout_width="240dp"
                 android:layout_height="40dp" />
+            <Button
+                android:visibility="gone"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:id="@+id/submit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+     />
 <RelativeLayout
   android:visibility="gone"
     android:layout_width="match_parent"

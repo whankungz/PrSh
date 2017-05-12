@@ -29,7 +29,7 @@
         android:id="@+id/how"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="6dp"
         android:text="วิธีรับประทาน"
         android:textColor="#a3a2a2"
         android:textSize="16dp" />
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/how"
         android:textColor="#1a1919"
-        android:textSize="20dp" />
+        android:textSize="14dp" />
 
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/t"
         android:textColor="#1a1919"
-        android:textSize="20dp" />
+        android:textSize="14dp" />
 
 
     <View
@@ -148,12 +148,19 @@
                 android:id="@+id/rat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:numStars="5"
-                android:rating="2.0"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
                 android:stepSize="1.0" />
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/submit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textSize="10dp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/submit"
@@ -174,7 +181,7 @@
             <EditText
                 android:id="@+id/ment"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/submit"
                 android:layout_gravity="center"
                 android:background="#ffffff"
@@ -194,5 +201,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ment" />
+
+
 
 </LinearLayout>

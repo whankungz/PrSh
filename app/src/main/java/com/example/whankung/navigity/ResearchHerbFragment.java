@@ -1,5 +1,6 @@
 package com.example.whankung.navigity;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.example.whankung.navigity.services.Herb.HRequest;
 import com.example.whankung.navigity.services.Http;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 
 import retrofit2.Call;
@@ -73,6 +76,20 @@ public class ResearchHerbFragment extends android.support.v4.app.Fragment {
                     for (HRequest h : herb) {
 
                         if (h.getHerbIdRe().equals(titleid)) {
+                            try {
+
+                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+
+
+
+                                outputStreamWriter.write(h.getResearchName());
+                                outputStreamWriter.write(h.getCreditRe());
+
+                                outputStreamWriter.close();
+
+                            } catch (IOException e) {
+                                Log.e("Exception", "File write failed: " + e.toString());
+                            }
                             link.setText(h.getResearchName());
                             flink.setText(h.getCreditRe());
 
