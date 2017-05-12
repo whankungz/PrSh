@@ -6,11 +6,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.whankung.navigity.services.Herb.HRequest;
+import com.example.whankung.navigity.services.Http;
+import com.example.whankung.navigity.services.Office.OfRequest;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DataOffice extends Fragment {
     private Typeface font;
@@ -29,7 +40,8 @@ public class DataOffice extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceStat) {
         rootView = inflater.inflate(R.layout.stucture_office, container, false);
         setView();
-        setData();
+        setServices();
+      //  setData();
 
         return rootView;
     }
@@ -60,7 +72,42 @@ public class DataOffice extends Fragment {
 
 
     }
+    private void setServices() {
+        Call<List<OfRequest>> call2 = Http.getInstance().getOffice().loadJson();
+//        Call<List<HRequest>> call2 = Http.getInstance().getHerbimg().loadJson();
+        //  call = Http.getInstance().getHerbre().loadJson();
+        call2.enqueue(new Callback<List<OfRequest>>() {
+            @Override
+            public void onResponse(Call<List<OfRequest>> call2, Response<List<OfRequest>> response) {
 
+                if (response.isSuccessful()) {
+                    List<OfRequest> herb = response.body();
+
+                    // Can iterate through list and grab Getters from POJO
+                    for (OfRequest h : herb) {
+
+                        if (h.getContactName().equals(title)) {
+                          nameOf.setText(h.getContactName());
+                            addrdata.setText(h.getAddress());
+                            call.setText(h.getTel());
+                            //fax.setText(h.);
+                            mailOf.setText(h.getEmail());
+                            whyOfdata.setText(h.getRole());
+                            web.setText(h.getWebsite());
+                        }
+
+                    }
+
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<OfRequest>> call, Throwable t) {
+                Log.d(TAG, "onFailure:  " + t.toString());
+            }
+        });
+    }
     private void setData() {
         nameOf.setText("สถาบันวิจัยสมุนไพร");
         addrdata.setText("กรมวิทยาศาสตร์การแพทย์ กระทรวงสาธาณสุข" +

@@ -7,6 +7,13 @@
 
 
 
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/ratS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#9f9f9f"
+        android:textSize="16dp" />
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
@@ -108,13 +115,17 @@
                 <!--android:text="green"-->
                 <!--android:textSize="18dp" />-->
             <RatingBar
+                android:stepSize="1"
+                android:visibility="gone"
                 android:id="@+id/rat"
                 android:layout_centerHorizontal="true"
+                android:numStars="5"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
                 android:layout_gravity="center"
                 android:layout_width="240dp"
                 android:layout_height="40dp" />
+
 
             <View
                 android:layout_marginTop="14dp"
@@ -132,7 +143,6 @@
 
 
                 <TextView
-                    android:layout_below="@+id/rat"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/submitI"
                     android:layout_width="wrap_content"

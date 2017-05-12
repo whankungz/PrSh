@@ -40,6 +40,7 @@ import android.view.Display;
 import com.example.whankung.navigity.MainActivity;
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Article.AInterface;
+import com.example.whankung.navigity.services.DRating.DRatInterface;
 import com.example.whankung.navigity.services.Disease.DInterface;
 import com.example.whankung.navigity.services.Food.FInterface;
 import com.example.whankung.navigity.services.Hcomment.CInterface;
@@ -47,6 +48,7 @@ import com.example.whankung.navigity.services.Herb.HInterface;
 import com.example.whankung.navigity.services.Herb.HimgInterface;
 import com.example.whankung.navigity.services.Herb.HreInterface;
 import com.example.whankung.navigity.services.HerbRating.RatInterface;
+import com.example.whankung.navigity.services.InRating.InRatInterface;
 import com.example.whankung.navigity.services.InfoG.InfoInterface;
 import com.example.whankung.navigity.services.Office.OfInterface;
 import com.facebook.stetho.DumperPluginsProvider;
@@ -85,18 +87,38 @@ import static okhttp3.Authenticator.NONE;
  * Created by Whankung on 21/2/2560.
  */
 
-public class Http  {
+public class Http {
     private static Http instance;
     DInterface disease;
     HInterface herb;
     HreInterface herbre;
     HimgInterface herbimg;
+
+    public InRatInterface getInrating() {
+        return Inrating;
+    }
+
+    public void setInrating(InRatInterface inrating) {
+        Inrating = inrating;
+    }
+
     AInterface article;
     FInterface food;
     InfoInterface info;
     OfInterface office;
+    InRatInterface Inrating;
+
+    public DRatInterface getDrating() {
+        return Drating;
+    }
+
+    public void setDrating(DRatInterface drating) {
+        Drating = drating;
+    }
+
     RatInterface rating;
     CInterface comment;
+    DRatInterface Drating;
 
     public CInterface getComment() {
         return comment;
@@ -115,7 +137,7 @@ public class Http  {
     }
 
 
-private Retrofit retrofit;
+    private Retrofit retrofit;
 
     private static final String CACHE_CONTROL = "Cache-Control";
 
@@ -642,7 +664,7 @@ private Retrofit retrofit;
 //                    }
 //                })
                 // Set the cache location and size (5 MB)
-               // .cache(provideCache())
+                // .cache(provideCache())
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -662,6 +684,8 @@ private Retrofit retrofit;
         office = retrofit.create(OfInterface.class);
         rating = retrofit.create(RatInterface.class);
         comment = retrofit.create(CInterface.class);
+        Drating = retrofit.create(DRatInterface.class);
+        Inrating = retrofit.create(InRatInterface.class);
     }
 
     private static class ResponseCacheInterceptor implements Interceptor {
@@ -673,6 +697,7 @@ private Retrofit retrofit;
                     .build();
         }
     }
+
     public static abstract class OfflineResponseCacheInterceptor extends Context implements Interceptor {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -683,7 +708,7 @@ private Retrofit retrofit;
                         .header("Cache-Control",
                                 "public, only-if-cached, max-stale=" + 2419200)
                         .build();
-            }else {
+            } else {
                 chain.proceed(request);
             }
             return chain.proceed(request);
@@ -694,12 +719,12 @@ private Retrofit retrofit;
     public OkHttpClient provideOkHttpClient() {
 
         return new OkHttpClient.Builder()
-                 .cache( provideCache() )
+                .cache(provideCache())
                 //.cache(new okhttp3.Cache(AdeptAndroid.getInstance().getCacheDir(), 10 * 1024 * 1024)) // 10 MB
                 //.addInterceptor(provideHttpLoggingInterceptor())
-               // .addInterceptor(provideOfflineCacheInterceptor())
-              //  .addInterceptor(provideCacheInterceptor())
-              //  .addNetworkInterceptor( provideCacheInterceptor() )
+                // .addInterceptor(provideOfflineCacheInterceptor())
+                //  .addInterceptor(provideCacheInterceptor())
+                //  .addNetworkInterceptor( provideCacheInterceptor() )
                 .addInterceptor(new Interceptor() {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -715,7 +740,6 @@ private Retrofit retrofit;
                 .build();
 
 
-
     }
 
     private static Cache provideCache() {
@@ -729,17 +753,14 @@ private Retrofit retrofit;
         return cache;
     }
 
-    private static HttpLoggingInterceptor provideHttpLoggingInterceptor ()
-    {
+    private static HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         HttpLoggingInterceptor httpLoggingInterceptor =
-                new HttpLoggingInterceptor( new HttpLoggingInterceptor.Logger()
-                {
+                new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                     @Override
-                    public void log (String message)
-                    {
-                      //  Timber.d( message );
+                    public void log(String message) {
+                        //  Timber.d( message );
                     }
-                } );
+                });
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         //httpLoggingInterceptor.setLevel( BuildConfig.DEBUG ? HEADERS : NONE );
         return httpLoggingInterceptor;

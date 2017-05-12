@@ -147,8 +147,6 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
 
                                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
                                 outputStreamWriter.write(h2.getLeaf());
-
-
                                 outputStreamWriter.write(h2.getBranch());
                                 outputStreamWriter.write(h2.getFlower());
 //                                outputStreamWriter.write(d.getSymptom());

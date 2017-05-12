@@ -24,7 +24,9 @@ import android.widget.Toast;
 
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.db.DBHandler;
+import com.example.whankung.navigity.services.DRating.DRatRequest;
 import com.example.whankung.navigity.services.Disease.DRequest;
+import com.example.whankung.navigity.services.HerbRating.RatRequest;
 import com.example.whankung.navigity.services.Http;
 
 
@@ -79,7 +81,7 @@ public class SearchDisease extends Fragment {
     private View rootView;
     private TabLayout tabLayout;
     private Typeface font;
-    private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date, ratT;
+    private TextView t, t2, t3, t4, t5, t6, t7, t8, t9, nm, un, date, ratS;
     private RatingBar rata;
     private RelativeLayout rat;
     private String title, d1, d2, d3, d4;
@@ -110,7 +112,7 @@ public class SearchDisease extends Fragment {
             setView();
             setRating();
             setServices();
-            setSearch(getContext());
+          setRat();
 //            AppState.setFirstOpenApp(true);
 //        }
 
@@ -152,6 +154,40 @@ public class SearchDisease extends Fragment {
         return rootView;
     }
 
+    private void setRat() {
+
+            Call<List<DRatRequest>> call = Http.getInstance().getDrating().loadJson();
+            call.enqueue(new Callback<List<DRatRequest>>() {
+                public static final String TAG = "";
+
+                @Override
+                public void onResponse(Call<List<DRatRequest>> call, Response<List<DRatRequest>> response) {
+
+                    if (response.isSuccessful()) {
+                        List<DRatRequest> rating = response.body();
+                        for (DRatRequest r : rating) {
+
+                            if (r.getDiseaseID().equals(title)) {
+
+                                //   ratS=new String[]{String.valueOf(r.getRatingHerb())};
+                                //p.setText(String.valueOf(r.getRatingHerb()));
+                                ratS.setText("Rating: "+String.valueOf(r.getRatingDi()));
+                            }
+
+                        }
+
+                    } else {
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<DRatRequest>> call, Throwable t) {
+                    Log.d(TAG, "onFailure:  " + t.toString());
+                }
+            });
+
+    }
+
 
     private void setView() {
 
@@ -167,8 +203,9 @@ public class SearchDisease extends Fragment {
         t7 = (TextView) rootView.findViewById(R.id.namehow);
         t8 = (TextView) rootView.findViewById(R.id.namehowda);
         t9 = (TextView) rootView.findViewById(R.id.submit);
+        ratS = (TextView) rootView.findViewById(R.id.ratS);
         // ratT = (TextView) rootView.findViewById(R.id.ratT);
-        rata = (RatingBar) rootView.findViewById(R.id.rat);
+        rata = (RatingBar) rootView.findViewById(R.id.rat2);
         b = (Button) rootView.findViewById(R.id.submit2);
         t9.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,10 +320,10 @@ public class SearchDisease extends Fragment {
         rat = (RelativeLayout) rootView.findViewById(R.id.relarat);
         if (AppState.getSingleInstance().isRating(true)) {
             rat.setVisibility(View.VISIBLE);
-            // t9.setVisibility(View.VISIBLE);
+             rata.setVisibility(View.VISIBLE);
         } else if (AppState.getSingleInstance().isRating(false)) {
             rat.setVisibility(View.GONE);
-            //   t9.setVisibility(View.GONE);
+               rata.setVisibility(View.GONE);
         }
     }
 
@@ -507,4 +544,5 @@ public class SearchDisease extends Fragment {
 //        return ret;
 //    }
     }
+
 }

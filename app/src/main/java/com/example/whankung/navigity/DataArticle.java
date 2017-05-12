@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.whankung.navigity.adapter.AppState;
 import com.example.whankung.navigity.services.Article.ArRequest;
+import com.example.whankung.navigity.services.DRating.DRatRequest;
 import com.example.whankung.navigity.services.Http;
 
 import java.util.List;
@@ -48,20 +49,57 @@ public class DataArticle extends android.support.v4.app.Fragment {
         rootView = inflater.inflate(R.layout.data_article, container, false);
         setView();
         setData();
-        setRating();
+        //setRating();
+       // setRat();
 
         return rootView;
     }
 
-    private void setRating() {
-        rata = (RatingBar) rootView.findViewById(R.id.rat);
-        rat = (RelativeLayout) rootView.findViewById(R.id.relarat);
-        if (AppState.getSingleInstance().isRating(true)) {
-            rat.setVisibility(View.VISIBLE);
-        } else if (AppState.getSingleInstance().isRating(false)) {
-            rat.setVisibility(View.GONE);
-        }
-    }
+//    private void setRat() {
+//
+//        Call<List<DRatRequest>> call = Http.getInstance().getDrating().loadJson();
+//        call.enqueue(new Callback<List<DRatRequest>>() {
+//            public static final String TAG = "";
+//
+//            @Override
+//            public void onResponse(Call<List<DRatRequest>> call, Response<List<DRatRequest>> response) {
+//
+//                if (response.isSuccessful()) {
+//                    List<DRatRequest> rating = response.body();
+//                    for (DRatRequest r : rating) {
+//
+//                        if (r.getDiseaseID().equals(title)) {
+//
+//                            //   ratS=new String[]{String.valueOf(r.getRatingHerb())};
+//                            //p.setText(String.valueOf(r.getRatingHerb()));
+//                            ratS.setText("Rating: "+String.valueOf(r.getRatingDi()));
+//                        }
+//
+//                    }
+//
+//                } else {
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<DRatRequest>> call, Throwable t) {
+//                Log.d(TAG, "onFailure:  " + t.toString());
+//            }
+//        });
+//
+//    }
+
+//    private void setRating() {
+//        rata = (RatingBar) rootView.findViewById(R.id.rat);
+//        rat = (RelativeLayout) rootView.findViewById(R.id.relarat);
+//        if (AppState.getSingleInstance().isRating(true)) {
+//            rat.setVisibility(View.VISIBLE);
+//            rata.setVisibility(View.VISIBLE);
+//        } else if (AppState.getSingleInstance().isRating(false)) {
+//            rat.setVisibility(View.GONE);
+//            rata.setVisibility(View.GONE);
+//        }
+//    }
 
     private void setView() {
 //        date = (TextView) rootView.findViewById(R.id.date);
