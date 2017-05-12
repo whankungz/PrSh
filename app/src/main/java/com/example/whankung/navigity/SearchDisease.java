@@ -364,34 +364,33 @@ public class SearchDisease extends Fragment {
 //                        db.getAllShops();
 
 
-                        if (d.getDiseaseName().equals(title)) {
-                            try {
-
-                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-                                outputStreamWriter.write(d.getDiseaseName());
-
-
-                                outputStreamWriter.write(d.getHerb());
-//                                outputStreamWriter.write(d.getSymptom());
-//                                outputStreamWriter.write(d.getHowtoRelief());
-                                outputStreamWriter.close();
-
-                            } catch (IOException e) {
-                                Log.e("Exception", "File write failed: " + e.toString());
-                            }
-                            try {
-
-                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("db.txt", Context.MODE_PRIVATE));
-                                outputStreamWriter.write(d.getHerb());
-
-
+//                            try {
 //
-                                outputStreamWriter.close();
-
-                            } catch (IOException e) {
-                                Log.e("Exception", "File write failed: " + e.toString());
-                            }
-                        }
+//                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+//                                outputStreamWriter.write(d.getDiseaseName());
+//
+//
+//                                outputStreamWriter.write(d.getHerb());
+////                                outputStreamWriter.write(d.getSymptom());
+////                                outputStreamWriter.write(d.getHowtoRelief());
+//                                outputStreamWriter.close();
+//
+//                            } catch (IOException e) {
+//                                Log.e("Exception", "File write failed: " + e.toString());
+//                            }
+//                            try {
+//
+//                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("db.txt", Context.MODE_PRIVATE));
+//                                outputStreamWriter.write(d.getHerb());
+//
+//
+////
+//                                outputStreamWriter.close();
+//
+//                            } catch (IOException e) {
+//                                Log.e("Exception", "File write failed: " + e.toString());
+//                            }
+//                        }
                         if (d.getDiseaseName().equals(title)) {
 
                             t2.setText(d.getDiseaseName());

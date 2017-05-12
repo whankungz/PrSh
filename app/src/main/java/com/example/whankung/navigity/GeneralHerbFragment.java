@@ -147,21 +147,21 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
 
                         if (h2.getHerbID().equals(titleid)) {
 
-                            try {
-
-                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-                                outputStreamWriter.write(h2.getLeaf());
-                                outputStreamWriter.write(h2.getBranch());
-                                outputStreamWriter.write(h2.getFlower());
-//                                outputStreamWriter.write(d.getSymptom());
-//                                outputStreamWriter.write(d.getHowtoRelief());
-
-
-                                outputStreamWriter.close();
-
-                            } catch (IOException e) {
-                                Log.e("Exception", "File write failed: " + e.toString());
-                            }
+//                            try {
+//
+//                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+//                                outputStreamWriter.write(h2.getLeaf());
+//                                outputStreamWriter.write(h2.getBranch());
+//                                outputStreamWriter.write(h2.getFlower());
+////                                outputStreamWriter.write(d.getSymptom());
+////                                outputStreamWriter.write(d.getHowtoRelief());
+//
+//
+//                                outputStreamWriter.close();
+//
+//                            } catch (IOException e) {
+//                                Log.e("Exception", "File write failed: " + e.toString());
+//                            }
 
                             data.setText(h2.getLeaf());
                             data2.setText(h2.getBranch());
@@ -238,23 +238,23 @@ public class GeneralHerbFragment extends android.support.v4.app.Fragment {
                             for (HRequest h : herb) {
 
                                 if (h.getHerbName().equals(title)) {
-                                    try {
-
-                                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-                                        outputStreamWriter.write(h.getHerbName());
-
-
-                                        outputStreamWriter.write(h.getHerbOtherName());
-                                        outputStreamWriter.write(h.getProperties());
-//                                outputStreamWriter.write(d.getSymptom());
-//                                outputStreamWriter.write(d.getHowtoRelief());
-
-
-                                        outputStreamWriter.close();
-
-                                    } catch (IOException e) {
-                                        Log.e("Exception", "File write failed: " + e.toString());
-                                    }
+//                                    try {
+//
+//                                        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+//                                       outputStreamWriter.write(h.getHerbName());
+//
+//
+//                                        outputStreamWriter.write(h.getHerbOtherName());
+//                                        outputStreamWriter.write(h.getProperties());
+////                                outputStreamWriter.write(d.getSymptom());
+////                                outputStreamWriter.write(d.getHowtoRelief());
+//
+//
+//                                        outputStreamWriter.close();
+//
+//                                    } catch (IOException e) {
+//                                        Log.e("Exception", "File write failed: " + e.toString());
+//                                    }
                                     herb2.setText(h.getHerbName());
                                     other2.setText(h.getHerbOtherName());
                                     see2.setText(h.getProperties());

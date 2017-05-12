@@ -76,20 +76,20 @@ public class ResearchHerbFragment extends android.support.v4.app.Fragment {
                     for (HRequest h : herb) {
 
                         if (h.getHerbIdRe().equals(titleid)) {
-                            try {
-
-                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
-
-
-
-                                outputStreamWriter.write(h.getResearchName());
-                                outputStreamWriter.write(h.getCreditRe());
-
-                                outputStreamWriter.close();
-
-                            } catch (IOException e) {
-                                Log.e("Exception", "File write failed: " + e.toString());
-                            }
+//                            try {
+//
+//                                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput("d.txt", Context.MODE_PRIVATE));
+//
+//
+//
+//                                outputStreamWriter.write(h.getResearchName());
+//                                outputStreamWriter.write(h.getCreditRe());
+//
+//                                outputStreamWriter.close();
+//
+//                            } catch (IOException e) {
+//                                Log.e("Exception", "File write failed: " + e.toString());
+//                            }
                             link.setText(h.getResearchName());
                             flink.setText(h.getCreditRe());
 
